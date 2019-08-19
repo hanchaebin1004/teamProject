@@ -14,12 +14,12 @@
 	</jsp-config>
 
 	<servlet>
-		<servlet-name>springBoardMybatis</servlet-name>
+		<servlet-name>springMybatis</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>springBoardMybatis</servlet-name>
+		<servlet-name>springMybatis</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
