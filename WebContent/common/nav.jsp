@@ -1,51 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="header-area home-3">
-         <!-- <div class="info-bar">
-            <div class="container">
-               <div class="row">
-                  <div class="col-lg-6">
-                     <div class="contact-infos">
-                        <div class="email">
-                           <div class="icon-wrapper"><i class="flaticon-call"></i></div>
-                           <div>+ 00 12 123 456</div>
-                        </div>
-                        <div class="phone">
-                           <div class="icon-wrapper"><i class="flaticon-email"></i></div>
-                           <div>Support@mail.com</div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="right-content">
-                        <ul class="social-links">
-                           <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                           <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                           <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        </ul>
-                        <div class="language">
-                           <a href="#" class="dropdown-btn">EN <i class="flaticon-down-arrow"></i></a>
-                           <ul class="language-dropdown">
-                              <li>
-                                 <a href="#">English</a>
-                              </li>
-                              <li>
-                                 <a href="#">French</a>
-                              </li>
-                              <li>
-                                 <a href="#">Spanish</a>
-                              </li>
-                              <li>
-                                 <a href="#">Arabic</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div> -->
          <div class="support-nav-area">
             <div class="container">
                <div class="row">
