@@ -9,11 +9,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Transpix - Transport & Logistic HTML Template</title>
       <!-- favicon -->
-      <link rel="shortcut icon" href="/Team_project/assets/img/favicon.png" type="image/x-icon">
+      <link rel="shortcut icon" href="<%=request.getContextPath() %>/assets/img/favicon.png" type="image/x-icon">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="/Team_project/assets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css">
       <!-- fontawesome css -->
-      <link rel="stylesheet" href="/Team_project/assets/css/flaticon.css">
+      <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/flaticon.css">
       <!-- fontawesome css -->
       <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/fontawesome.min.css">
       <!-- owl carousel css -->
