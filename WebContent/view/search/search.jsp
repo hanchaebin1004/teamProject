@@ -8,28 +8,6 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>창식맨</title>
-      <!-- favicon -->
-      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-      <!-- fontawesome css -->
-      <link rel="stylesheet" href="assets/css/flaticon.css">
-      <!-- fontawesome css -->
-      <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-      <!-- owl carousel css -->
-      <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-      <!-- owl carousel theme css -->
-      <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-      <!-- slicknav css -->
-      <link rel="stylesheet" href="assets/css/slicknav.css">
-      <!-- animate css -->
-      <link rel="stylesheet" href="assets/css/animate.min.css">
-      <!-- main css -->
-      <link rel="stylesheet" href="assets/css/style.css">
-      <!-- responsive css -->
-      <link rel="stylesheet" href="assets/css/responsive.css">
-      <!-- jquery js -->
-      <script src="assets/js/jquery-3.3.1.min.js"></script>
       <script type="text/javascript">
       function initTmap(){
         var map = new Tmap.Map({
@@ -137,23 +115,6 @@
                   </div>
                </div>
 </div></div>
-
-
-<!-- 자바 스크립트 -->
-      <!-- popper js -->
-      <script src="assets/js/popper.min.js"></script>
-      <!-- bootstrap js -->
-      <script src="assets/js/bootstrap.min.js"></script>
-      <!-- owl carousel js -->
-      <script src="assets/js/owl.carousel.min.js"></script>
-      <!-- isotope js -->
-      <script src="assets/js/isotope.pkgd.min.js"></script>
-      <!-- slicknav js -->
-      <script src="assets/js/jquery.slicknav.min.js"></script>
-      <!-- wow js -->
-      <script src="assets/js/wow.min.js"></script>
-      <!-- main js -->
-      <script src="assets/js/main.js"></script>
       <!-- Tmap api -->
       <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>
 
