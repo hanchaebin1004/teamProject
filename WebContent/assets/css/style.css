@@ -4157,7 +4157,7 @@ ul.overview-points li::before {
 ---------------------------*/
 
 .quote-breadcrumb-bg {
-    background-image: url('../img/quote/accept_main.png');
+    background-image: url('../img/quote/breadcrumb.jpg');
     background-size: cover;
 }
 

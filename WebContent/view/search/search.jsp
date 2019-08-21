@@ -36,6 +36,35 @@
     </script>
 </head>
 <body >
+      <!--  breadcrumb start  -->
+      <div class="breadcrumb-area services-breadcrumb-bg">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="breadcrumb-txt">
+                     <span>배송 조회</span>
+                     <h1>빠르고 안전한 배송</h1>
+                  <div class="quote-form-section">
+                     <span class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;송장번호 조회</span>
+                     <form action="#">
+                        <div class="row">
+                        <div class="col-lg-1">&nbsp;</div>
+                           <div class="col-lg-8">
+                              <div class="form-element"><input name="email" type="email" placeholder=""></div>
+                           </div>
+                           <div class="col-lg-3">
+                              <div class="form-element"><input name="phone" type="submit" value="submit"></div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="breadcrumb-overlay"></div>
+      </div>
+      <!--  breadcrumb end  -->
       <!--   faq section start    -->
       <div class="faq-section">
          <div class="container">
