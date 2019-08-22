@@ -36,7 +36,6 @@
     </script>
 </head>
 <body >
-      <!--  breadcrumb start  -->
       <div class="breadcrumb-area services-breadcrumb-bg">
          <div class="container">
             <div class="row">
@@ -46,6 +45,7 @@
                      <h1>빠르고 안전한 배송</h1>
                   <div class="quote-form-section">
                      <span class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;송장번호 조회</span>
+                     <!-- searchForm start -->
                      <form action="#">
                         <div class="row">
                         <div class="col-lg-1">&nbsp;</div>
@@ -53,10 +53,11 @@
                               <div class="form-element"><input name="email" type="email" placeholder=""></div>
                            </div>
                            <div class="col-lg-3">
-                              <div class="form-element"><input name="phone" type="submit" value="submit"></div>
+                              <div class="form-element"><input name="phone" type="submit" value="조회"></div>
                            </div>
                         </div>
                      </form>
+                     <!-- searchForm end -->                     
                   </div>
                   </div>
                </div>
@@ -64,25 +65,46 @@
          </div>
          <div class="breadcrumb-overlay"></div>
       </div>
-      <!--  breadcrumb end  -->
-      <!--   faq section start    -->
+      <!-- searched number -->
+          <div style="margin-top:100px;">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-12">
+                  <span class="title">조회결과</span>
+                  <h2 class="subtitle">
+                    624540809162  <!-- 송장번호 EL -->
+                  </h2>
+                </div>
+              </div>
+              <table style="width:100%;text-align: center">
+                <tr style="font-size:20px;background-color:#E6FFFF;border-bottom:1px gray solid;border-top:1px #58BED3 solid;">
+                <th height="55px" style="border-right:1px #D5D5D5 solid;">운송장 번호</th>
+                <th style="border-right:1px #D5D5D5 solid;">보내는 분</th>
+                <th style="border-right:1px #D5D5D5 solid;">받는 분</th>
+                <th>상품 정보</th>
+                </tr>
+                <tr style="font-size:15px;border-bottom:1px #D5D5D5 solid;">
+                <td height="150px" style="border-right:1px #D5D5D5 solid;">624540809162</td>
+                <td style="border-bottom:1px #D5D5D5 solid;border-right:1px #D5D5D5 solid;">최창식</td>
+                <td style="border-right:1px #D5D5D5 solid;">최창식2</td>
+                <td>최창식3</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+            
+      <!-- searched number end-->          
+      <!-- search section start    -->
       <div class="faq-section">
          <div class="container">
                <div class="row">
                   <div class="col-lg-6">
                       <div id="map_div"></div>
                   </div>
-<!--              longitude
-                  latitude -위경도
-                  zoom -확대정도
-                  markers -마커
-                  format -jpg png 포맷타입
-                  width
-                  height -->
                   <div class="col-xl-6">
                      <span class="title">배송현황</span>
                      <h2 class="subtitle">이천 - 서울</h2>
- <!-- 아코디언 -->
+          <!-- accordion start -->
                   <div class="accordion" id="accordionExample">
                      <div class="card wow fadeInUp" data-wow-duration="1s">
                         <div class="card-header" id="headingOne">
@@ -143,9 +165,18 @@
                   </div>
                   </div>
                </div>
-</div></div>
-      <!-- Tmap api -->
-      <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>
+            </div>
+         </div>
+         
+         
+         
+         
+         
+<!-- Tmap api -->
+<script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>
+
+
+
 
 </body>
 </html> 
