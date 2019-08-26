@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/accept")
+@RequestMapping("/accept/")
 public class AcceptController {
 
 	ModelAndView mv = new ModelAndView();
@@ -13,7 +13,7 @@ public class AcceptController {
 	@RequestMapping("accept")
 	public ModelAndView accept() {
 		mv.clear();
-		mv.setViewName("/accept/accept");
+		mv.setViewName("accept/accept");
 		return mv;
 	}
 }

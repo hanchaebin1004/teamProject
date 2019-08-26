@@ -6,7 +6,7 @@
             <div class="top-footer">
                <div class="row">
                   <div class="col-xl-4 col-lg-4">
-                     <div class="logo-wrapper"><img src="assets/img/footer_logo.png" alt=""></div>
+                     <div class="logo-wrapper"><img src="<%= request.getContextPath()%>/assets/img/footer_logo.png" alt=""></div>
                      <p>Transgo shipping offers a host of logistic management services and supply chain & provide innovative solutions with the best. </p>
                   </div>
                   <div class="offset-xl-1 col-xl-2 col-lg-2">

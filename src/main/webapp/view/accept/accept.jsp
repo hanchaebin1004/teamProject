@@ -9,9 +9,7 @@
 					<h1>택배 예약하기</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								식스택배는 고객님의 소중한 마음까지 전달합니다.
-							</li>
+							<li class="breadcrumb-item">식스택배는 고객님의 소중한 마음까지 전달합니다.</li>
 						</ol>
 					</nav>
 				</div>
@@ -21,7 +19,6 @@
 	<div class="breadcrumb-overlay"></div>
 </div>
 <!--  breadcrumb end  -->
-
 <!--   quote section start    -->
 <div class="quote-section quote-page">
 	<div class="container">
@@ -45,7 +42,7 @@
 								<input name="name" type="text" placeholder="You name">
 							</div>
 						</div>
-						<div class="col-lg-6" >
+						<div class="col-lg-6">
 							<div class="form-element">
 								<div class="select-wrapper">
 									<select name="freight">
@@ -186,7 +183,6 @@
 	</div>
 </div>
 <!--   quote section end    -->
-
 <!--  features section start  -->
 <div class="features-section home-2 border">
 	<div class="container">

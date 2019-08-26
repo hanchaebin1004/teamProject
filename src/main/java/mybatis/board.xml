@@ -9,7 +9,6 @@
 		#{boardid}
 	</select>
 
-
 	<select id="getArticles" parameterType="hashmap"
 		resultType="Board">
 		select * from board where boardid = #{boardid}
@@ -24,8 +23,6 @@
 
 	</select>
 
-
-
 	<select id="insertArticle_new" resultType="int">
 		select max(num) from
 		board
@@ -36,7 +33,6 @@
 		re_step=re_step+1 where ref= #{ref} and re_step> #{re_step}
 	</update>
 
-
 	<insert id="insertArticle_insert" parameterType="Board">
 		insert into
 		board values
@@ -46,28 +42,15 @@
 		#{filesize})
 	</insert>
 
-
-
-
-
-
-
-
-
-
 	<select id="update_passwd" parameterType="hashmap"
 		resultType="string">
 		select passwd from board where num =#{num}
 	</select>
 
-
-
 	<update id="update_readcount" parameterType="hashmap">
 		update board set
 		readcount=readcount+1 where num = #{num}
 	</update>
-
-
 
 	<update id="update_update" parameterType="hashmap">
 		update board set
