@@ -8,62 +8,15 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>창식맨</title>
-<!--       <script type="text/javascript">
-      function initTmap(){
-        var map = new Tmap.Map({
-          div:'map_div',
-          width : "500px",
-          height : "579px",
-        });
-        map.setCenter(new Tmap.LonLat("127.21481221072919", "37.40395887944509").transform("EPSG:4326", "EPSG:3857"), 10);
-        
-        markerLayer = new Tmap.Layer.Markers();
-        map.addLayer(markerLayer);
-           
-        var size = new Tmap.Size(24, 38);
-        var offset = new Tmap.Pixel(-(size.w / 2), -(size.h));
-        
-    		var positions = [//다중 마커 저장 배열
-    			{
-    				title: '도착지', 
-    				lonlat: new Tmap.LonLat(126.95741134039824, 37.480010846675256).transform("EPSG:4326", "EPSG:3857")//좌표 지정
-    			},
-    			{
-    				title: '경유지', 
-    				lonlat: new Tmap.LonLat(127.19345646254537, 37.53628869735029).transform("EPSG:4326", "EPSG:3857")
-    			},
-    			{
-    				title: '명동성당', 
-    				lonlat: new Tmap.LonLat(127.4561895643917, 37.295335255148295).transform("EPSG:4326", "EPSG:3857")
-    			}
-    		];
-    		 
-    		for (var i = 0; i< positions.length; i++){//for문을 통하여 배열 안에 있는 값을 마커 생성
-    			var icon = new Tmap.Icon('http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_a.png',size, offset);//아이콘 설정
-    			var lonlat = positions[i].lonlat;//좌표값
-    			marker = new Tmap.Marker(lonlat, icon);//마커 생성
-    			markerLayer.addMarker(marker); //마커 레이어에 마커 추가
-    		}
-      } 
-      
-      
-      $(document).ready(function() {
-        initTmap();
-      });
-    </script> -->
-    
-        
 <script>  
-// map 생성
-// Tmap.map을 이용하여, 지도가 들어갈 div, 넓이, 높이를 설정합니다.    
 function initTmap(){
+// map 생성
 var map = new Tmap.Map({
   div:'map_div',
   width : "500px",
   height : "579px",
 });
 map.setCenter(new Tmap.LonLat("127.21481221072919", "37.40395887944509").transform("EPSG:4326", "EPSG:3857"), 10);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 중심점으로 설정합니다.
-
 
 var routeLayer = new Tmap.Layer.Vector("route");// 백터 레이어 생성
 var markerLayer = new Tmap.Layer.Markers("point");//마커 레이어 생성
@@ -93,16 +46,16 @@ var marker = new Tmap.Marker(new Tmap.LonLat("127.19427721850072", "37.533810811
 markerWaypointLayer.addMarker(marker);//마커 레이어에 마커 추가
 
 var headers = {}; 
-headers["appKey"]="05d93f1f-6203-482f-89f0-ba7626c327fe";//실행을 위한 키 입니다. 발급받으신 AppKey(서버키)를 입력하세요.
+headers["appKey"]="05d93f1f-6203-482f-89f0-ba7626c327fe";//AppKey(서버키)
 headers["Content-Type"]="application/json";
 $.ajax({
 		method:"POST",
 		headers : headers,
-		url:"https://apis.openapi.sk.com/tmap/routes/routeSequential30?version=1&format=xml",//다중 경유지안내 api 요청 url입니다.
+		url:"https://apis.openapi.sk.com/tmap/routes/routeSequential30?version=1&format=xml",//다중 경유지안내 api 요청 url
 		async:false,
 		data:JSON.stringify({
 			"startName" : "출발지", //출발지 명칭  
-			//출발지 위경도 좌표입니다.
+			//출발지 위경도 좌표
 			"startX" : "126.95741134039824",
 			"startY" : "37.480010846675256",
 			"startTime" : "201708081103",//출발 시간(YYYYMMDDHHMM)
@@ -111,7 +64,6 @@ $.ajax({
 			"endX" : "127.4561895643917",
 			"endY" : "37.295335255148295",
 			//경유지 목록 입니다. 
-			//목록 전체는 대괄호[] 각각의 리스트는 중괄호{}로 묶습니다.
 			"viaPoints" : 
 				[
 					 {
@@ -124,9 +76,9 @@ $.ajax({
 					],
 			"reqCoordType" : "WGS84GEO", //요청 좌표 타입
 			"resCoordType" : "EPSG3857",
-			"searchOption": 0//경로 탐색 옵션 입니다.
+			"searchOption": 0//경로 탐색 옵션 
 		}),
-		//데이터 로드가 성공적으로 완료되었을 때 발생하는 함수입니다.
+		//데이터 로드가 성공적으로 완료되었을 때 발생하는 함입니다.
 		success:function(response){
 			prtcl = response;
 			// 결과 출력
@@ -168,7 +120,7 @@ $.ajax({
 			
 			routeLayer.addFeatures(prtcl);//레이어에 도형을 등록합니다.
 			
-			map.zoomToExtent(routeLayer.getDataExtent());//map의 zoom을 routeLayer의 영역에 맞게 변경합니다.	
+			map.zoomToExtent(routeLayer.getDataExtent());//map의 zoom을 routeLayer의 영역에 맞게 변경
 		},
 		//요청 실패시 콘솔창에서 에러 내용을 확인할 수 있습니다.
 		error:function(request,status,error){
