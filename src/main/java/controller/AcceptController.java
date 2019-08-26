@@ -10,10 +10,10 @@ public class AcceptController {
 
 	ModelAndView mv = new ModelAndView();
 
-	@RequestMapping("/accept")
+	@RequestMapping("accept")
 	public ModelAndView accept() {
 		mv.clear();
-		mv.setViewName("accept/accept");
+		mv.setViewName("/accept/accept");
 		return mv;
 	}
 }
