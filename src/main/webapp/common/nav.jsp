@@ -2,7 +2,7 @@
 <body>
 	<!--   header area start   -->
 	<div class="header-area">
-		<div class="support-nav-area">
+		<div class="support-nav-area" style="z-index:2001;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-6">
