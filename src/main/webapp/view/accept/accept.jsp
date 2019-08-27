@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/acceptCustom.css">
 <!--  breadcrumb start  -->
 <div class="breadcrumb-area quote-breadcrumb-bg">
 	<div class="container">
@@ -26,7 +27,7 @@
 			<div class="col-xl-12 col-lg-12">
 				<div class="row">
 					<div class="col-lg-12">
-						<span class="title">예약</span>
+						<span class="title">접수</span>
 						<h2 class="subtitle">택배 예약하기</h2>
 					</div>
 				</div>
@@ -37,31 +38,97 @@
 				</div>
 				<form action="#">
 					<div class="row">
-						<div class="col-lg-6">
+						<!-- 이름  -->
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
+								<span>이름</span>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-5">
+							<div class="form-element">
+								<input name="name" type="text">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 비밀번호  -->
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>비밀번호</span>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<div class="form-element">
+								<input name="password" type="password">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 연락처  -->
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>연락처</span>
+							</div>
+						</div>
+						<div class="col-lg-2">
 							<div class="form-element">
 								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
+									<select name="tel1">
+										<option selected disabled>선택</option>
+										<option value="010">010</option>
+										<option value="011">011</option>
+										<option value="012">012</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<span style="padding-top: 10px; font-weight: bold;">-</span>
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
+								<input name="tel2" type="text">
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<span style="padding-top: 10px; font-weight: bold;">-</span>
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
+								<input name="tel3" type="text">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 주소  -->
+						<div class="col-lg-12">
+							<hr>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>주소</span>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input name="zip1" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input name="zip2" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input type="button" value="주소검색" style="width: 85%; height: 50px;" />
+							</div>
+						</div>
+						<div class="col-lg-3"></div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+							<div class="form-element">
+								<input name="address1" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+							<div class="form-element">
+								<input name="address2" type="text">
 							</div>
 						</div>
 					</div>
@@ -72,31 +139,84 @@
 						<span>받으시는 고객님의 정보를 정확하게 입력해주세요.</span>
 					</div>
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
+								<span>이름</span>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-5">
+							<div class="form-element">
+								<input name="name" type="text">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 연락처  -->
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>연락처</span>
+							</div>
+						</div>
+						<div class="col-lg-2">
 							<div class="form-element">
 								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
+									<select name="tel1">
+										<option selected disabled>선택</option>
+										<option value="010">010</option>
+										<option value="011">011</option>
+										<option value="012">012</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<span style="padding-top: 10px; font-weight: bold;">-</span>
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
+								<input name="tel2" type="text">
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<span style="padding-top: 10px; font-weight: bold;">-</span>
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
+								<input name="tel3" type="text">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 주소  -->
+						<div class="col-lg-12">
+							<hr>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>주소</span>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input name="zip1" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input name="zip2" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input type="button" value="주소검색" style="width: 85%; height: 50px;" />
+							</div>
+						</div>
+						<div class="col-lg-3"></div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+							<div class="form-element">
+								<input name="address1" type="text">
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+							<div class="form-element">
+								<input name="address2" type="text">
 							</div>
 						</div>
 					</div>
@@ -107,31 +227,67 @@
 						<span>상품정보를 정확하게 입력해주세요.</span>
 					</div>
 					<div class="row">
-						<div class="col-lg-6">
+						<!-- 상품분류  -->
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
+								<span>상품분류</span>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-5">
+							<div class="form-element">
+								<input name="name" type="text">
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 부피  -->
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>부피</span>
+							</div>
+						</div>
+						<div class="col-lg-2">
 							<div class="form-element">
 								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
+									<select name="tel1">
+										<option selected disabled>선택</option>
+										<option value="010">극소</option>
+										<option value="011">소</option>
+										<option value="012">중</option>
+										<option value="012">대</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-8"></div>
+						<!-- 운임  -->
+						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
+								<span>운임</span>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-3">
 							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
+								<input name="name" type="text" readonly="readonly" placeholder="계산기를 이용해주세요">
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<input type="button" value="운임계산기" style="width: 85%; height: 50px;" />
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+						<!-- 요청사항  -->
+						<div class="col-lg-12">
+							<hr>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-element">
+								<span>요청사항</span>
+							</div>
+						</div>
+						<div class="col-lg-10">
+							<div class="form-element">
+								<input name="name" type="text">
 							</div>
 						</div>
 					</div>
@@ -142,37 +298,104 @@
 						<span>상품을 배송할 경로를 선택해주세요.</span>
 					</div>
 					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
+						<!--  contact form and map start  -->
+						<div class="col-lg-6" style="height: 450px;">
+							<div class="map-wrapper">
+								<div id="map"></div>
 							</div>
 						</div>
 						<div class="col-lg-6">
-							<div class="form-element">
-								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
-									</select>
+							<div class="row">
+								<!-- 출발 간선지 -->
+								<div class="col-md-3">
+									<div class="form-element">
+										<span>출발</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-element">
+										<input type="text" placeholder="OO 간선지" readonly="readonly">
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+								<!--  경유 간선지 선택  -->
+								<div class="col-md-3">
+									<div class="form-element">
+										<span>경유</span>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="form-element">
+										<span>A간선지</span>
+										<input type="radio" name="n_via" value="a">
+										<span>B간선지</span>
+										<input type="radio" name="n_via" value="b">
+										<span>C간선지</span>
+										<input type="radio" name="n_via" value="c">
+									</div>
+								</div>
+								<div class="col-md-1"></div>
+								<!-- 도착 간선지 -->
+								<div class="col-md-3">
+									<div class="form-element">
+										<span>도착</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-element">
+										<input type="text" placeholder="OO 간선지" readonly="readonly">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-element">
+										<input type="button" value="경로계산" onclick="rootSearch()" style="width: 85%; height: 50px;" />
+									</div>
+								</div>
+								<!-- 경로 계산 결과 -->
+								<div class="col-lg-12">
+									<hr>
+								</div>
+								<div class="col-lg-12" id="rootSearchResult" style="display: none;">
+									<div class="col-md-4" style="float: right">
+										<div class="form-element">
+											<span>실시간 경로</span>
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-element">
+											<input type="text" readonly="readonly" value="1시간 24분">
+										</div>
+									</div>
+									<div class="col-md-4" style="float: right">
+										<div class="form-element">
+											<span>평균도착시간</span>
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-element">
+											<input type="text" readonly="readonly" value="2시간 3분">
+										</div>
+									</div>
+									<div class="col-md-4" style="float: right">
+										<div class="form-element">
+											<span>예상도착시간</span>
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-element">
+											<input type="text" readonly="readonly" value="2시간 3분">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
-							</div>
-						</div>
+					</div>
+					<!--  contact form and map end  -->
+					<div class="row" style="margin-top: 15px; text-align: right">
 						<div class="col-lg-12">
 							<div class="form-element mb-0">
 								<button type="submit" class="boxed-btn">
-									<span>Submit</span>
+									<span>예약</span>
 								</button>
 							</div>
 						</div>
@@ -182,6 +405,11 @@
 		</div>
 	</div>
 </div>
+<script>
+	function rootSearch() {
+		$('#rootSearchResult').css("display", "block");
+	}
+</script>
 <!--   quote section end    -->
 <!--  features section start  -->
 <div class="features-section home-2 border">
@@ -225,33 +453,8 @@
 		</div>
 	</div>
 </div>
+<!-- google map api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqFuLx8S7A8eianoUhkYMeXpGPvsXp1NM&callback=initMap" async defer></script>
+<!-- google map activate js -->
+<script src="<%=request.getContextPath()%>/assets/js/google-map-activate.js"></script>
 <!--  features section end  -->
-<style>
-.common-table-top {
-	margin-bottom: 15px;
-	padding: 18px 30px 15px;
-	border-bottom: solid 1px #bec0c2;
-	background: #f2f2f2
-}
-
-.common-table-top strong {
-	font-weight: 800;
-	font-size: 18px;
-	color: #007ac3
-}
-
-.common-table-top span:before {
-	display: inline-block;
-	content: '';
-	width: 7px;
-	height: 1px;
-	vertical-align: middle;
-	margin: 0 6px 0 11px;
-	background: #333
-}
-
-.common-table-top span {
-	font-size: 15px;
-	color: #333
-}
-</style>

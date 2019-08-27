@@ -21,7 +21,8 @@ public class TopMenuController {
 	@ResponseBody
 	public List list() throws Exception {
 		List menuList = topMenuDBBeanMybatis.getTopMenus();
-		System.out.println(menuList);
 		return menuList;
 	}
+	
+	
 }

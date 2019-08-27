@@ -49,7 +49,7 @@
                </div>
             </div>
             <div class="bottom-footer">
-               <p class="text-center">© Copyrights 2019 Transpix. All rights reserved.</p>
+               <p class="text-center">© Copyrights 2019 식스택배. All rights reserved.</p>
             </div>
          </div>
       </footer>

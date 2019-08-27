@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.form-element input[type="password"] {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border: none;
+	outline: 0;
+	padding-left: 20px;
+	color: #4e5861;
+}
+
+.form-element span {
+	line-height: 50px;
+	padding-left: 20px;
+	color: #666666;
+	font-weight: bold;
+}
+
+.common-table-top {
+	margin-bottom: 15px;
+	padding: 18px 30px 15px;
+	border-bottom: solid 1px #bec0c2;
+	background: #f2f2f2
+}
+
+.common-table-top strong {
+	font-weight: 800;
+	font-size: 18px;
+	color: #007ac3
+}
+
+.common-table-top span:before {
+	display: inline-block;
+	content: '';
+	width: 7px;
+	height: 1px;
+	vertical-align: middle;
+	margin: 0 6px 0 11px;
+	background: #333
+}
+
+.common-table-top span {
+	font-size: 15px;
+	color: #333
+}

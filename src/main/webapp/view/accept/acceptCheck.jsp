@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="breadcrumb-txt">
-					<span>예약</span>
+					<span>접수</span>
 					<h1>예약 확인하기</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
