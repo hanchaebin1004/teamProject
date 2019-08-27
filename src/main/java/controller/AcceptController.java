@@ -30,4 +30,25 @@ public class AcceptController {
 		mv.setViewName("accept/chargeInfo");
 		return mv;
 	}
+	
+	@RequestMapping("tmapEx")
+	public ModelAndView tmapEx() {
+		mv.clear();
+		mv.setViewName("accept/tmapEx");
+		return mv;
+	}
+
+	@RequestMapping("tmapLength")
+	public ModelAndView tmapLength() {
+		mv.clear();
+		mv.setViewName("accept/tmapLength");
+		return mv;
+	}
+
+	@RequestMapping("tmapXY")
+	public ModelAndView tmapXY() {
+		mv.clear();
+		mv.setViewName("accept/tmapXY");
+		return mv;
+	}
 }
