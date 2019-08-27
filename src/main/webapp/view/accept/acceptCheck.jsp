@@ -5,8 +5,8 @@
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="breadcrumb-txt">
-					<span>접수</span>
-					<h1>택배 예약하기</h1>
+					<span>예약</span>
+					<h1>예약 확인하기</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">식스택배는 고객님의 소중한 마음까지 전달합니다.</li>

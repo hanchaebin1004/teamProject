@@ -16,4 +16,18 @@ public class AcceptController {
 		mv.setViewName("accept/accept");
 		return mv;
 	}
+	
+	@RequestMapping("acceptCheck")
+	public ModelAndView acceptCheck() {
+		mv.clear();
+		mv.setViewName("accept/acceptCheck");
+		return mv;
+	}
+	
+	@RequestMapping("chargeInfo")
+	public ModelAndView chargeInfo() {
+		mv.clear();
+		mv.setViewName("accept/chargeInfo");
+		return mv;
+	}
 }
