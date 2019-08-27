@@ -4,7 +4,7 @@
 <mapper namespace="mybatis.TopMenu">
 
 	<select id="getTopMenus" resultType="TopMenu">
-		select * from top_menu where tm_use = 'y'
+		select * from top_menu where tm_use = 'y' order by tm_num, tm_div asc
 	</select>
 
 	<!-- <select id="insertArticle_new" resultType="int">

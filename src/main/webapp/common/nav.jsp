@@ -53,30 +53,39 @@
 							</div>
 						</div>
 						<script>
+							var currentUrl = document.location.href.split("teamProject")[1].substring(1);
+							
 							$(document).ready(function() {
 								$.ajax({
 									url		:"${pageContext.request.contextPath}/topMenu",
 									method	: "POST",
 									data	: {},
 									success	: function(data){
-										console.log(data);
 										$.each(data, function(i, item){
 											if(item.tm_depth == 1) {
 												var menu = '';
 												var hasSub = false;
+												var isCurrent = false;
 												$.each(data, function(j,submenu){
 													if(submenu.tm_parent == item.tm_num){
 													hasSub = true;
+														if (submenu.tm_url == currentUrl) {
+															isCurrent = true;
+														}
 													}
 												})
 												if (hasSub) {
-													console.log(item.tm_text);
-													menu += '<li class="dropdown">'+
-															'<a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a>'+
-																'<ul>';
+													if (isCurrent) {
+														menu += '<li class="dropdown active">'+
+														'<a href="#">'+ item.tm_text +'</a>'+
+															'<ul>';	
+													} else{
+														menu += '<li class="dropdown">'+
+																'<a href="#">'+ item.tm_text +'</a>'+
+																	'<ul>';
+													}
 													$.each(data, function(j,submenu){
 														if(submenu.tm_parent == item.tm_num){
-															console.log(submenu.tm_text);
 															menu += 
 																	'<li>'+
 																		'<a href="${pageContext.request.contextPath}/'+ submenu.tm_url+'">'+
@@ -87,9 +96,15 @@
 													}) 
 																'</ul>';
 												} else {
-													menu +=	
-														'<li>'+
-															'<a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a>';
+													if (item.tm_url == currentUrl) {
+														menu +=	
+															'<li class="active">'+
+																'<a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a>';
+													} else {
+														menu +=	
+															'<li>'+
+																'<a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a>';
+													}
 												}
 												menu += '</li>';
 												$("#mainMenustart").append(menu);
