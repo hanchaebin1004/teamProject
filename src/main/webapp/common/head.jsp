@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Transpix - Transport & Logistic HTML Template</title>
+      <title>식스택배^^</title>
       <!-- favicon -->
       <link rel="shortcut icon" href="<%=request.getContextPath() %>/assets/img/favicon.png" type="image/x-icon">
       <!-- bootstrap css -->
