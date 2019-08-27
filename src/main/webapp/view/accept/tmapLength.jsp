@@ -20,7 +20,7 @@ function initTmap(){
 	map.addLayer(markerLayer);//map에 마커 레이어 추가
 	
 	var size = new Tmap.Size(24, 38);//아이콘 크기 설정
-	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);//아이콘 중심점 설정
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
 	var icon = new Tmap.IconHtml('<img src=http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png />', size, offset);//마커 아이콘 설정
 	var marker_s = new Tmap.Marker(new Tmap.LonLat("126.97837", "37.57678").transform("EPSG:4326", "EPSG:3857"), icon);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 설정합니다.
 	markerLayer.addMarker(marker_s);//마커 레이어에 마커 추가

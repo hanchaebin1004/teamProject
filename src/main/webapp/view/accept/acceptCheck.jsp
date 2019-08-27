@@ -19,170 +19,26 @@
 	<div class="breadcrumb-overlay"></div>
 </div>
 <!--  breadcrumb end  -->
-<!--   quote section start    -->
-<div class="quote-section quote-page">
+<div class="cta-section home-2">
 	<div class="container">
-		<div class="row">
-			<div class="col-xl-12 col-lg-12">
-				<div class="row">
-					<div class="col-lg-12">
-						<span class="title">예약</span>
-						<h2 class="subtitle">택배 예약하기</h2>
+		<div class="cta-container">
+			<div class="row align-items-center">
+				<div class="col-lg-9">
+					<div class="form-element">
+						<input name="name" type="text" placeholder="운송장번호를 입력하세요">
 					</div>
 				</div>
-				<!-- 발신인 정보 입력 -->
-				<div class="common-table-top">
-					<strong>보내는 분</strong>
-					<span>보내시는 고객님의 정보를 정확하게 입력해주세요.</span>
+				<div class="col-lg-3 text-center text-lg-right">
+					<a href="#" class="boxed-btn">
+						<span>조회하기</span>
+					</a>
 				</div>
-				<form action="#">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- 수신인 정보 입력 -->
-					<div class="common-table-top">
-						<strong>받는 분</strong>
-						<span>받으시는 고객님의 정보를 정확하게 입력해주세요.</span>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- 상품 정보 입력 -->
-					<div class="common-table-top">
-						<strong>상품 정보</strong>
-						<span>상품정보를 정확하게 입력해주세요.</span>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- 경로 선택 -->
-					<div class="common-table-top">
-						<strong>경로 선택</strong>
-						<span>상품을 배송할 경로를 선택해주세요.</span>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="name" type="text" placeholder="You name">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<div class="select-wrapper">
-									<select name="freight">
-										<option value="" selected disabled>Select a Freight</option>
-										<option value="">Air Freight</option>
-										<option value="">Ocean Freight</option>
-										<option value="">Road Freight</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="email" type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-element">
-								<input name="phone" type="text" placeholder="Phone">
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-element mb-0">
-								<button type="submit" class="boxed-btn">
-									<span>Submit</span>
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
 			</div>
 		</div>
 	</div>
+	<div class="cta-overlay"></div>
 </div>
-<!--   quote section end    -->
+<!--   cta section end    -->
 <!--  features section start  -->
 <div class="features-section home-2 border">
 	<div class="container">
