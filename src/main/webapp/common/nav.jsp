@@ -81,7 +81,6 @@
 																	'<li>'+
 																		'<a href="${pageContext.request.contextPath}/'+ submenu.tm_url+'">'+
 																				submenu.tm_text+
-																			'<i class="fas fa-chevron-right"></i>'+
 																		'</a>'+
 																	'</li>';
 														}
@@ -92,9 +91,9 @@
 														'<li>'+
 															'<a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a>';
 												}
+												menu += '</li>';
+												$("#mainMenustart").append(menu);
 											}
-											menu += '</li>';
-											$("#mainMenustart").append(menu);
 										})
 									}
 								})
@@ -105,19 +104,7 @@
 								<div class="col-lg-9 d-lg-block d-none">
 									<nav class="main-menu" id="mainMenu">
 										<ul id="mainMenustart">
-											<!-- 메뉴 DB 가져오기 시작 -->
-											<!-- <li class="dropdown active">
-												<a href="#">Home</a>
-												<ul>
-													<li class="dropdown-submenus">
-														<a href="#">
-															Static Versions
-															<i class="fas fa-chevron-right"></i>
-														</a>
-													</li>
-												</ul>
-											</li> -->
-											<!-- 	메뉴 DB 가져오기 끝 -->
+											<!--DB에서  Ajax로 메뉴 가져와 붙임 -->
 										</ul>
 									</nav>
 								</div>
