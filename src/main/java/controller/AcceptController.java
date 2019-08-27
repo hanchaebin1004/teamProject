@@ -1,14 +1,23 @@
 package controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import service.AcceptService;
 
 @Controller
 @RequestMapping("/accept/")
 public class AcceptController {
 
 	ModelAndView mv = new ModelAndView();
+	
+	@Autowired
+	AcceptService acceptService;
 
 	@RequestMapping("accept")
 	public ModelAndView accept() {
@@ -51,4 +60,12 @@ public class AcceptController {
 		mv.setViewName("accept/tmapXY");
 		return mv;
 	}
+	
+	@RequestMapping("getNodeDiv2")
+	@ResponseBody
+	public List getAllNodeDiv2() throws Exception {
+		List nodeList = acceptService.getAllNodeDiv2();
+		return nodeList;
+	}
+	
 }

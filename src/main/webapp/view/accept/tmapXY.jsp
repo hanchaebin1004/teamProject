@@ -16,14 +16,11 @@ function initTmap(){
 	
 	$.ajax({
 		method:"GET",
-		url:"https://apis.openapi.sk.com/tmap/geo/geocoding?version=1&format=xml&callback=result",//Geocoding api 요청 url입니다.
+		url:"https://apis.openapi.sk.com/tmap/geo/fullAddrGeo?version=1&format=xml&callback=result",//Geocoding api 요청 url입니다.
 		async:false,
 		data:{
 			"coordType" : "WGS84GEO",//지구 위의 위치를 나타내는 좌표 타입입니다.
-			"city_do" : "서울시",// 시/도 명칭입니다.
-			"gu_gun" : "마포구",// 군/구 명칭입니다.
-			"dong" : "서교동",//동 명칭입니다.
-			"bunji" : "1",//출력 좌표에 해당하는 지번입니다.
+			"fullAddr" : "서울시 마포구 와우산로29가길 69", 
 			"appKey" : "9fbe3ae8-c33c-4b03-b618-77bab5761e9e",//실행을 위한 키 입니다. 발급받으신 AppKey(서버키)를 입력하세요.
 		},
 		//데이터 로드가 성공적으로 완료되었을 때 발생하는 함수입니다.

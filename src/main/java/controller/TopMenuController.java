@@ -19,10 +19,8 @@ public class TopMenuController {
 	
 	@RequestMapping("topMenu")
 	@ResponseBody
-	public List list() throws Exception {
+	public List topMenu() throws Exception {
 		List menuList = topMenuDBBeanMybatis.getTopMenus();
 		return menuList;
 	}
-	
-	
 }

@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/acceptCustom.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/acceptCustom.css">
+<script src="<%=request.getContextPath()%>/assets/js/accept.custom.js"></script>
+<!-- 도로명 주소 API -->
+<script>
+	function goPopup(div) {
+		var pop = window.open(
+				"${pageContext.request.contextPath}/popup/jusoPopup.jsp?div="
+						+ div, "pop",
+				"width=570,height=420, scrollbars=yes, resizable=yes");
+	}
+
+	function jusoCallBack1(roadAddrPart1, addrDetail, zipNo) {
+		$("#roadAddrPart1").val(roadAddrPart1);
+		$("#addrDetail1").val(addrDetail);
+		$("#zipNo1").val(zipNo);
+		getStartNode(roadAddrPart1);
+	}
+
+	function jusoCallBack2(roadAddrPart1, addrDetail, zipNo) {
+		$("#roadAddrPart2").val(roadAddrPart1);
+		$("#addrDetail2").val(addrDetail);
+		$("#zipNo2").val(zipNo);
+		getEndNode(roadAddrPart1);
+	}
+</script>
+
 <!--  breadcrumb start  -->
 <div class="breadcrumb-area quote-breadcrumb-bg">
 	<div class="container">
@@ -104,31 +129,26 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="zip1" type="text">
+								<input name="zipSend" id="zipNo1" type="text">
 							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="zip2" type="text">
+								<input type="button" value="주소검색" onclick="goPopup(1)" style="width: 85%; height: 50px;" />
 							</div>
 						</div>
-						<div class="col-lg-2">
-							<div class="form-element">
-								<input type="button" value="주소검색" style="width: 85%; height: 50px;" />
-							</div>
-						</div>
-						<div class="col-lg-3"></div>
+						<div class="col-lg-5"></div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
 							<div class="form-element">
-								<input name="address1" type="text">
+								<input name="address1" id="roadAddrPart1" type="text">
 							</div>
 						</div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
 							<div class="form-element">
-								<input name="address2" type="text">
+								<input name="address2" id="addrDetail1" type="text">
 							</div>
 						</div>
 					</div>
@@ -192,31 +212,26 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="zip1" type="text">
+								<input name="zipNo2" id="zipNo2" type="text">
 							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="zip2" type="text">
+								<input type="button" value="주소검색" onclick="goPopup(2)" style="width: 85%; height: 50px;" />
 							</div>
 						</div>
-						<div class="col-lg-2">
-							<div class="form-element">
-								<input type="button" value="주소검색" style="width: 85%; height: 50px;" />
-							</div>
-						</div>
-						<div class="col-lg-3"></div>
+						<div class="col-lg-5"></div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
 							<div class="form-element">
-								<input name="address1" type="text">
+								<input name="address1" id="roadAddrPart2" type="text">
 							</div>
 						</div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
 							<div class="form-element">
-								<input name="address2" type="text">
+								<input name="address2" id="addrDetail2" type="text">
 							</div>
 						</div>
 					</div>
@@ -314,7 +329,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-element">
-										<input type="text" placeholder="OO 간선지" readonly="readonly">
+										<input type="text" id="startNode" readonly="readonly">
 									</div>
 								</div>
 								<div class="col-md-3"></div>
@@ -343,7 +358,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-element">
-										<input type="text" placeholder="OO 간선지" readonly="readonly">
+										<input type="text" id="endNode" readonly="readonly">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -453,8 +468,3 @@
 		</div>
 	</div>
 </div>
-<!-- google map api -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqFuLx8S7A8eianoUhkYMeXpGPvsXp1NM&callback=initMap" async defer></script>
-<!-- google map activate js -->
-<script src="<%=request.getContextPath()%>/assets/js/google-map-activate.js"></script>
-<!--  features section end  -->

@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="model.TopMenuDataBean" alias="TopMenu" />
+		<typeAlias type="model.NodeDataBeon" alias="Node" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -19,5 +20,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mybatis/TopMenuOracle.xml" />
+		<mapper resource="mybatis/AcceptNodeOracle.xml" />
 	</mappers>
 </configuration>
