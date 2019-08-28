@@ -4,12 +4,12 @@
 <mapper namespace="mybatis.SurveyBoard">
 
 	<select id="surveyListCount" resultType="int">
-	select nvl(count(*),0) from SURVEY_BOARD;
+	select nvl(count(*),0) from SURVEY_BOARD
 	</select>
 
 	<select id="surveyList"  parameterType="hashmap" resultType="SurveyBoard">
 	select SB_NUM, SB_TITLE ,R_RECEIVER, SB_REGDATE, SB_READCOUNT 
 	FROM SURVEY_BOARD SB, RECIPIENT RE 
-	WHERE SB.R_NUM = RE.R_NUM AND SB.SB_NUM BETWEEN #{start} AND #{end};
+	WHERE SB.R_NUM = RE.R_NUM AND SB.SB_NUM BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
