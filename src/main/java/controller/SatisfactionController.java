@@ -27,7 +27,6 @@ public class SatisfactionController {
 
 	@RequestMapping("/board")
 	public ModelAndView surveylist() {
-
 		mv.clear();
 		mv.setViewName("satisfaction/satisfactionBoard");
 		return mv;
