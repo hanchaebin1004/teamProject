@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.SurveyBoard">
 
+	<select id="surveyListCount" resultType="int">
+	select nvl(count(*),0) from SURVEY_BOARD;
+	</select>
+
 	<select id="surveyList"  parameterType="hashmap" resultType="SurveyBoard">
 	select SB_NUM, SB_TITLE ,R_RECEIVER, SB_REGDATE, SB_READCOUNT 
 	FROM SURVEY_BOARD SB, RECIPIENT RE 
