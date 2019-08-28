@@ -1,29 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/acceptCustom.css">
 <script src="<%=request.getContextPath()%>/assets/js/accept.custom.js"></script>
-<!-- 도로명 주소 API -->
-<script>
-	function goPopup(div) {
-		var pop = window.open(
-				"${pageContext.request.contextPath}/popup/jusoPopup.jsp?div="
-						+ div, "pop",
-				"width=570,height=420, scrollbars=yes, resizable=yes");
-	}
-
-	function jusoCallBack1(roadAddrPart1, addrDetail, zipNo) {
-		$("#roadAddrPart1").val(roadAddrPart1);
-		$("#addrDetail1").val(addrDetail);
-		$("#zipNo1").val(zipNo);
-		getStartNode(roadAddrPart1);
-	}
-
-	function jusoCallBack2(roadAddrPart1, addrDetail, zipNo) {
-		$("#roadAddrPart2").val(roadAddrPart1);
-		$("#addrDetail2").val(addrDetail);
-		$("#zipNo2").val(zipNo);
-		getEndNode(roadAddrPart1);
-	}
-</script>
+<script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=9fbe3ae8-c33c-4b03-b618-77bab5761e9e"></script>
 
 <!--  breadcrumb start  -->
 <div class="breadcrumb-area quote-breadcrumb-bg">
@@ -176,7 +154,7 @@
 								<span>연락처</span>
 							</div>
 						</div>
-						<div class="col-lg-2">
+						<div class="col-lg-2" >
 							<div class="form-element">
 								<div class="select-wrapper">
 									<select name="tel1">
@@ -314,10 +292,8 @@
 					</div>
 					<div class="row">
 						<!--  contact form and map start  -->
-						<div class="col-lg-6" style="height: 450px;">
-							<div class="map-wrapper">
-								<div id="map"></div>
-							</div>
+						<div class="col-lg-6" style="height: 500px;">
+							<div id="map_div"></div>
 						</div>
 						<div class="col-lg-6">
 							<div class="row">
@@ -327,45 +303,47 @@
 										<span>출발</span>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="form-element">
-										<input type="text" id="startNode" readonly="readonly">
+										<input type="text" id="startNode" value="보내는분 주소를 입력해주세요" readonly="readonly">
 									</div>
 								</div>
-								<div class="col-md-3"></div>
+								<div class="col-md-1"></div>
 								<!--  경유 간선지 선택  -->
 								<div class="col-md-3">
 									<div class="form-element">
 										<span>경유</span>
 									</div>
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-9" id="viaNodes" style="display: none;">
 									<div class="form-element">
-										<span>A간선지</span>
-										<input type="radio" name="n_via" value="a">
-										<span>B간선지</span>
-										<input type="radio" name="n_via" value="b">
-										<span>C간선지</span>
-										<input type="radio" name="n_via" value="c">
+										<div class="col-md-12">
+											<span id="via1"></span>
+											<input type="radio" id="via1Radio" onclick="rootSearch(1)" name="n_via" value="a">
+										</div>
+										<div class="col-md-12">
+											<span id="via2"></span>
+											<input type="radio" id="via2Radio" onclick="rootSearch(2)" name="n_via" value="b">
+										</div>
+										<div class="col-md-12">
+											<span id="via3"></span>
+											<input type="radio" id="via3Radio" onclick="rootSearch(3)" name="n_via" value="c">
+										</div>
 									</div>
 								</div>
-								<div class="col-md-1"></div>
+								<div class="col-md-9" id="viaBlank" style="display: block;"></div>
 								<!-- 도착 간선지 -->
 								<div class="col-md-3">
 									<div class="form-element">
 										<span>도착</span>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="form-element">
-										<input type="text" id="endNode" readonly="readonly">
+										<input type="text" id="endNode" value="받는분 주소를 입력해주세요" readonly="readonly">
 									</div>
 								</div>
-								<div class="col-md-3">
-									<div class="form-element">
-										<input type="button" value="경로계산" onclick="rootSearch()" style="width: 85%; height: 50px;" />
-									</div>
-								</div>
+								<div class="col-md-1"></div>
 								<!-- 경로 계산 결과 -->
 								<div class="col-lg-12">
 									<hr>
@@ -378,7 +356,7 @@
 									</div>
 									<div class="col-md-8">
 										<div class="form-element">
-											<input type="text" readonly="readonly" value="1시간 24분">
+											<input type="text" id="navTime" readonly="readonly">
 										</div>
 									</div>
 									<div class="col-md-4" style="float: right">
@@ -420,11 +398,6 @@
 		</div>
 	</div>
 </div>
-<script>
-	function rootSearch() {
-		$('#rootSearchResult').css("display", "block");
-	}
-</script>
 <!--   quote section end    -->
 <!--  features section start  -->
 <div class="features-section home-2 border">
@@ -468,3 +441,156 @@
 		</div>
 	</div>
 </div>
+<script>
+var map = '';
+
+$(document).ready(function() {
+	backgroundMap();
+});
+
+function backgroundMap(){
+	map = new Tmap.Map({
+		div:'map_div',
+		width : "100%",
+		height : "550px",
+	});
+	map.setCenter(new Tmap.LonLat("126.986072", "37.570028").transform("EPSG:4326", "EPSG:3857"), 15);
+} 
+
+
+function initTmap(startX, startY, viaX, viaY, endX, endY, t){
+	
+	map = new Tmap.Map({
+		div : 'map_div',
+		width : "100%",
+		height : "550px",
+	});
+	map.setCenter(new Tmap.LonLat(viaY, viaX)
+			.transform("EPSG:4326", "EPSG:3857"), 10);
+	routeLayer = new Tmap.Layer.Vector("route");
+	map.addLayer(routeLayer);
+
+	markerStartLayer = new Tmap.Layer.Markers("start");
+	markerEndLayer = new Tmap.Layer.Markers("end");
+	markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
+
+	pointLayer = new Tmap.Layer.Vector("point");
+	
+	// 2. 시작, 도착 심볼찍기
+	// 시작
+	map.addLayer(markerStartLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml(
+			"<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
+	var marker_s = new Tmap.Marker(new Tmap.LonLat(startY, startX).transform("EPSG:4326", "EPSG:3857"), icon);
+	markerStartLayer.addMarker(marker_s);
+
+	// 도착
+	map.addLayer(markerEndLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml(
+			"<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />",
+			size, offset);
+	var marker_e = new Tmap.Marker(new Tmap.LonLat(endY,endX).transform("EPSG:4326", "EPSG:3857"), icon);
+	markerEndLayer.addMarker(marker_e);
+
+	// 3. 경유지 심볼 찍기
+	map.addLayer(markerWaypointLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+
+	icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_3.png' />", size, offset);
+	marker = new Tmap.Marker(new Tmap.LonLat(viaY, viaX).transform("EPSG:4326", "EPSG:3857"), icon);
+	markerWaypointLayer.addMarker(marker);
+
+	// 4. 경유지 최적화 API 사용요청
+	var prtcl;
+	var headers = {};
+	headers["appKey"] = "9fbe3ae8-c33c-4b03-b618-77bab5761e9e";
+		$.ajax({
+				type 		: "POST",
+				headers		: headers,
+				url 		: "https://apis.openapi.sk.com/tmap/routes/routeOptimization10?version=1&format=xml",//
+				async 		: false,
+				contentType : "application/json",
+				data 		: JSON.stringify({
+					"reqCoordType" : "WGS84GEO",
+					"resCoordType" : "EPSG3857",
+					"startName" : "출발",
+					"startX" : startY,
+					"startY" : startX,
+					"startTime" : t,
+					"endName" : "도착",
+					"endX" : endY,
+					"endY" : endX,
+					"searchOption" : "0",
+					"viaPoints" : 
+						[{
+							"viaPointId" : "test02",
+							"viaPointName" : "test02",
+							"viaX" : viaY,
+							"viaY" : viaX,
+							"viaTime" : 600
+						}]
+											}),
+				success 	: function(response) {
+					prtcl = response;
+					var pointLayer = new Tmap.Layer.Vector("point");
+					var prtclString = new XMLSerializer().serializeToString(prtcl);//xml to String	
+					xmlDoc = $.parseXML(prtclString), 
+							 $xml = $(xmlDoc),
+							 $intRate = $xml.find("Placemark");
+							
+			    	//var tTime = "총 시간 : "+($intRate[0].getElementsByTagName("tmap:totalTime")[0].childNodes[0].nodeValue/60).toFixed(0)+"분,";	
+			    	//$("#navTime").val(tTime);
+					var style_red = {
+						fillColor : "#FF0000",
+						fillOpacity : 0.2,
+						strokeColor : "#FF0000",
+						strokeWidth : 3,
+						strokeDashstyle : "solid",
+						pointRadius : 2,
+						title : "this is a red line"
+					};
+					$intRate.each(function(index, element) {
+								var nodeType = element
+										.getElementsByTagName("tmap:nodeType")[0].childNodes[0].nodeValue;
+								if (nodeType == "POINT") {
+									var point = element
+											.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue
+											.split(',');
+									var geoPoint = new Tmap.Geometry.Point(
+											point[0], point[1]);
+									var pointFeature = new Tmap.Feature.Vector(
+											geoPoint, null, style_red);
+									pointLayer.addFeatures([ pointFeature ]);
+								}
+							});
+					map.addLayer(pointLayer);
+					routeLayer.style = {
+						fillColor : "#FF0000",
+						fillOpacity : 0.2,
+						strokeColor : "#FF0000",
+						strokeWidth : 3,
+						strokeDashstyle : "solid",
+						pointRadius : 2,
+						title : "this is a red line"
+					}
+					var kmlForm = new Tmap.Format.KML().read(prtcl);
+					routeLayer.addFeatures(kmlForm);
+
+					// 6. 경유지 최적화 결과 반경만큼 지도 레벨 조정
+					map.zoomToExtent(routeLayer.getDataExtent());
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+		});
+}
+</script>

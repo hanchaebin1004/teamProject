@@ -63,7 +63,7 @@
 </script>
 <body>
 	<!--   header area start   -->
-	<div class="header-area">
+	<div class="header-area" style="z-index:2002;">
 		<div class="support-nav-area" style="z-index:2001;">
 			<div class="container">
 				<div class="row">

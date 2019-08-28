@@ -10,7 +10,7 @@ function initTmap(){
 	var map = new Tmap.Map({
 		div : 'map_div',
 		width : "100%",
-		height : "400px",
+		height : "500px",
 	});
 	map.setCenter(new Tmap.LonLat("126.7499746596188", "37.49980548622674")
 			.transform("EPSG:4326", "EPSG:3857"), 10);
