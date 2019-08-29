@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body>
 	<!--   header area start   -->
-	<div class="header-area">
+	<div class="header-area" style="z-index:2001">
 		<div class="support-nav-area">
 			<div class="container">
 				<div class="row">

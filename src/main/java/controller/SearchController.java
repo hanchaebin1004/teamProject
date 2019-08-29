@@ -1,16 +1,39 @@
 package controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import model.RootNode;
+import model.WayBill;
+import service.SearchDBBeanMybatis;
 
 @Controller
 @RequestMapping("/search/")
 public class SearchController {
     ModelAndView mv = new ModelAndView();
-    @RequestMapping("search")
+    
+    @Autowired
+    public SearchDBBeanMybatis searchDBBeanMybatis;
+    
+    
+    @RequestMapping(value = "search", method = RequestMethod.GET)
     public ModelAndView search() {
         mv.setViewName("search/search");
         return mv;
+    }
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public ModelAndView searchPro(String w_num) {
+    	System.out.println("controller" + w_num);
+    	mv.clear();
+    	WayBill wb = searchDBBeanMybatis.searchPost(w_num);
+    	RootNode rn = searchDBBeanMybatis.selectNodeCode(w_num);
+    	System.out.println(rn);
+    	mv.addObject("rootnode", rn);
+    	mv.addObject("waybill", wb);
+    	mv.setViewName("search/search");
+    	return mv;
     }
 }
