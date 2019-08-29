@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- satisfaction CSS Sheet -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/custom/satisfactionCustom.css">
@@ -15,7 +14,7 @@
 					<h1>이용 고객 후기</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item">식스택배를 이용하신 고객님들의 후기입니다.</li>
+							<li class="breadcrumb-item">저희 식스택배를 이용하신 고객님들의 후기입니다.</li>
 						</ol>
 					</nav>
 				</div>
@@ -42,72 +41,85 @@
 			<div class="col-xl-12 col-lg-12">
 				<div class="row">
 					<div class="col-lg-12">
-						<table class="table">
-							<tr>
-								<th>no</th>
-								<th colspan="3">제목</th>
-								<th colspan="1">작성자</th>
-								<th colspan="4">작성일시</th>
-								<th>조회수</th>
-							</tr>
-							<c:forEach items="${surveyBoardList}" var="surveyBoard">
+						<c:if test="${count==0 }">
+							<table class="table">
 								<tr>
-									<td><c:out value="${number}" /></td>
-									<c:set var="number" value="${number-1}" />
-									<td colspan="3">${surveyBoard.sb_title}</td>
-									<td colspan="1">${surveyBoard.r_receiver}</td>
-									<td colspan="4">${surveyBoard.sb_regdate}</td>
-									<td>${surveyBoard.sb_readcount}</td>
+									<td>저장된 글이 없습니다.</td>
 								</tr>
-							</c:forEach>
-						</table>
-						<div class="row">
-							<div class="col-lg-12">
-								<nav class="pagination-nav">
-									<ul class="pagination justify-content-center">
-									    <c:if test="${startPage>bottomLine}">
-										<li class="page-item"><a class="page-link"
-											href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-										</li>
-										</c:if>
-										
-										
-										<c:if test="${startPage<=bottomLine}">
-										<li class="page-item disabled"><a class="page-link"
-											href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-										</li>
-										</c:if>
-										
-										<c:forEach var="i" begin="${startPage }" end="${endPage }">
-										  <c:if test="${i==pageNum}">
-										  	<li class="page-item active"><a class="page-link" href="list?pageNum=${i}">${i}</a></li>
-										  </c:if>
-										  <c:if test="${i!=pageNum}">
-										  <li class="page-item"><a class="page-link" href="#">${i}</a></li>
-										  </c:if>
-										</c:forEach>
-										
-										
-										<c:if test="${ endPage<pageCount}">
-										<li class="page-item"><a class="page-link" href="#"><i
-												class="fas fa-chevron-right"></i></a></li>
-										</c:if>
-										<c:if test="${ endPage>=pageCount}">
-										<li class="page-item disabled"><a class="page-link" href="#"><i
-												class="fas fa-chevron-right"></i></a></li>
-										</c:if>
-									</ul>
-								</nav>
+							</table>
+						</c:if>
+
+						<c:if test="${count>0}">
+							<table class="table">
+
+
+								<tr>
+									<th>no</th>
+									<th colspan="3">제목</th>
+									<th colspan="1">작성자</th>
+									<th colspan="4">작성일시</th>
+									<th>조회수</th>
+								</tr>
+								<c:forEach items="${surveyBoardList}" var="surveyBoard">
+									<tr>
+										<td><c:out value="${number}" /></td>
+										<c:set var="number" value="${number-1}" />
+										<td colspan="3">${surveyBoard.sb_title}</td>
+										<td colspan="1">${surveyBoard.r_receiver}</td>
+										<td colspan="4">${surveyBoard.sb_regdate}</td>
+										<td>${surveyBoard.sb_readcount}</td>
+									</tr>
+								</c:forEach>
+							</table>
+							<div class="row">
+								<div class="col-lg-12">
+									<nav class="pagination-nav">
+										<ul class="pagination justify-content-center">
+											<c:if test="${startPage>bottomLine}">
+												<li class="page-item"><a class="page-link" href="#"
+													tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+											</c:if>
+
+
+											<c:if test="${startPage<=bottomLine}">
+												<li class="page-item disabled"><a class="page-link"
+													href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+												</li>
+											</c:if>
+
+											<c:forEach var="i" begin="${startPage }" end="${endPage }">
+												<c:if test="${i==pageNum}">
+													<li class="page-item active"><a class="page-link"
+														href="list?pageNum=${i}">${i}</a></li>
+												</c:if>
+												<c:if test="${i!=pageNum}">
+													<li class="page-item"><a class="page-link" href="#">${i}</a></li>
+												</c:if>
+											</c:forEach>
+
+
+											<c:if test="${ endPage<pageCount}">
+												<li class="page-item"><a class="page-link" href="#"><i
+														class="fas fa-chevron-right"></i></a></li>
+											</c:if>
+											<c:if test="${ endPage>=pageCount}">
+												<li class="page-item disabled"><a class="page-link"
+													href="#"><i class="fas fa-chevron-right"></i></a></li>
+											</c:if>
+										</ul>
+									</nav>
+								</div>
 							</div>
-						</div>
+						</c:if>
 					</div>
+
 
 					<div class="col-lg-12">
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-element mb-0">
-									<br>
-									<a href="<%=request.getContextPath()%>/satisfaction/survey">
+									<br> <a
+										href="<%=request.getContextPath()%>/satisfaction/survey">
 										<button type="button" class="boxed-btn" style="float: right;">
 											<span>평가 작성</span>
 

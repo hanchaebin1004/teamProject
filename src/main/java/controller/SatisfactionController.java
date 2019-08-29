@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
+import model.SurveyBoardQuestionDataBean;
 import service.SurveyBoardDBBeanMybatis;
 
 @Controller
@@ -25,7 +27,7 @@ public class SatisfactionController {
 	@ModelAttribute
 	public void setAttr(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
+
 		try {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		} catch (Exception e) {
@@ -34,9 +36,9 @@ public class SatisfactionController {
 	}
 
 	@RequestMapping("/list")
-	public ModelAndView surveylist() throws Exception{
+	public ModelAndView surveylist() throws Exception {
 		mv.clear();
-		
+
 		int pageSize = 6;
 		int currentPage = pageNum;
 
@@ -46,13 +48,13 @@ public class SatisfactionController {
 		if (count < endRow)
 			endRow = count;
 		List<SurveyBoardDataBean> surveyBoardList = null;
-		
+
 		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
-			surveyBoardList=surveyBoardDBBeanMybatis.getSurveyList(startRow, endRow);
+			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow, endRow);
 		} else {
-			surveyBoardList=surveyBoardDBBeanMybatis.getSurveyList(startRow, pageSize);
+			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow, pageSize);
 		}
-		System.out.println(surveyBoardList.get(0));		
+		System.out.println(surveyBoardList.get(0));
 		int number = count - ((currentPage - 1) * pageSize);
 		int bottomLine = 3;
 		// 5 page
@@ -69,17 +71,36 @@ public class SatisfactionController {
 		mv.addObject("bottomLine", bottomLine);
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
-		
+
 		mv.setViewName("satisfaction/satisfactionBoard");
 		return mv;
 
 	}
 
 	@RequestMapping("/survey")
-	public ModelAndView writeForm() {
+	public ModelAndView surveyUploadForm() throws Exception {
 		mv.clear();
+		
+		List<SurveyBoardQuestionDataBean> surveyQuestionList = null;
+		List<SurveyBoardAnswerDataBean> surveyAnswerList=null;
+
+		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
+			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
+			/* surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); */
+		} else {
+			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
+			/* surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); */
+		}
+		mv.addObject("surveyQuestionList",surveyQuestionList);
+		/* mv.addObject("surveyAnswerList", surveyAnswerList); */
 		mv.setViewName("satisfaction/satisfactionForm");
 		return mv;
 	}
 
+	@RequestMapping("/surveyPro")
+	public ModelAndView surveyUploadPro() {
+		mv.clear();
+		mv.setViewName("satisfaction/list");
+		return mv;
+	}
 }

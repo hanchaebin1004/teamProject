@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/custom/satisfactionCustom.css">
 
@@ -15,7 +16,7 @@
 					<h1>만족도 평가하기</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item">식스택배는 고객님의 소중한 마음까지 전달합니다.</li>
+							<li class="breadcrumb-item">식스택배 이용시 만족도를 평가해주세요!</li>
 						</ol>
 					</nav>
 				</div>
@@ -42,6 +43,8 @@
 					<div class="row">
 						<div class="col-lg-5">
 							<div class="form-element">
+							
+							<!--  운송장번호  -->
 								<input name="receiveNum" type="text"
 									placeholder="운송장 번호를 입력해주세요.">
 							</div>
@@ -55,6 +58,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="form-element">
+							<!--  직원 이름  -->
 								<input name="employeeName" type="text" placeholder="담당직원 이름"
 									readonly="readonly" />
 							</div>
@@ -62,29 +66,28 @@
 
 						<div class="col-lg-3">
 							<div class="form-element">
+							<!-- 평가자이름  -->
 								<input name="Name" type="text" placeholder="평가자이름" />
 							</div>
 						</div>
 					</div>
-					<!-- 평가항목 질문들 어떻게 넣지? -->
+					<!-- 평가항목 질문 -->
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-element">
+							<c:forEach items="${surveyQuestionList}" var="surveyQuestion">
 								<p>
-									<b>Q1.질문 위치입니다. 나중에 Mybatis연결할 때 c:if로 뽑아낼 예정</b>
+									<b>${surveyQuestion.sq_text}</b>
 								</p>
+								<!-- 평가선택지 -->
 								<div>
-
-									<input name="point" id="1point" type="radio"><label for="1point"></label> 
-									<input name="point" id="2point" type="radio"><label for="2point"></label> 
-									<input name="point" id="3point" type="radio"><label for="3point"></label> 
-									<input name="point" id="4point" type="radio"><label for="4point"></label> 
-									<input name="point" id="5point" type="radio" checked="checked"> <label for="5point"></label>
+									<input name="point" id="5point" type="radio"> <label for="5point"></label>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
-
+					<!-- 게시글 제목  -->
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-element">
@@ -92,6 +95,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 기타 사항  -->
 					<div class="row">
 						<div class="col-lg-10">
 							<div class="form-element">
@@ -99,7 +104,7 @@
 							</div>
 						</div>
 					</div>
-					
+					<!-- 비밀번호 -->
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="form-element">
@@ -126,7 +131,7 @@
 						</div>
 					</div>
 					
-					
+					<!-- 제출 버튼 -->
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-element mb-0">
