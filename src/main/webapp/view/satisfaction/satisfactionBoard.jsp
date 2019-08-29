@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/assets/css/custom/satisfactionCustom.css">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- satisfaction CSS Sheet -->
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/custom/satisfactionCustom.css">
 <!--  breadcrumb start  -->
 <div class="breadcrumb-area satisfactionBoard-bg">
 	<div class="container">
@@ -50,13 +49,17 @@
 								<th colspan="4">작성일시</th>
 								<th>조회수</th>
 							</tr>
+							<c:forEach items="${surveyBoardList}" var="surveyBoard">
 							<tr>
-								<td>글번호</td>
-								<td colspan="2">제목</td>
-								<td>작성자명</td>
-								<td colspan="3">작성일시</td>
-								<td>조회수</td>
+								<td><c:out value="${number}" /></td>
+								<c:set var="number" value="${number-1}" />
+								<td colspan="3">${surveyBoard.sb_title}</td>
+								<td colspan="1">${surveyBoard.r_receiver}</td>
+								<td colspan="4">${surveyBoard.sb_regdate}</td>
+								<td>${surveyBoard.sb_readcount}</td>
 							</tr>
+							</c:forEach>
+							
 							
 						</table>
 					</div>

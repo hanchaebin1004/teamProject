@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.SurveyBoardDataBean;
 import service.SurveyBoardDBBeanMybatis;
 
 @Controller
@@ -44,14 +45,14 @@ public class SatisfactionController {
 		int endRow = currentPage * pageSize;
 		if (count < endRow)
 			endRow = count;
-		List surveyBoardList = null;
+		List<SurveyBoardDataBean> surveyBoardList = null;
 		
 		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
-			surveyBoardList=surveyBoardDBBeanMybatis.getSurveyList(startRow+1, endRow);
+			surveyBoardList=surveyBoardDBBeanMybatis.getSurveyList(startRow, endRow);
 		} else {
 			surveyBoardList=surveyBoardDBBeanMybatis.getSurveyList(startRow, pageSize);
 		}
-				
+		System.out.println(surveyBoardList.get(0));		
 		int number = count - ((currentPage - 1) * pageSize);
 		int bottomLine = 3;
 		// 5 page

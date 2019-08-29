@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.SurveyBoardDataBean;
 import mybatis.MybatisConnector;
 
 @Service
@@ -25,11 +26,11 @@ public class SurveyBoardDBBeanMybatis {
 		}
 	}
 	
-	public List getSurveyList(int start, int end) throws Exception{
+	public List<SurveyBoardDataBean> getSurveyList(int startRow, int endRow) throws Exception{
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		HashMap map = new HashMap();
-		map.put("start", start);
-		map.put("end", end);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
 		try {
 			return sqlSession.selectList(namespace + ".surveyList", map);
 		} finally {
