@@ -277,19 +277,22 @@
 				<div class="col-lg-12">
 					<div class="grid">
 						<p class="grid-header">평가조회</p>
-						
-						 <div class="grid">
-                  <div class="grid-body">
-                    <div class="item-wrapper">
-                      <p>본 게시판은 <b>고객님의 칭찬</b>을 전 직원에게 전파하고 있습니다.</p>
-                      <p>친절한 미소! 상냥한 말투로 언제나 최선을 다하고 있는 식스택배 가족 여러분 모두가 최고의 사원입니다!</p>
-                      <p>직원 한 분 한 분이 식스 택배를 만들어 갑니다. 앞으로도 변함없는 친절과 미소 부탁드리겠습니다.</p>
 
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-						
+						<div class="grid">
+							<div class="grid-body">
+								<div class="item-wrapper">
+									<p>
+										본 게시판은 <b>고객님의 칭찬</b>을 전 직원에게 전파하고 있습니다.
+									</p>
+									<p>친절한 미소! 상냥한 말투로 언제나 최선을 다하고 있는 식스택배 가족 여러분 모두가 최고의
+										사원입니다!</p>
+									<p>직원 한 분 한 분이 식스 택배를 만들어 갑니다. 앞으로도 변함없는 친절과 미소 부탁드리겠습니다.</p>
+
+									<p></p>
+								</div>
+							</div>
+						</div>
+
 						<div class="item-wrapper">
 							<div class="table-responsive">
 								<table class="table table-hover">
@@ -303,6 +306,8 @@
 											<th>제목</th>
 											<th>작성자</th>
 											<th>작성일</th>
+											<th>조회</th>
+											<th>칭찬지수</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -313,8 +318,12 @@
 												class="profile-img img-sm img-rounded mr-2"
 												src="<%=request.getContextPath()%>/assets_admin/images/profile/male/image_5.png"
 												alt="profile image"> <span>한채빈</span></td>
-											<td>과장</td>
-											<td>01039082049</td>
+											<td>역삼동 친절한 배송기사님을 칭찬합니다!</td>
+											<!-- 제목 -->
+											<td>이윤지</td>
+											<!-- 작성자 -->
+											<td>2019-08-29</td>
+											<!-- 날짜 -->
 											<td>
 												<div class="progress progress-slim">
 													<div class="progress-bar bg-info progress-bar-striped"
@@ -322,15 +331,9 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td>경기도</td>
 											<td class="text-success">15.67% <i
 												class="mdi mdi-arrow-up"></i>
 											</td>
-											<td>간선지번호</td>
-											<td>시흥</td>
-
-
-
 										</tr>
 
 
@@ -344,8 +347,9 @@
 												class="profile-img img-sm img-rounded mr-2"
 												src="<%=request.getContextPath()%>/assets_admin/images/profile/male/image_7.png"
 												alt="profile image"> <span>양다연</span></td>
-											<td>대리</td>
-											<td>01012341234</td>
+											<td>광화문 우체국 양다연 담당자님을 칭찬합니다</td>
+											<td>박한울</td>
+											<td>2019-08-29</td>
 											<td>
 												<div class="progress progress-slim">
 													<div class="progress-bar bg-success progress-bar-striped"
@@ -353,18 +357,11 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td>서울</td>
-											<!--   <td class="text-success"> 15.67% <i class="mdi mdi-arrow-up"></i>
-                            </td>  퍼센트 -->
-											<td>간선지번호</td>
-											<td>은평구</td>
-
-
-
-											<!-- <td class="actions"><i class="mdi mdi-dots-vertical"></i>
-											</td> -->
+											<td class="text-success">37.24% <i
+												class="mdi mdi-arrow-up"></i>
+											</td>
+											</td>
 										</tr>
-
 										<tr>
 											<!-- 한사람 -->
 											<td>03</td>
@@ -372,8 +369,9 @@
 												class="profile-img img-sm img-rounded mr-2"
 												src="<%=request.getContextPath()%>/assets_admin/images/profile/female/image_10.png"
 												alt="profile image"> <span>박성범</span></td>
-											<td>본부장</td>
-											<td>01045674567</td>
+											<td>서대전 우체국 소포영업과 박성범 직원님 칭찬합니다</td>
+											<td>노 봄</td>
+											<td>2019-08-27</td>
 											<td>
 												<div class="progress progress-slim">
 													<div class="progress-bar bg-primary progress-bar-striped"
@@ -381,13 +379,8 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td>경기도</td>
-											<!--   <td class="text-success"> 15.67% <i class="mdi mdi-arrow-up"></i>
-                            </td>  퍼센트 -->
-											<td>간선지번호</td>
-											<td>안산</td>
-
-
+											<td class="text-success"> 65.67% <i class="mdi mdi-arrow-up"></i>
+                            </td>
 
 											</td>
 											<!-- <td class="actions"><i class="mdi mdi-dots-vertical"></i>
@@ -400,8 +393,9 @@
 												class="profile-img img-sm img-rounded mr-2"
 												src="<%=request.getContextPath()%>/assets_admin/images/profile/female/image_1.png"
 												alt="profile image"> <span>창식쓰</span></td>
-											<td>대리</td>
-											<td>01045674567</td>
+											<td>마포우체국 창식선생님덕에 물건 잘 받을 수 있었습니다.</td>
+											<td>김하나</td>
+											<td>2019-08-26</td>
 											<td>
 												<div class="progress progress-slim">
 													<div class="progress-bar bg-danger progress-bar-striped"
@@ -409,11 +403,8 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td>서울</td>
-											<!--   <td class="text-success"> 15.67% <i class="mdi mdi-arrow-up"></i>
-                            </td>  퍼센트 -->
-											<td>간선지번호</td>
-											<td>강동구</td>
+											<td class="text-success"> 24.15% <i class="mdi mdi-arrow-up"></i>
+                            </td> 
 
 
 
@@ -429,8 +420,10 @@
 												class="profile-img img-sm img-rounded mr-2"
 												src="<%=request.getContextPath()%>/assets_admin/images/profile/male/image_3.png"
 												alt="profile image"> <span>박보검</span></td>
-											<td>대리</td>
-											<td>01045674567</td>
+											<td>시흥 우체국에 근무하시는 박보검씨 정말 고맙습니다.^^</td>
+											<td>홍길동</td>
+																						<td>2019-08-25</td>
+											
 											<td>
 												<div class="progress progress-slim">
 													<div class="progress-bar bg-warning progress-bar-striped"
@@ -438,11 +431,8 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td>서울</td>
-											<!--   <td class="text-success"> 15.67% <i class="mdi mdi-arrow-up"></i>
-                            </td>  퍼센트 -->
-											<td>간선지번호</td>
-											<td>강동구</td>
+											   <td class="text-success"> 25.42% <i class="mdi mdi-arrow-up"></i>
+                            </td> 
 
 
 
