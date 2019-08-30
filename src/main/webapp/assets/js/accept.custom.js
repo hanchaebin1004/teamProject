@@ -293,7 +293,11 @@ function rootSearch(i) {
 		t += (d.getDate());
 	}
 	t += d.getHours();
-	t += d.getMinutes();
+	if ((d.getMinutes()+'').length == 1) {
+		t = t +'0'+ (d.getMinutes());
+	} else {
+		t += (d.getMinutes());
+	}
 	var viaX = '';
 	var viaY = '';
 
@@ -311,7 +315,6 @@ function rootSearch(i) {
 		viaY = via3NodeYpoint;
 		break;
 	}
-	
 	getXYpoint($('#roadAddrPart2').val());
 	initTmap(startNodeXpoint, startNodeYpoint, viaX, viaY, endNodeXpoint, endNodeYpoint, lon, lat, t);
 	

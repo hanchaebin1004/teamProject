@@ -180,7 +180,7 @@ var map = new Tmap.Map({
 $(document).ready(function() {
 	getRoot();
   }); 
->>>>>>> refs/remotes/beom/search
+
 </script>
 </head>
 <body >
@@ -317,13 +317,7 @@ $(document).ready(function() {
             </div>
          </div>
          
-<<<<<<< HEAD
-         
-             <p id="result"></p> 
-         
-         
-=======
->>>>>>> refs/remotes/beom/search
+
 <!-- Tmap api -->
 <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>
 
