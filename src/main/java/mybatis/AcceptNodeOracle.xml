@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Accept">
+
+	<select id="getAllNodeDiv2" resultType="Node">
+		select * from node where n_div = 2
+	</select>
+
+	<!-- <select id="insertArticle_new" resultType="int">
+		select nvl(max(num),0) from board
+	</select>
+
+	<update id="insertArticle_update" parameterType="hashmap">
+		update board set re_step=re_step+1 where ref= #{ref} and re_step > #{re_step}
+	</update>
+
+	<insert id="insertArticle_insert" parameterType="Board">
+		insert into
+		board values
+		(#{num},#{boardid}
+		,#{writer},#{email},#{subject},#{passwd},sysdate,0,
+		#{ref},#{re_step},#{re_level},#{content},#{ip}, #{filename},
+		#{filesize})
+	</insert>
+
+	<select id="update_passwd" parameterType="hashmap"
+		resultType="string">
+		select passwd from board where num =#{num}
+	</select>
+
+	<update id="update_readcount" parameterType="hashmap">
+		update board set
+		readcount=readcount+1 where num = #{num}
+	</update>
+
+	<update id="update_update" parameterType="hashmap">
+		update board set
+		writer=#{writer},
+		email=#{email},
+		subject=#{subject},
+		passwd=#{passwd},
+		content=#{content}
+		where num=#{num}
+	</update>
+
+	<select id="delete" parameterType="hashmap">
+		delete from board where num = #{num}
+	</select> -->
+
+</mapper>
