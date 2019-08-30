@@ -83,7 +83,9 @@
 								<div>
 								<c:forEach items="${surveyAnswerList}" var="surveyAnswer">
 								<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
+								
 								<input name="${surveyQuestion.sq_num}point" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
+								
 								</c:if>
 								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
 								

@@ -14,15 +14,15 @@ import mybatis.MybatisConnector;
 
 @Service
 public class SurveyBoardDBBeanMybatis {
-	private final String namespace = "mybatis.SurveyBoard";
-
+	private final String namespace1 = "mybatis.SurveyBoard";
+	private final String namespace2 = "mybatis.SurveyBoardQnA";
 	@Autowired
 	public MybatisConnector mybatisConnector;
 
 	public int getReadCount() {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		try {
-			return sqlSession.selectOne(namespace + ".surveyListCount");
+			return sqlSession.selectOne(namespace1 + ".surveyListCount");
 		} finally {
 			sqlSession.close();
 		}
@@ -34,7 +34,7 @@ public class SurveyBoardDBBeanMybatis {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		try {
-			return sqlSession.selectList(namespace + ".surveyList", map);
+			return sqlSession.selectList(namespace1 + ".surveyList", map);
 		} finally {
 			sqlSession.close();
 		}
@@ -43,7 +43,7 @@ public class SurveyBoardDBBeanMybatis {
 	public List<SurveyBoardQuestionDataBean> getQuestionList() throws Exception {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		try {
-			return sqlSession.selectList(namespace + "QnA.surveyQuestionList");
+			return sqlSession.selectList(namespace2 + ".surveyQuestionList");
 		} finally {
 			sqlSession.close();
 		}
@@ -54,7 +54,7 @@ public class SurveyBoardDBBeanMybatis {
 		HashMap map = new HashMap();
 
 		try {
-			return sqlSession.selectList(namespace + "QnA.surveyAnswerList");
+			return sqlSession.selectList(namespace2 + ".surveyAnswerList");
 		} finally {
 			sqlSession.close();
 		}
