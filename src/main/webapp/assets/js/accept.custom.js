@@ -173,7 +173,7 @@ function getViaNode(){
 			var dis3 = 4200000;
 			var distanceget = setInterval(function() {
 				console.log(count);
-				/*if (data[count].n_name != startNodeName && data[count].n_name != endNodeName) {
+				if (data[count].n_name != startNodeName && data[count].n_name != endNodeName) {
 					getDistance(3, startNodeYpoint, startNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name);
 					getDistance(4, endNodeYpoint, endNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name);
 					console.log("node: "+data[count].n_name+"\ntotal:"+(startToVia*1 + endToVia*1));
@@ -204,18 +204,18 @@ function getViaNode(){
 					}
 					count2++;
 					console.log("rank: "+via1NodeName+","+via2NodeName+","+via3NodeName);
-				}*/
+				}
 				count++;
 				if (count == max) {
 					clearTimeout(distanceget);
-					/*$("#via1").text(via1NodeName+" 경유 "+ dis1 + "m");
+					$("#via1").text(via1NodeName+" 경유 "+ dis1 + "m");
 					$("#via2").text(via2NodeName+" 경유 "+ dis2 + "m");
-					$("#via3").text(via3NodeName+" 경유 "+ dis3 + "m");*/
-					$("#via1").text("대전물류센터 경유 35565m");
-					$("#via2").text("대구물류센터 경유 42654m");
-					$("#via3").text("강남물류센터 경유 94564m");
+					$("#via3").text(via3NodeName+" 경유 "+ dis3 + "m");
 					$('#viaNodes').css("display", "block");
 					$('#viaBlank').css("display", "none");
+					/*$("#via1").text("대전물류센터 경유 35565m");
+					$("#via2").text("대구물류센터 경유 42654m");
+					$("#via3").text("강남물류센터 경유 94564m");
 					via3NodeName = "대전물류센터";
 					via3NodeXpoint = "36.334398";
 					via3NodeYpoint = "127.432112";
@@ -224,7 +224,7 @@ function getViaNode(){
 					via2NodeYpoint = "128.596129";
 					via1NodeName = "강남물류센터";
 					via1NodeXpoint = "37.498165";
-					via1NodeYpoint = "127.028308";
+					via1NodeYpoint = "127.028308";*/
 					isRunGetVia = false;
 				}
 			}, 1000);
@@ -236,42 +236,42 @@ function getViaNode(){
 
 //도로명 주소 API
 function goPopup(div) {
-	//var pop = window.open("/teamProject/popup/jusoPopup.jsp?div="+ div, "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
-	if (div == 1) {
+	var pop = window.open("/teamProject/popup/jusoPopup.jsp?div="+ div, "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+	/*if (div == 1) {
 		jusoCallBack1("서울특별시 서초구 반포대로 3", "","06711");
 	} else if(div == 2){
 		jusoCallBack2("부산광역시 동구 중앙대로196번길 10","","48821");
-	}
+	}*/
 }
 
 function jusoCallBack1(roadAddrPart1, addrDetail, zipNo) {
 	$("#roadAddrPart1").val(roadAddrPart1);
 	$("#addrDetail1").val(addrDetail);
 	$("#zipNo1").val(zipNo);
-	//getStartNode(roadAddrPart1);
-	$("#startNode").val("강북물류센터");
+	getStartNode(roadAddrPart1);
+	/*$("#startNode").val("강북물류센터");
 	startNodeName = "강북물류센터";
 	startNodeXpoint = '37.555442';
-	startNodeYpoint = '126.936119';
+	startNodeYpoint = '126.936119';*/
 	
-	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
+	/*if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
 		 getViaNode();
-	}
+	}*/
 }
 
 function jusoCallBack2(roadAddrPart1, addrDetail, zipNo) {
 	$("#roadAddrPart2").val(roadAddrPart1);
 	$("#addrDetail2").val(addrDetail);
 	$("#zipNo2").val(zipNo);
-	//getEndNode(roadAddrPart1);
-	$("#endNode").val("부산물류센터");
+	getEndNode(roadAddrPart1);
+	/*$("#endNode").val("부산물류센터");
 	endNodeName = "부산물류센터";
 	endNodeXpoint = '35.115069';
-	endNodeYpoint = '129.042064';
+	endNodeYpoint = '129.042064';*/
 	
-	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
+	/*if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
 		 getViaNode();
-	}
+	}*/
 }
 
 

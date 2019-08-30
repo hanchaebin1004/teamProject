@@ -71,7 +71,7 @@
 						<div class="logo-wrapper">
 							<div class="logo-wrapper-inner">
 								<a href="<%= request.getContextPath() %>/main">
-									<img src="<%=request.getContextPath()%>/assets/img/logo.png" alt="">
+									<img src="<%=request.getContextPath()%>/assets/img/mainLogo.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -127,12 +127,12 @@
 									<div id="mobileMenu"></div>
 									<ul class="search-cart-area">
 										<li>
-											<a href="#" style="font-size: 13px;">
+											<a href="<%=request.getContextPath() %>/member/login" style="font-size: 13px;">
 												로그인
 											</a>
 										</li>
 										<li>
-											<a href="#" style="font-size: 13px;">
+											<a href="<%=request.getContextPath() %>/member/memJoin" style="font-size: 13px;">
 												회원가입
 											</a>
 										</li>

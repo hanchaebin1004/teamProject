@@ -9,44 +9,42 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
 	ModelAndView mv = new ModelAndView();
-	
+
 	@RequestMapping("main")
 	public ModelAndView main() {
 		mv.clear();
 		mv.setViewName("../admin_view/main_admin");
 		return mv;
 	}
-	
-<<<<<<< HEAD
+
 	@RequestMapping("popup")
 	public ModelAndView popup() {
 		mv.clear();
 		mv.setViewName("../admin_view/popUpManagement/popup");
 		return mv;
 	}
-	
+
 	@RequestMapping("notice")
 	public ModelAndView notice() {
 		mv.clear();
 		mv.setViewName("../admin_view/noticeManagement/noticeAdmin");
 		return mv;
 	}
-	
+
 	@RequestMapping("menu")
 	public ModelAndView menu() {
 		mv.clear();
 		mv.setViewName("../admin_view/menuManagement/menuAdmin");
 		return mv;
 	}
-	
-}
-=======
+
 	@RequestMapping("reference")
 	public ModelAndView reference() {
 		mv.clear();
 		mv.setViewName("../admin_view/emp/reference");
 		return mv;
 	}
+
 	@RequestMapping("emp")
 	public ModelAndView emp() {
 		mv.clear();
@@ -54,4 +52,3 @@ public class AdminController {
 		return mv;
 	}
 }
->>>>>>> refs/remotes/beom/empMember

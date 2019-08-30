@@ -265,7 +265,7 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input type="button" value="운임계산기" style="width: 85%; height: 50px;" />
+								<input type="button" onclick="alert('구현 중 입니다');"value="운임계산기" style="width: 85%; height: 50px;" />
 							</div>
 						</div>
 						<div class="col-lg-5"></div>
