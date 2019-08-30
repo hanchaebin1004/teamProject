@@ -5,8 +5,9 @@
 		<div class="row">
 			<div class="col-xl-6 col-lg-8">
 				<div class="hero-txt">
-					<span class="wow fadeInDown" data-wow-duration="1.5s">총알배송 SIX 택배</span>
-					<h1 class="wow fadeInUp" data-wow-duration="1.5s">누구보다 빠르고 안전한 배송</h1>
+					<span class="wow fadeInDown" data-wow-duration="1.5s">단 한사람, 당신을 위하여</span>
+					<h1 class="wow fadeInUp" data-wow-duration="1.5s">나의 택배,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fac08f">식스 택배.</span></h1>
+					<span class="wow fadeInDown" data-wow-duration="1.5s">마음이 통하면, 세상은 더, 따뜻해 집니다.</span><br>
 					<a class="wow fadeInUp boxed-btn" data-wow-duration="1.5s" href="accept/accept">
 						<span>택배예약</span>
 					</a>
