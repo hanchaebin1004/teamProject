@@ -357,8 +357,8 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td class="text-success">37.24% <i
-												class="mdi mdi-arrow-up"></i>
+											<td class="text-danger">23.05% <i
+												class="mdi mdi-arrow-down"></i>
 											</td>
 											</td>
 										</tr>
@@ -379,9 +379,9 @@
 														aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 											</td>
-											<td class="text-success"> 65.67% <i class="mdi mdi-arrow-up"></i>
-                            </td>
-
+											<td class="text-danger">67.32% <i
+												class="mdi mdi-arrow-down"></i>
+											</td>
 											</td>
 											<!-- <td class="actions"><i class="mdi mdi-dots-vertical"></i>
 											</td> -->

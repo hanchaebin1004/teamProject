@@ -319,25 +319,27 @@
                             </td>  퍼센트 -->
 											<td>간선지번호</td>
 											<td>시흥</td>
+											<td>상</td>
+											<td>2019.08.30.22:37:32</td>
 
 
-											<td>
+											 <td>
 												<div class="grid">
 													<div class="grid-body">
 														<div class="item-wrapper">
 															<div class="demo-wrapper">
-																<div class="btn-group mb-0" data-toggle="buttons">
+																<!-- <div class="btn-group mb-0" data-toggle="buttons">
 																	<label class="btn btn-outline-info active"> <input
 																		type="radio" name="options" id="option1_1" checked>
-																		<!-- <i class="mdi mdi-walk"> -->상</i>
+																		<i class="mdi mdi-walk">상</i>
 																	</label> <label class="btn btn-outline-info"> <input
-																		type="radio" name="options" id="option1_2"> <!-- <i
-																	class="mdi mdi-car"> -->중</i>
+																		type="radio" name="options" id="option1_2"> <i
+																	class="mdi mdi-car">중</i>
 																	</label> <label class="btn btn-outline-info"> <input
-																		type="radio" name="options" id="option1_3"> <!-- <i
-																	class="mdi mdi-train"> -->하</i>
+																		type="radio" name="options" id="option1_3"> <i
+																	class="mdi mdi-train">하</i>
 																	</label>
-																</div>
+																</div> -->
 															</div>
 														</div>
 													</div>
@@ -345,12 +347,12 @@
 											<td><div class="grid">
 													<div class="grid-body">
 														<div class="item-wrapper">
-															<div class="demo-wrapper">
+														<!-- 	<div class="demo-wrapper">
 																<button type="button" class="btn btn-outline-warning">완료</button>
-															</div>
+															</div> -->
 														</div>
 													</div>
-												</div></td>
+												</div></td> 
 											<!-- <td class="actions"><i class="mdi mdi-dots-vertical"></i>
 											
 											</td> -->

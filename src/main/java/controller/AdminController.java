@@ -17,6 +17,7 @@ public class AdminController {
 		return mv;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("popup")
 	public ModelAndView popup() {
 		mv.clear();
@@ -39,3 +40,18 @@ public class AdminController {
 	}
 	
 }
+=======
+	@RequestMapping("reference")
+	public ModelAndView reference() {
+		mv.clear();
+		mv.setViewName("../admin_view/emp/reference");
+		return mv;
+	}
+	@RequestMapping("emp")
+	public ModelAndView emp() {
+		mv.clear();
+		mv.setViewName("../admin_view/emp/emp");
+		return mv;
+	}
+}
+>>>>>>> refs/remotes/beom/empMember
