@@ -312,7 +312,8 @@ function rootSearch(i) {
 		break;
 	}
 	
-	initTmap(startNodeXpoint, startNodeYpoint, viaX, viaY, endNodeXpoint, endNodeYpoint, t);
+	getXYpoint($('#roadAddrPart2').val());
+	initTmap(startNodeXpoint, startNodeYpoint, viaX, viaY, endNodeXpoint, endNodeYpoint, lon, lat, t);
 	
 	$('#rootSearch').css("display", "none");
 	$('#rootSearchResult').css("display", "block");

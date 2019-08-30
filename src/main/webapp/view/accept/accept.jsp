@@ -458,139 +458,130 @@ function backgroundMap(){
 } 
 
 
-function initTmap(startX, startY, viaX, viaY, endX, endY, t){
+function initTmap(startX, startY, viaX, viaY, endX, endY, lon, lat, t){
 	
 	map = new Tmap.Map({
 		div : 'map_div',
 		width : "100%",
 		height : "550px",
 	});
-	map.setCenter(new Tmap.LonLat(viaY, viaX)
-			.transform("EPSG:4326", "EPSG:3857"), 10);
-	routeLayer = new Tmap.Layer.Vector("route");
+	var routeLayer = new Tmap.Layer.Vector("route");
 	map.addLayer(routeLayer);
+	map.setCenter(new Tmap.LonLat(viaY, viaX).transform("EPSG:4326", "EPSG:3857"), 14);
 
-	markerStartLayer = new Tmap.Layer.Markers("start");
-	markerEndLayer = new Tmap.Layer.Markers("end");
-	markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
-
-	pointLayer = new Tmap.Layer.Vector("point");
-	
-	// 2. 시작, 도착 심볼찍기
-	// 시작
+	var markerStartLayer = new Tmap.Layer.Markers("start");
 	map.addLayer(markerStartLayer);
-
+	
 	var size = new Tmap.Size(24, 38);
 	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-	var icon = new Tmap.IconHtml(
-			"<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
 	var marker_s = new Tmap.Marker(new Tmap.LonLat(startY, startX).transform("EPSG:4326", "EPSG:3857"), icon);
 	markerStartLayer.addMarker(marker_s);
-
-	// 도착
+	
+	var markerEndLayer = new Tmap.Layer.Markers("end");
 	map.addLayer(markerEndLayer);
-
+	
 	var size = new Tmap.Size(24, 38);
 	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-	var icon = new Tmap.IconHtml(
-			"<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />",
-			size, offset);
-	var marker_e = new Tmap.Marker(new Tmap.LonLat(endY,endX).transform("EPSG:4326", "EPSG:3857"), icon);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />", size, offset);
+	var marker_e = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
 	markerEndLayer.addMarker(marker_e);
 
-	// 3. 경유지 심볼 찍기
-	map.addLayer(markerWaypointLayer);
-
-	var size = new Tmap.Size(24, 38);
-	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-
-	icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_3.png' />", size, offset);
-	marker = new Tmap.Marker(new Tmap.LonLat(viaY, viaX).transform("EPSG:4326", "EPSG:3857"), icon);
-	markerWaypointLayer.addMarker(marker);
-
-	// 4. 경유지 최적화 API 사용요청
 	var prtcl;
 	var headers = {};
 	headers["appKey"] = "9fbe3ae8-c33c-4b03-b618-77bab5761e9e";
-		$.ajax({
-				type 		: "POST",
-				headers		: headers,
-				url 		: "https://apis.openapi.sk.com/tmap/routes/routeOptimization10?version=1&format=xml",//
-				async 		: false,
-				contentType : "application/json",
-				data 		: JSON.stringify({
-					"reqCoordType" : "WGS84GEO",
-					"resCoordType" : "EPSG3857",
-					"startName" : "출발",
-					"startX" : startY,
-					"startY" : startX,
-					"startTime" : t,
-					"endName" : "도착",
-					"endX" : endY,
-					"endY" : endX,
-					"searchOption" : "0",
-					"viaPoints" : 
-						[{
-							"viaPointId" : "test02",
-							"viaPointName" : "test02",
-							"viaX" : viaY,
-							"viaY" : viaX,
-							"viaTime" : 600
-						}]
-											}),
-				success 	: function(response) {
-					prtcl = response;
-					var pointLayer = new Tmap.Layer.Vector("point");
-					var prtclString = new XMLSerializer().serializeToString(prtcl);//xml to String	
-					xmlDoc = $.parseXML(prtclString), 
-							 $xml = $(xmlDoc),
-							 $intRate = $xml.find("Placemark");
-							
-			    	//var tTime = "총 시간 : "+($intRate[0].getElementsByTagName("tmap:totalTime")[0].childNodes[0].nodeValue/60).toFixed(0)+"분,";	
-			    	//$("#navTime").val(tTime);
-					var style_red = {
-						fillColor : "#FF0000",
-						fillOpacity : 0.2,
-						strokeColor : "#FF0000",
-						strokeWidth : 3,
-						strokeDashstyle : "solid",
-						pointRadius : 2,
-						title : "this is a red line"
-					};
-					$intRate.each(function(index, element) {
-								var nodeType = element
-										.getElementsByTagName("tmap:nodeType")[0].childNodes[0].nodeValue;
-								if (nodeType == "POINT") {
-									var point = element
-											.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue
-											.split(',');
-									var geoPoint = new Tmap.Geometry.Point(
-											point[0], point[1]);
-									var pointFeature = new Tmap.Feature.Vector(
-											geoPoint, null, style_red);
-									pointLayer.addFeatures([ pointFeature ]);
-								}
-							});
-					map.addLayer(pointLayer);
-					routeLayer.style = {
-						fillColor : "#FF0000",
-						fillOpacity : 0.2,
-						strokeColor : "#FF0000",
-						strokeWidth : 3,
-						strokeDashstyle : "solid",
-						pointRadius : 2,
-						title : "this is a red line"
-					}
-					var kmlForm = new Tmap.Format.KML().read(prtcl);
-					routeLayer.addFeatures(kmlForm);
-
-					// 6. 경유지 최적화 결과 반경만큼 지도 레벨 조정
-					map.zoomToExtent(routeLayer.getDataExtent());
-				},
-				error : function(request, status, error) {
-					console.log("code:" + request.status + "\n" + "message:"
-							+ request.responseText + "\n" + "error:" + error);
-				}
-		});
+	$.ajax({
+			type 		: "POST",
+			headers		: headers,
+			url 		: "https://apis.openapi.sk.com/tmap/routes/routeOptimization10?version=1&format=xml",
+			async 		: false,
+			contentType : "application/json",
+			data 		: JSON.stringify({
+				"reqCoordType" : "WGS84GEO",
+				"resCoordType" : "EPSG3857",
+				"startName" : "출발",
+				"startX" : startY,
+				"startY" : startX,
+				"startTime" : t,
+				"endName" : "도착",
+				"endX" : lon,
+				"endY" : lat,
+				"searchOption" : "0",
+				"viaPoints" : 
+					[{
+						"viaPointId" : "test02",
+						"viaPointName" : "test02",
+						"viaX" : viaY,
+						"viaY" : viaX,
+						"viaTime" : 600
+					},
+					{
+						"viaPointId" : "test02",
+						"viaPointName" : "test02",
+						"viaX" : endY,
+						"viaY" : endX,
+						"viaTime" : 600
+					}]
+										}),
+			success 	: function(response) {
+				prtcl = response;
+				var innerHtml ="";
+				var prtclString = new XMLSerializer().serializeToString(prtcl);
+			    xmlDoc = $.parseXML( prtclString ),
+			    $xml = $( xmlDoc ),
+		    	$intRate = $xml.find("Document");
+		    	var min = ($intRate[0].getElementsByTagName("tmap:totalTime")[0].childNodes[0].nodeValue/60).toFixed(0);
+				var time = 0;
+				time = min/60;
+		    	var tTime = " 총 시간 : " + time + "시" + min%60 + "분,";	
+				
+		    	$("#navTime").val(tTime);
+		    	
+		    	prtcl=new Tmap.Format.KML({extractStyles:true, extractAttributes:true}).read(prtcl);
+				var routeLayer = new Tmap.Layer.Vector("route");
+				
+				routeLayer.events.register("beforefeatureadded", routeLayer, onBeforeFeatureAdded);
+		        function onBeforeFeatureAdded(e) {
+			        	var style = {};
+			        	switch (e.feature.attributes.styleUrl) {
+			        	case "#pointStyle":
+				        	style.externalGraphic = "http://topopen.tmap.co.kr/imgs/point.png"; 
+				        	style.graphicHeight = 16;
+				        	style.graphicOpacity = 1;
+				        	style.graphicWidth = 16;
+			        	break;
+			        	default:
+				        	style.strokeColor = "#ff0000";
+				        	style.strokeOpacity = "1";
+				        	style.strokeWidth = "5";
+			        	};
+		        	e.feature.style = style;
+		        }
+	
+				routeLayer.addFeatures(prtcl); 
+				map.addLayer(routeLayer);
+				
+				var markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
+				map.addLayer(markerWaypointLayer);
+				
+				var size = new Tmap.Size(24, 38);
+				var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+				
+				var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_1.png' />", size, offset);
+				var marker = new Tmap.Marker(new Tmap.LonLat(viaY, viaX).transform("EPSG:4326", "EPSG:3857"), icon);
+				markerWaypointLayer.addMarker(marker);
+				
+				var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_2.png' />", size, offset);
+				marker = new Tmap.Marker(new Tmap.LonLat(endY, endX).transform("EPSG:4326", "EPSG:3857"), icon);
+				markerWaypointLayer.addMarker(marker);
+				
+				map.zoomToExtent(routeLayer.getDataExtent());
+				
+			},
+			error : function(request, status, error) {
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+	});
 }
 </script>
