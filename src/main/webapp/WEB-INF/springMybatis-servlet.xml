@@ -24,6 +24,11 @@
 	<context:annotation-config />
 	<context:component-scan
 		base-package="controller, service" />
+	
+	  <bean class="mybatis.MybatisConnector">
+	    <property name="dbname" value="Oracle" />
+	  </bean>
+		
 
 	<mvc:resources location="/assets/"
 		mapping="/assets/**" cache-period="60" />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.search">
+
+	<select id ="searchPost" parameterType="String" resultType="model.WayBill">
+		SELECT * FROM WAYBILL 
+		WHERE w_num = #{w_num}
+	</select>
+	
+	<select id = "selectNodeCode" parameterType="String" resultType="model.RootNode">
+		select substr((select n_xy from node where node.n_num = waybill.n_start),0,9) as startx,
+	       substr((select n_xy from node where node.n_num = waybill.n_start),12,10) as starty,
+	       (select n_name from node where node.n_num = waybill.n_start) as startname,
+	       substr((select n_xy from node where node.n_num = waybill.n_via),0,9) as viax,
+	       substr((select n_xy from node where node.n_num = waybill.n_via),12,10) as viay,
+	       (select n_name from node where node.n_num = waybill.n_via) as vianame,
+	       substr((select n_xy from node where node.n_num = waybill.n_end),0,9) as endx,
+	       substr((select n_xy from node where node.n_num = waybill.n_end),12,10) as endy,
+	       (select n_name from node where node.n_num = waybill.n_end) as endname
+		from waybill where w_num = #{w_num}
+	</select>
+</mapper>
