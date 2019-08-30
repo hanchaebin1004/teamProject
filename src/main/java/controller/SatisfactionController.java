@@ -86,13 +86,13 @@ public class SatisfactionController {
 
 		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
 			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
-			/* surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); */
+			 surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); 
 		} else {
 			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
-			/* surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); */
+			surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); 
 		}
 		mv.addObject("surveyQuestionList",surveyQuestionList);
-		/* mv.addObject("surveyAnswerList", surveyAnswerList); */
+		 mv.addObject("surveyAnswerList", surveyAnswerList); 
 		mv.setViewName("satisfaction/satisfactionForm");
 		return mv;
 	}

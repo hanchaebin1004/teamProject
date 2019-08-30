@@ -81,9 +81,19 @@
 								</p>
 								<!-- 평가선택지 -->
 								<div>
-									<input name="point" id="5point" type="radio"> <label for="5point"></label>
-								</div>
+								<c:forEach items="${surveyAnswerList}" var="surveyAnswer">
+								<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
+								<input name="${surveyQuestion.sq_num}point" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
+								</c:if>
+								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
+								
+								</c:if>
+								
 								</c:forEach>
+								</div>
+								<br>
+								</c:forEach>
+								
 							</div>
 						</div>
 					</div>

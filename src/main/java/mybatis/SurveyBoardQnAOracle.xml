@@ -4,58 +4,42 @@
 <mapper namespace="mybatis.SurveyBoardQnA">
 
 	<select id="surveyQuestionList" resultType="SurveyBoardQuestion">
-		select * from
+		select *
+		from
 		survey_question
 	</select>
 
 
-	<!-- <select id="surveyList" parameterType="hashmap" resultType="SurveyBoardAnswer">
+	<select id="surveyAnswerList" parameterType="hashmap" resultType="SurveyBoardAnswer">
+		select sa.sa_num, sa.sq_num, sa.sa_item
+		from SURVEY_QUESTION sq, SURVEY_ANSWER sa
+		WHERE sq.sq_num=sa.sq_num
 		<choose>
 			<when test="sq_num == 1">
-				select sa.sa_num, sa.sa_item
-				from SURVEY_QUESTION sq,
-				SURVEY_ANSWER sa
-				WHERE sq.sq_num=sa.sq_num AND sq.sq_num=1;
+				AND sa.sq_num=1;
 			</when>
-		</choose>
-		<choose>
+
 			<when test="sq_num == 2">
-				select sa.sa_num, sa.sa_item
-				from SURVEY_QUESTION sq,
-				SURVEY_ANSWER sa
-				WHERE sq.sq_num=sa.sq_num AND sq.sq_num=2;
+				AND sa.sq_num=2;
 			</when>
-		</choose>
-		<choose>
+
 			<when test="sq_num == 3">
-				select sa.sa_num, sa.sa_item
-				from SURVEY_QUESTION sq,
-				SURVEY_ANSWER sa
-				WHERE sq.sq_num=sa.sq_num AND sq.sq_num=3;
+				AND sa.sq_num=3;
 			</when>
-		</choose>
-		<choose>
+
 			<when test="sq_num == 4">
-				select sa.sa_num, sa.sa_item
-				from SURVEY_QUESTION sq,
-				SURVEY_ANSWER sa
-				WHERE sq.sq_num=sa.sq_num AND sq.sq_num=4;
+				AND sa.sq_num=4;
 			</when>
-		</choose>
-		<choose>
+
 			<when test="sq_num == 5">
-				select sa.sa_num, sa.sa_item
-				from SURVEY_QUESTION sq,
-				SURVEY_ANSWER sa
-				WHERE sq.sq_num=sa.sq_num AND sq.sq_num=5;
+				AND sa.sq_num=5;
 			</when>
+			<when test="sq_num == 6">
+				AND sa.sq_num=6;
+			</when>
+			<!-- <otherwise>
+				AND sa.sq_num=6;
+			</otherwise> -->
 		</choose>
-		<otherwise>
-
-			select sa.sa_num, sa.sa_item
-			from SURVEY_QUESTION sq, SURVEY_ANSWER sa
-			WHERE sq.sq_num=sa.sq_num AND sq.sq_num=6;
-
-		</otherwise>
-	</select> -->
+	</select>
 </mapper>
