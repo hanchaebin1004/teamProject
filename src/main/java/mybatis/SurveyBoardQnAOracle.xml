@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.SurveyBoardQnA">
+
+	<select id="surveyQuestionList" resultType="SurveyBoardQuestion">
+		select *
+		from
+		survey_question
+	</select>
+
+
+	<select id="surveyAnswerList" parameterType="hashmap" resultType="SurveyBoardAnswer">
+		select sa.sa_num, sa.sq_num, sa.sa_item
+		from SURVEY_QUESTION sq, SURVEY_ANSWER sa
+		WHERE sq.sq_num=sa.sq_num
+		<choose>
+			<when test="sq_num == 1">
+				AND sa.sq_num=1;
+			</when>
+
+			<when test="sq_num == 2">
+				AND sa.sq_num=2;
+			</when>
+
+			<when test="sq_num == 3">
+				AND sa.sq_num=3;
+			</when>
+
+			<when test="sq_num == 4">
+				AND sa.sq_num=4;
+			</when>
+
+			<when test="sq_num == 5">
+				AND sa.sq_num=5;
+			</when>
+			<when test="sq_num == 6">
+				AND sa.sq_num=6;
+			</when>
+			<!-- <otherwise>
+				AND sa.sq_num=6;
+			</otherwise> -->
+		</choose>
+	</select>
+</mapper>
