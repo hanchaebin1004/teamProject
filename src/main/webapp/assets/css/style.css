@@ -112,6 +112,20 @@ body p {
     line-height: 28px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 a.boxed-btn,
 button.boxed-btn {
     display: inline-block;
@@ -231,15 +245,16 @@ h2.subtitle {
     position: relative;
     text-transform: uppercase;
     margin-bottom: 90px;
+    text-align: center;
 }
 
 h2.subtitle::after {
     content: "";
     position: absolute;
-    width: 100px;
+    width: 30%;
     height: 3px;
     background-color: #58bed3;
-    left: 0px;
+    left: 35%;
     bottom: -34px;
 }
 
@@ -283,7 +298,7 @@ h2.subtitle::after {
     position: relative;
     background-color: #58bed3;
     color: #fff;
-    padding: 12px 24px;
+    padding: 12px 60px;
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
@@ -3108,9 +3123,26 @@ footer .bottom-footer {
     left: 0px;
     height: 100%;
     width: 100%;
-    background-color: #0b2b32;
-    opacity: .6;
+    background-color: #0080ff;
+    opacity: .8;
+    background-image: url('../img/about/sign.jpg');
+    background-size: cover;
 }
+
+
+.breadcrumb-area2 .breadcrumb-overlay2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #0080ff;
+    opacity: .8;
+    background-image: url('../img/about/speed.jpg');
+    background-size: cover;
+}
+
+
 
 .about-breadcrumb-bg {
     background-image: url('../img/about/breadcrumb_bg.jpg');
@@ -4317,16 +4349,18 @@ ul.overview-points li::before {
 }
 
 .contact-section .single-info-col:first-child {
-    border: 1px solid #f1f1f1;
+    border: 2px solid #f1f1f1;
+    background: #f1f1f1;
 }
 
 .contact-section .single-info-col:nth-child(2) {
-    border-top: 1px solid #f1f1f1;
-    border-bottom: 1px solid #f1f1f1;
+    border-top: 2px solid #f1f1f1;
+    border-bottom: 2px solid #f1f1f1;
+    background: lightblue;
 }
 
 .contact-section .single-info-col:last-child {
-    border: 1px solid #f1f1f1;
+    border: 2px solid #f1f1f1;
 }
 
 .contact-form-section .form-element input {
@@ -4560,3 +4594,41 @@ div#map {
     color: #58bed3;
     background-color: #fff;
 }
+
+
+
+
+
+
+
+    div-1004 {
+        padding: 30px;
+        background-image: url( "lego-300x200.png" );
+      }
+      p-1004 {
+        padding: 30px;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        background-color: rgba( 255, 255, 255, 0.5 );
+        
+        
+      }
+      
+      
+      
+      loginbox.loginBox {
+    float: left;
+    width: 50%;
+    text-align: center;
+    padding: 70px;
+    box-sizing: border-box;
+}
+
+.wBox {
+    border: 1px solid #ddd;
+    background: #fff;
+    
+}
+
+
