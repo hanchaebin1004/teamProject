@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-<<<<<<< HEAD
 		<typeAlias type="model.TopMenuDataBean" alias="TopMenu" />
 		<typeAlias type="model.NodeDataBeon" alias="Node" />
 		<typeAlias type="model.SurveyBoardDataBean" alias="SurveyBoard" />
 		<typeAlias type="model.SurveyBoardQuestionDataBean" alias="SurveyBoardQuestion" />
 		<typeAlias type="model.SurveyBoardAnswerDataBean" alias="SurveyBoardAnswer" />
+		<typeAlias type="model.WayBill" alias="WayBill" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -27,22 +27,6 @@
 		<mapper resource="mybatis/AcceptNodeOracle.xml" />
 		<mapper resource="mybatis/SurveyBoardOracle.xml" />
 		<mapper resource="mybatis/SurveyBoardQnAOracle.xml" />
-=======
-		<typeAlias type="model.WayBill" alias="WayBill" />
-	</typeAliases>
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-				<property name="username" value="scott" />
-				<property name="password" value="1111" />
-			</dataSource>
-		</environment>
-	</environments>
-	<mappers>
 		<mapper resource="mybatis/searchOracle.xml" />
->>>>>>> refs/remotes/beom/search
 	</mappers>
 </configuration>

@@ -63,13 +63,8 @@
 </script>
 <body>
 	<!--   header area start   -->
-<<<<<<< HEAD
 	<div class="header-area" style="z-index:2002;">
 		<div class="support-nav-area" style="z-index:2001;">
-=======
-	<div class="header-area" style="z-index:2001">
-		<div class="support-nav-area">
->>>>>>> refs/remotes/beom/search
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-6">
