@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>창식맨</title>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>	
-// 2. API 사용요청
+window.onload = function(){
+	var 
+}
+
+
+
 var endX, endY ;
 function getRoot(){
 
@@ -20,7 +19,7 @@ $.ajax({
 	async:false,
 	data:{
 		"coordType" : "WGS84GEO",
-		"fullAddr" : "서울특별시 관악구 봉천동 1673-10", 
+		"fullAddr" : "${waybill.receiver_add}", 
 		"appKey" : "05d93f1f-6203-482f-89f0-ba7626c327fe",
 	},
 	
@@ -176,15 +175,31 @@ var map = new Tmap.Map({
 			}
 		});
 }
-
+/* 
 $(document).ready(function() {
 	getRoot();
-  }); 
-
+  });  */
 </script>
-</head>
-<body >
-      <div class="breadcrumb-area services-breadcrumb-bg">
+<script>
+window.onload = function(){
+    var cards = document.getElementsByClassName("collapsed")
+    var chk = true;
+	for( var i = 0; i<cards.length; i++	){
+		if(cards[i].innerHTML == "${whereNow}"){
+			cards[i].setAttribute('aria-expanded', 'true');
+			document.getElementById(cards[i].getAttribute('aria-controls')).className += " show";
+			cards[i].className = "btn btn-link btn-block text-left";
+			chk = false;
+		}else{
+		cards[i].setAttribute('aria-expanded', 'false');
+		}
+		if(chk){
+		document.getElementById("pickup" + i).setAttribute("disabled", "disabled");
+		}
+	}
+  }
+</script>
+<div class="breadcrumb-area services-breadcrumb-bg">
          <div class="container">
             <div class="row">
                <div class="col-lg-12">
@@ -214,13 +229,13 @@ $(document).ready(function() {
          <div class="breadcrumb-overlay"></div>
       </div>
       <!-- searched number -->
+      <c:if test="${waybill != null }">
           <div style="margin-top:100px;">
             <div class="container">
               <div class="row">
                 <div class="col-xl-12">
-                  <span class="title">조회결과</span>
                   <h2 class="subtitle">
-                    ${waybill.w_num }  <!-- 송장번호 EL -->
+                    택배 조회하기  <!-- 송장번호 EL -->
                   </h2>
                 </div>
               </div>
@@ -240,7 +255,7 @@ $(document).ready(function() {
               </table>
             </div>
           </div>
-            
+
       <!-- searched number end-->          
       <!-- search section start    -->
       <div class="faq-section">
@@ -258,56 +273,73 @@ $(document).ready(function() {
                      <div class="card wow fadeInUp" data-wow-duration="1s">
                         <div class="card-header" id="headingOne">
                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              ${rootnode.startName}                         
-                              </button>
+                              <button class="btn btn-link collapsed btn-block text-left" 
+                              type="button" data-toggle="collapse" data-target="#collapseOne" 
+                              aria-expanded="true" aria-controls="collapseOne">${rootnode.startName}</button>
                            </h2>
                         </div>
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                            <div class="card-body">
-                             내일도착예정 // 9000원 // 의류 // 상
+                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             택배 품질&nbsp; :&nbsp; ${qList.get(0).quality}<br>
+                              <button class="btn btn-link btn-block" type="button" id="pickup0"
+                              style="background-color:#E6FFFF;margin-top:15px;">
+                             여기로 가지러 가기                    
+                              </button>
                            </div>
                         </div>
                      </div>
                      <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                         <div class="card-header" id="headingTwo">
                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                ${rootnode.viaName}
-                              </button>
+                              <button class="btn btn-link collapsed btn-block text-left"
+                               type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">${rootnode.viaName}</button>
                            </h2>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                            <div class="card-body">
-                                                         내일도착예정 // 9000원 // 의류 // 상  
+                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             택배 품질&nbsp; :&nbsp; ${qList.get(1).quality}<br>
+                              <button class="btn btn-link btn-block" type="button" id="pickup1" style="background-color:#E6FFFF;margin-top:15px;">
+                             여기로 가지러 가기                    
+                              </button>
                            </div>
                         </div>
                      </div>
                      <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
                         <div class="card-header" id="headingThree">
                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              ${rootnode.endName}
-                              </button>
+                              <button class="btn btn-link collapsed btn-block text-left" 
+                              type="button" data-toggle="collapse" data-target="#collapseThree" 
+                              aria-expanded="false" aria-controls="collapseThree">${rootnode.endName}</button>
                            </h2>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                            <div class="card-body">
-                                                         내일도착예정 // 9000원 // 의류 // 상
+                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             택배 품질&nbsp; :&nbsp; ${qList.get(2).quality}<br>
+                              <button class="btn btn-link btn-block" type="button" id="pickup2" style="background-color:#E6FFFF;margin-top:15px;">
+                             여기로 가지러 가기                    
+                              </button>                             
                            </div>
                         </div>
                      </div>
                      <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
                         <div class="card-header" id="headingFour">
                            <h2 class="mb-0">
-                              <button class="btn btn-link collapsed btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                             ${waybill.receiver_add}
-                              </button>
+                              <button class="btn btn-link collapsed btn-block text-left"
+                               type="button" data-toggle="collapse" data-target="#collapseFour" 
+                               aria-expanded="false" aria-controls="collapseFour">${waybill.receiver_add}</button>
                            </h2>
                         </div>
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                            <div class="card-body">
-                                            내일도착예정 // 9000원 // 의류 // 상
+                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                            </div>
                         </div>
                      </div>
@@ -316,10 +348,6 @@ $(document).ready(function() {
                </div>
             </div>
          </div>
-         
-
+         </c:if>
 <!-- Tmap api -->
 <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>
-
-</body>
-</html> 
