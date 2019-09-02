@@ -43,6 +43,7 @@ public class AcceptService {
 	public void insertWayBill(WayBill wayBill) throws Exception{
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		try {
+			System.out.println(wayBill);
 			int result = sqlSession.insert(namespace + ".insertWayBill", wayBill);
 		} catch (Exception e) { e.printStackTrace(); }
 		 finally {

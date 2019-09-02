@@ -32,7 +32,7 @@
 			#{n_start},
 			#{n_via},
 			#{n_end},
-			to_date(SYSDATE,'RR/MM/DD'),
+			to_date(#{w_duedate},'RR/MM/DD'),
 			#{c_num}
 		)
 	</insert>

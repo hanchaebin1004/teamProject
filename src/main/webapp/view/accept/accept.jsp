@@ -75,13 +75,13 @@
 						<span style="padding-top: 10px; font-weight: bold;">-</span>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="s_tel2" type="text">
+								<input name="s_tel2" type="text" maxlength="4">
 							</div>
 						</div>
 						<span style="padding-top: 10px; font-weight: bold;">-</span>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="s_tel3" type="text">
+								<input name="s_tel3" type="text" maxlength="4">
 							</div>
 						</div>
 						<div class="col-lg-5"></div>
@@ -158,13 +158,13 @@
 						<span style="padding-top: 10px; font-weight: bold;">-</span>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="r_tel2" type="text">
+								<input name="r_tel2" type="text" maxlength="4">
 							</div>
 						</div>
 						<span style="padding-top: 10px; font-weight: bold;">-</span>
 						<div class="col-lg-2">
 							<div class="form-element">
-								<input name="r_tel3" type="text">
+								<input name="r_tel3" type="text" maxlength="4">
 							</div>
 						</div>
 						<div class="col-lg-5"></div>
@@ -404,7 +404,7 @@
 									</div>
 									<div class="col-md-8">
 										<div class="form-element">
-											<input type="text" name="duedate" readonly="readonly" value='19/09/09'>
+											<input type="text" name="w_duedate" readonly="readonly" value='19/09/09'>
 										</div>
 									</div>
 								</div>
