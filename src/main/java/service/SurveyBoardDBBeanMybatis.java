@@ -92,10 +92,18 @@ public class SurveyBoardDBBeanMybatis {
 	}
 	
 	/*
-	 * public List<SurveyBoardAboutDataBean> getBringAbout(int p_num) { SqlSession
-	 * sqlSession = mybatisConnector.sqlSession();
-	 * 
-	 * try { return sqlSession.selectList(namespace2 + ".bringAbout" ); } finally {
+	 * public List<> surveyInsertBoard(){ SqlSession sqlSession =
+	 * mybatisConnector.sqlSession(); HashMap map = new HashMap();
+	 * map.put("startRow", startRow); map.put("endRow", endRow); try { return
+	 * sqlSession.selectList(namespace1 + ".surveyInsertBoard", map); } finally {
+	 * sqlSession.close(); } }
+	 */
+	
+	/*
+	 * public List<> surveyInsertBoardResult(){ SqlSession sqlSession =
+	 * mybatisConnector.sqlSession(); HashMap map = new HashMap();
+	 * map.put("startRow", startRow); map.put("endRow", endRow); try { return
+	 * sqlSession.selectList(namespace1 + ".surveyInsertBoardResult", map); } finally {
 	 * sqlSession.close(); } }
 	 */
 }

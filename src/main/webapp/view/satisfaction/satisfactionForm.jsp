@@ -83,9 +83,8 @@ $(document).ready(function(e){
 				"p_num":$('#p_num').val()
 			},
 			success: function(data){
-				var html="test";
-				$('input[name=e_num]').attr('value','test');
-				$('input[name=r_receiver]').attr('value','test');
+				$('input[name=e_num]').attr('value','${surveyBoardAboutList.e_num}');
+				$('input[name=r_receiver]').attr('value','${surveyBoardAboutList.r_receiver}');
 			},
 			error: function(){
 				

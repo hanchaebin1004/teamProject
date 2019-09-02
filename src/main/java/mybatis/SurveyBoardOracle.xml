@@ -13,4 +13,11 @@
 	WHERE sb.r_num = re.r_num AND sb.sb_num BETWEEN #{startRow} AND #{endRow}
 	</select>
 	
+	<!-- <select id="surveyInsertBoard" parameterType="hashmap" resultType="SurveyInsertBoard">
+	
+	</select>
+	
+	<select id="surveyInsertBoardResult" parameterType="hashmap" resultType="SurveyInsertBoardResult">
+	
+	</select> -->
 </mapper>
