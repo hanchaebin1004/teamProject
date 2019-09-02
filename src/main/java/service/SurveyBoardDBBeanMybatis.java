@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.SurveyBoardAboutDataBean;
 import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
 import model.SurveyBoardQuestionDataBean;
@@ -16,6 +17,7 @@ import mybatis.MybatisConnector;
 public class SurveyBoardDBBeanMybatis {
 	private final String namespace1 = "mybatis.SurveyBoard";
 	private final String namespace2 = "mybatis.SurveyBoardQnA";
+	
 	@Autowired
 	public MybatisConnector mybatisConnector;
 
@@ -59,5 +61,41 @@ public class SurveyBoardDBBeanMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	public int pNumCheck(int p_num) {
+		SqlSession sqlSession=mybatisConnector.sqlSession();
+		
+		try {
+			int x = sqlSession.selectOne(namespace2+".pNumCheck", p_num);
+			return x;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int pNumDupCheck(int p_num) {
+		SqlSession sqlSession=mybatisConnector.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace2+".pNumDupCheck", p_num);
+		} finally {
+			sqlSession.close();
+		}
+	}
 
+	public List<SurveyBoardAboutDataBean> getBringAbout(int p_num){
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		try {
+			return sqlSession.selectList(namespace2 + ".bringAbout",p_num);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	/*
+	 * public List<SurveyBoardAboutDataBean> getBringAbout(int p_num) { SqlSession
+	 * sqlSession = mybatisConnector.sqlSession();
+	 * 
+	 * try { return sqlSession.selectList(namespace2 + ".bringAbout" ); } finally {
+	 * sqlSession.close(); } }
+	 */
 }

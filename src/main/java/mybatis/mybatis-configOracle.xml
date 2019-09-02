@@ -8,6 +8,7 @@
 		<typeAlias type="model.SurveyBoardDataBean" alias="SurveyBoard" />
 		<typeAlias type="model.SurveyBoardQuestionDataBean" alias="SurveyBoardQuestion" />
 		<typeAlias type="model.SurveyBoardAnswerDataBean" alias="SurveyBoardAnswer" />
+		<typeAlias type="model.SurveyBoardAboutDataBean" alias="SurveyBringAbout" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

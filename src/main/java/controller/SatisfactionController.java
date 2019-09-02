@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,15 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.SurveyBoardAboutDataBean;
 import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
 import model.SurveyBoardQuestionDataBean;
 import service.SurveyBoardDBBeanMybatis;
 
 @Controller
-@RequestMapping("/satisfaction")
+@RequestMapping("/satisfaction/")
 public class SatisfactionController {
 	ModelAndView mv = new ModelAndView();
 	int pageNum;
@@ -35,7 +39,8 @@ public class SatisfactionController {
 		}
 	}
 
-	@RequestMapping("/list")
+	// 목록 가져오기
+	@RequestMapping("list")
 	public ModelAndView surveylist() throws Exception {
 		mv.clear();
 
@@ -77,30 +82,73 @@ public class SatisfactionController {
 
 	}
 
-	@RequestMapping("/survey")
+	// 질문, 선택지 가져오기
+	@RequestMapping("survey")
 	public ModelAndView surveyUploadForm() throws Exception {
 		mv.clear();
-		
+
 		List<SurveyBoardQuestionDataBean> surveyQuestionList = null;
-		List<SurveyBoardAnswerDataBean> surveyAnswerList=null;
+		List<SurveyBoardAnswerDataBean> surveyAnswerList = null;
 
 		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
 			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
-			 surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); 
+			surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList();
 		} else {
 			surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
-			surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList(); 
+			surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList();
 		}
-		mv.addObject("surveyQuestionList",surveyQuestionList);
-		 mv.addObject("surveyAnswerList", surveyAnswerList); 
+		mv.addObject("surveyQuestionList", surveyQuestionList);
+		mv.addObject("surveyAnswerList", surveyAnswerList);
 		mv.setViewName("satisfaction/satisfactionForm");
 		return mv;
 	}
 
-	@RequestMapping("/surveyPro")
-	public ModelAndView surveyUploadPro() {
-		mv.clear();
-		mv.setViewName("satisfaction/list");
-		return mv;
+	// 유효성 검사
+	@RequestMapping(value = "pNumCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String pNumCheck(HttpServletRequest request) {
+		// 운송장 번호 넘겨받기
+		int p_num = Integer.parseInt(request.getParameter("p_num"));
+
+		// 운송장 번호 자료 유무 및 수령여부 체크(1 있음, 0 없음)
+		int result1 = surveyBoardDBBeanMybatis.pNumCheck(p_num);
+		// 운송장 번호 작성되었나 유무 체크(1 작성,0 작성안함)
+		int result2 = surveyBoardDBBeanMybatis.pNumDupCheck(p_num);
+		//최종 확인
+		int resultCheck;
+		
+		// 운송번호는 있고, 글 존재 여부
+		if (result1 == 1) {
+			if (result2 == 0) {
+				resultCheck = 0;
+			} else {
+				resultCheck = 1;
+			}
+		}
+		// 둘다 아닐때
+		else {
+			resultCheck = 2;
+		}
+		
+		return Integer.toString(resultCheck);
 	}
+	
+	@RequestMapping(value = "pNumCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public List bringAbout(HttpServletRequest request) {
+		int p_num = Integer.parseInt(request.getParameter("p_num"));
+		List<SurveyBoardAboutDataBean> surveyBoardAboutList = null;
+		
+		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
+			surveyBoardAboutList = surveyBoardDBBeanMybatis.getBringAbout(p_num);
+		} else {
+			surveyBoardAboutList = surveyBoardDBBeanMybatis.getBringAbout(p_num);
+		}
+		System.out.println(surveyBoardAboutList);
+		return surveyBoardAboutList;
+	}
+	/*
+	 * @RequestMapping("surveyPro") public ModelAndView surveyUploadPro() {
+	 * mv.clear(); mv.setViewName("satisfaction/list"); return mv; }
+	 */
 }
