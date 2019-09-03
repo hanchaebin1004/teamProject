@@ -31,8 +31,15 @@
 		order by d.ds_num
 	</select>
 	
-	<select id="selectWhereNow" parameterType="String" resultType="String">
-		select p_location from parcel 
+	<select id="selectWhereNow" parameterType="String" resultType="model.Parcel">
+		select * from parcel 
 		where w_num = #{w_num}
-	</select> 
+	</select>
+	
+	<insert id="pickupReserve" parameterType="model.Pickup">
+		insert into pickup values(
+		#{p_num},
+		#{pu_area},
+		#{pu_date})
+	</insert> 
 </mapper>

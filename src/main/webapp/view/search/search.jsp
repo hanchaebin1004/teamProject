@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script>	
-window.onload = function(){
-	var 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
+var reserved = ${param.reserved};
+if(reserved == 1){
+	alert("예약 되었습니다.");
 }
-
-
-
+</script>
+<script>	
 var endX, endY ;
 function getRoot(){
 
@@ -50,7 +51,7 @@ $.ajax({
 var map = new Tmap.Map({
 	  div:'map_div',
 	  width : "500px",
-	  height : "579px",
+	  height : "631px",
 	});
 	map.setCenter(new Tmap.LonLat("127.21481221072919", "37.40395887944509").transform("EPSG:4326", "EPSG:3857"), 10);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 중심점으로 설정합니다.
 
@@ -175,10 +176,10 @@ var map = new Tmap.Map({
 			}
 		});
 }
-/* 
+
 $(document).ready(function() {
 	getRoot();
-  });  */
+  });  
 </script>
 <script>
 window.onload = function(){
@@ -198,6 +199,16 @@ window.onload = function(){
 		}
 	}
   }
+
+function onModal(loc){
+	var modal = document.getElementById('id01');
+	if(modal.style.display == 'none'){
+		modal.style.display = 'block';
+		document.getElementById('pu_area').value = loc;
+	}else{
+		modal.style.display = 'none';
+	}
+}
 </script>
 <div class="breadcrumb-area services-breadcrumb-bg">
          <div class="container">
@@ -207,13 +218,13 @@ window.onload = function(){
                      <span>배송 조회</span>
                      <h1>빠르고 안전한 배송</h1>
                   <div class="quote-form-section">
-                     <span class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;송장번호 조회</span>
                      <!-- searchForm start -->
+                     <label><span class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;송장번호 조회</span></label>
                      <form method="post" action="search">
                         <div class="row">
                         <div class="col-lg-1">&nbsp;</div>
                            <div class="col-lg-8">
-                              <div class="form-element"><input name="w_num" type="text" placeholder="운송장 번호를 입력하세요." ></div>
+                              <div class="form-element"><input name="w_num" id="searchbox" type="text" placeholder="운송장 번호를 입력하세요." ></div>
                            </div>
                            <div class="col-lg-3">
                               <div class="form-element"><input type="submit" value="조회"></div>
@@ -284,7 +295,8 @@ window.onload = function(){
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(0).quality}<br>
                               <button class="btn btn-link btn-block" type="button" id="pickup0"
-                              style="background-color:#E6FFFF;margin-top:15px;">
+                              style="background-color:#E6FFFF;margin-top:15px;"
+                              onclick="onModal('${rootnode.startName}')">
                              여기로 가지러 가기                    
                               </button>
                            </div>
@@ -303,7 +315,9 @@ window.onload = function(){
                              도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(1).quality}<br>
-                              <button class="btn btn-link btn-block" type="button" id="pickup1" style="background-color:#E6FFFF;margin-top:15px;">
+                              <button class="btn btn-link btn-block" type="button" id="pickup1" 
+                              style="background-color:#E6FFFF;margin-top:15px;"
+                              onclick="onModal('${rootnode.viaName}')">
                              여기로 가지러 가기                    
                               </button>
                            </div>
@@ -322,7 +336,9 @@ window.onload = function(){
                              도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(2).quality}<br>
-                              <button class="btn btn-link btn-block" type="button" id="pickup2" style="background-color:#E6FFFF;margin-top:15px;">
+                              <button class="btn btn-link btn-block" type="button" id="pickup2"
+                               style="background-color:#E6FFFF;margin-top:15px;"
+                               onclick="onModal('${rootnode.endName}')">
                              여기로 가지러 가기                    
                               </button>                             
                            </div>
@@ -339,7 +355,7 @@ window.onload = function(){
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                            <div class="card-body">
                              도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
-                             상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             상품 분류&nbsp; :&nbsp; ${waybill.w_div}<br>
                            </div>
                         </div>
                      </div>
@@ -349,5 +365,34 @@ window.onload = function(){
             </div>
          </div>
          </c:if>
+         <div id="id01" class="w3-modal" style="z-index:2010;">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:400px;">
+
+      <div class="w3-center"><br>
+        <span onclick="onModal()" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+      </div>
+      <form class="w3-container" action="pickUpReserve" method="post">
+        <div class="w3-section">
+          <label><b>픽업 예약 장소</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" id="pu_area" name="pu_area" value="" readonly="readonly">
+          <label><b>시간 선택</b></label>
+          <select class="w3-select"	name="pu_time">
+          	<option value="2">2시간 뒤</option>
+          	<option value="4">4시간 뒤</option>
+          	<option value="6">6시간 뒤</option>
+          	<option value="8">8시간 뒤</option>
+          </select>
+        <input type="hidden" name="p_num" value="${p_num}">
+          <button class="w3-button w3-block w3-section w3-padding w3-text-white" type="submit" style="background-color:#5bbccf">예약</button>
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="onModal()" type="button" class="w3-button w3-text-white" style="background-color:#183650">취소</button>
+      </div>
+
+    </div>
+  </div>
+  
 <!-- Tmap api -->
 <script src="https://apis.openapi.sk.com/tmap/js?version=1&format=javascript&appKey=05d93f1f-6203-482f-89f0-ba7626c327fe"></script>

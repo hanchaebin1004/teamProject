@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.Parcel;
+import model.Pickup;
 import model.Qualities;
 import model.RootNode;
 import model.WayBill;
@@ -51,11 +53,22 @@ public class SearchDBBeanMybatis {
 		}
 	}
 	
-	public String selectWhereNow(String w_num) {
+	public Parcel selectWhereNow(String w_num) {
 		SqlSession sqlSession = mybatisConnector.sqlSession();		
 		try {
-			String whereNow = sqlSession.selectOne(namespace + ".selectWhereNow", w_num);
-			return whereNow;
+			Parcel parcel = sqlSession.selectOne(namespace + ".selectWhereNow", w_num);
+			return parcel;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	public void pickupReserve(Pickup pickup) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();	
+		try {
+			int result = sqlSession.insert(namespace + ".pickupReserve", pickup);
+			if(result > 0) {
+				sqlSession.commit();
+			}
 		} finally {
 			sqlSession.close();
 		}
