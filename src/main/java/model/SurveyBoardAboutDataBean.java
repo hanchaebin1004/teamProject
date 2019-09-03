@@ -1,16 +1,14 @@
 package model;
 
 public class SurveyBoardAboutDataBean {
-	private int p_num;
+	/* private int p_num; */
 	private int e_num;
 	private String r_receiver;
 	
-	public int getP_num() {
-		return p_num;
-	}
-	public void setP_num(int p_num) {
-		this.p_num = p_num;
-	}
+	/*
+	 * public int getP_num() { return p_num; } public void setP_num(int p_num) {
+	 * this.p_num = p_num; }
+	 */
 	public int getE_num() {
 		return e_num;
 	}
@@ -26,7 +24,7 @@ public class SurveyBoardAboutDataBean {
 	
 	@Override
 	public String toString() {
-		return "SurveyBoardAboutDataBean [p_num=" + p_num + ", e_num=" + e_num + ", r_receiver=" + r_receiver + "]";
+		return "SurveyBoardAboutDataBean [e_num=" + e_num + ", r_receiver=" + r_receiver + "]";
 	}
 	
 }

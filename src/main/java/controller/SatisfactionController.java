@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,8 @@ import model.SurveyBoardAboutDataBean;
 import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
 import model.SurveyBoardQuestionDataBean;
+import model.SurveyBoardWriteDataBean;
+import model.SurveyResultDataBean;
 import service.SurveyBoardDBBeanMybatis;
 
 @Controller
@@ -114,9 +118,9 @@ public class SatisfactionController {
 		int result1 = surveyBoardDBBeanMybatis.pNumCheck(p_num);
 		// 운송장 번호 작성되었나 유무 체크(1 작성,0 작성안함)
 		int result2 = surveyBoardDBBeanMybatis.pNumDupCheck(p_num);
-		//최종 확인
+		// 최종 확인
 		int resultCheck;
-		
+
 		// 운송번호는 있고, 글 존재 여부
 		if (result1 == 1) {
 			if (result2 == 0) {
@@ -129,26 +133,39 @@ public class SatisfactionController {
 		else {
 			resultCheck = 2;
 		}
-		
+
 		return Integer.toString(resultCheck);
 	}
-	
-	@RequestMapping(value = "pNumCheck", method = RequestMethod.POST)
+
+	@RequestMapping(value = "pNumCheck1", method = RequestMethod.GET)
 	@ResponseBody
-	public List bringAbout(HttpServletRequest request) {
+	public Map<String, Object> bringAbout(HttpServletRequest request) {
 		int p_num = Integer.parseInt(request.getParameter("p_num"));
 		List<SurveyBoardAboutDataBean> surveyBoardAboutList = null;
-		
+
 		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
 			surveyBoardAboutList = surveyBoardDBBeanMybatis.getBringAbout(p_num);
 		} else {
 			surveyBoardAboutList = surveyBoardDBBeanMybatis.getBringAbout(p_num);
 		}
-		System.out.println(surveyBoardAboutList);
-		return surveyBoardAboutList;
+
+		Map<String, Object> aboutmap = new HashMap<String, Object>();
+		aboutmap.put("e_num", surveyBoardAboutList.get(0).getE_num());
+		aboutmap.put("r_receiver", surveyBoardAboutList.get(0).getR_receiver());
+
+		return aboutmap;
 	}
-	/*
-	 * @RequestMapping("surveyPro") public ModelAndView surveyUploadPro() {
-	 * mv.clear(); mv.setViewName("satisfaction/list"); return mv; }
-	 */
+
+	@RequestMapping("surveyPro")
+	public String surveyUploadPro(SurveyBoardWriteDataBean writeBoard, SurveyResultDataBean resultBoard) {
+		surveyBoardDBBeanMybatis.insertSurvey(writeBoard);
+		System.out.println("insertSurvey 실행===============");
+		
+		int number = writeBoard.getSb_num();
+		/* surveyBoardDBBeanMybatis.insertResult(resultBoard,number); */
+		System.out.println("insertResult 실행===============");
+		
+		return "redirect:list?pageNum=1";
+	}
+
 }

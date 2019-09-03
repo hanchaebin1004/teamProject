@@ -11,13 +11,15 @@ import model.SurveyBoardAboutDataBean;
 import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
 import model.SurveyBoardQuestionDataBean;
+import model.SurveyBoardWriteDataBean;
+import model.SurveyResultDataBean;
 import mybatis.MybatisConnector;
 
 @Service
 public class SurveyBoardDBBeanMybatis {
 	private final String namespace1 = "mybatis.SurveyBoard";
 	private final String namespace2 = "mybatis.SurveyBoardQnA";
-	
+
 	@Autowired
 	public MybatisConnector mybatisConnector;
 
@@ -61,49 +63,67 @@ public class SurveyBoardDBBeanMybatis {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int pNumCheck(int p_num) {
-		SqlSession sqlSession=mybatisConnector.sqlSession();
-		
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+
 		try {
-			int x = sqlSession.selectOne(namespace2+".pNumCheck", p_num);
+			int x = sqlSession.selectOne(namespace2 + ".pNumCheck", p_num);
 			return x;
 		} finally {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int pNumDupCheck(int p_num) {
-		SqlSession sqlSession=mybatisConnector.sqlSession();
+		SqlSession sqlSession = mybatisConnector.sqlSession();
 		try {
-			return sqlSession.selectOne(namespace2+".pNumDupCheck", p_num);
+			return sqlSession.selectOne(namespace2 + ".pNumDupCheck", p_num);
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-	public List<SurveyBoardAboutDataBean> getBringAbout(int p_num){
+	public List<SurveyBoardAboutDataBean> getBringAbout(int p_num) {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		try {
-			return sqlSession.selectList(namespace2 + ".bringAbout",p_num);
+			return sqlSession.selectList(namespace2 + ".bringAbout", p_num);
 		} finally {
 			sqlSession.close();
 		}
 	}
-	
+
+	public void insertSurvey(SurveyBoardWriteDataBean writeBoard) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		try {
+			int number = sqlSession.selectOne(namespace1 + ".insertSurvey_new");
+			if (number != 0)
+				number = number + 1;
+			else
+				number = 1;
+
+			writeBoard.setSb_num(number);
+			// 확인
+			System.out.println("insert: " + writeBoard);
+			int result = sqlSession.insert(namespace1 + ".insertSurvey", writeBoard);
+			System.out.println("insert  0k:" + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+
 	/*
-	 * public List<> surveyInsertBoard(){ SqlSession sqlSession =
-	 * mybatisConnector.sqlSession(); HashMap map = new HashMap();
-	 * map.put("startRow", startRow); map.put("endRow", endRow); try { return
-	 * sqlSession.selectList(namespace1 + ".surveyInsertBoard", map); } finally {
+	 * public void insertResult(SurveyResultDataBean resultBoard, int number) {
+	 * SqlSession sqlSession = mybatisConnector.sqlSession(); try {
+	 * resultBoard.setSb_num(number); // 확인 System.out.println("insert: " +
+	 * resultBoard); int result = sqlSession.insert(namespace1 + ".insertResult",
+	 * resultBoard); System.out.println("insert  0k:" + result); } catch (Exception
+	 * e) { e.printStackTrace(); } finally { sqlSession.commit();
 	 * sqlSession.close(); } }
 	 */
-	
-	/*
-	 * public List<> surveyInsertBoardResult(){ SqlSession sqlSession =
-	 * mybatisConnector.sqlSession(); HashMap map = new HashMap();
-	 * map.put("startRow", startRow); map.put("endRow", endRow); try { return
-	 * sqlSession.selectList(namespace1 + ".surveyInsertBoardResult", map); } finally {
-	 * sqlSession.close(); } }
-	 */
+
+
 }

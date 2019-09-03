@@ -13,11 +13,17 @@
 	WHERE sb.r_num = re.r_num AND sb.sb_num BETWEEN #{startRow} AND #{endRow}
 	</select>
 	
-	<!-- <select id="surveyInsertBoard" parameterType="hashmap" resultType="SurveyInsertBoard">
-	
+	<select id="insertSurvey_new" resultType="int">
+		select nvl(max(sb_num),0) from survey_board
 	</select>
 	
-	<select id="surveyInsertBoardResult" parameterType="hashmap" resultType="SurveyInsertBoardResult">
+	<insert id="insertSurvey" parameterType="SurveyInsert">
+		insert into 
+		survey_board values 
+		(#{sb_num},#{r_num},#{e_num},sysdate,#{sb_title},#{sb_content},#{sb_passwd},0)
+	</insert>
 	
-	</select> -->
+	<insert id="insertResult" parameterType="SurveyResultInsert">
+		
+	</insert>
 </mapper>
