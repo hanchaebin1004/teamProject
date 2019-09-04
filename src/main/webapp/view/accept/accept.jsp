@@ -401,7 +401,7 @@
 										<div class="form-element">
 											<span>예상도착일자</span>
 										</div>
-									</div>
+									</div> 
 									<div class="col-md-8">
 										<div class="form-element">
 											<input type="text" name="w_duedate" id="duedate" readonly="readonly">
