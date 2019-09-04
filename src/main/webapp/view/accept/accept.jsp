@@ -389,22 +389,22 @@
 									</div>
 									<div class="col-md-4" style="float: right">
 										<div class="form-element">
-											<span>평균도착시간</span>
+											<span>평균도착일자</span>
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-element">
-											<input type="text" readonly="readonly" value="2시간 3분">
+											<input type="text" id="avgdate" readonly="readonly">
 										</div>
 									</div>
 									<div class="col-md-4" style="float: right">
 										<div class="form-element">
-											<span>예상도착시간</span>
+											<span>예상도착일자</span>
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-element">
-											<input type="text" name="w_duedate" readonly="readonly" value='19/09/09'>
+											<input type="text" name="w_duedate" id="duedate" readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -564,7 +564,7 @@
 				var min = ($intRate[0].getElementsByTagName("tmap:totalTime")[0].childNodes[0].nodeValue / 60).toFixed(0);
 				var time = 0;
 				time = min / 60;
-				var tTime = " 총 시간 : " + time + "시" + min % 60 + "분,";
+				var tTime = " 총 시간 : " + Math.floor(time) + "시" + Math.floor(min % 60) + "분";
 				$("#navTime").val(tTime);
 				prtcl = new Tmap.Format.KML({
 					extractStyles : true,

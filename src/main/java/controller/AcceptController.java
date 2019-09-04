@@ -98,8 +98,13 @@ public class AcceptController {
 		acceptService.insertWayBill(wayBill);
 		System.out.println("insert Success");
 		
-		mv.setViewName("accept/acceptSuccess");
+		mv.setViewName("search/search");
 		return mv;
 	}
 	
+	@RequestMapping("avgDelevery")
+	@ResponseBody
+	public String avgDelevery(String startNodeNum, String endNodeNum) throws Exception {
+		return acceptService.avgDelevery(startNodeNum, endNodeNum);
+	}
 }

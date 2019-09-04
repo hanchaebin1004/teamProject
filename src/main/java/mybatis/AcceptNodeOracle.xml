@@ -37,6 +37,9 @@
 		)
 	</insert>
 
+	<select id="avgDelevery" parameterType="hashmap" resultType="String">
+		select TRUNC(avg(W_DUEDATE - W_REGDATE)) from waybill where N_START = #{s} and N_END = #{e}
+	</select>
 
 
 	<!-- <select id="insertArticle_new" resultType="int"> select nvl(max(num),0) 

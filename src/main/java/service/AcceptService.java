@@ -52,4 +52,16 @@ public class AcceptService {
 		}
 	}
 
+	public String avgDelevery(String s, String e) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		HashMap map = new HashMap();
+		map.put("s", s);
+		map.put("e", e);
+		try {
+			return sqlSession.selectOne(namespace + ".avgDelevery", map);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
 }

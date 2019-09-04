@@ -180,72 +180,72 @@ function getViaNode(){
 			var dis1 = 4200000;
 			var dis2 = 4200000;
 			var dis3 = 4200000;
-//			var distanceget = setInterval(function() {
-//				console.log(count);
-//				if (data[count].n_name != startNodeName && data[count].n_name != endNodeName) {
-//					getDistance(3, startNodeYpoint, startNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name, data[count].n_num);
-//					getDistance(4, endNodeYpoint, endNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name, data[count].n_num);
-//					console.log("node: "+data[count].n_name+"\ntotal:"+(startToVia*1 + endToVia*1));
-//					if ((startToVia*1 + endToVia*1) < dis1) {
-//						dis1 = (startToVia*1 + endToVia*1);
-//						via2NodeNum = via1NodeNum;
-//						via2NodeName = via1NodeName;
-//						via2NodeXpoint = via1NodeXpoint;
-//						via2NodeYpoint = via1NodeYpoint;
-//						via1NodeNum = data[count].n_num;
-//						via1NodeName = data[count].n_name;
-//						via1NodeXpoint = data[count].n_xy.split(",")[0];
-//						via1NodeYpoint = data[count].n_xy.split(",")[1];
-//					} else if ((startToVia*1 + endToVia*1) < dis2) {
-//						dis2 = (startToVia*1 + endToVia*1);
-//						via3NodeNum = via2NodeNum;
-//						via3NodeName = via2NodeName;
-//						via3NodeXpoint = via2NodeXpoint;
-//						via3NodeYpoint = via2NodeYpoint;
-//						via2NodeNum = data[count].n_num;
-//						via2NodeName = data[count].n_name;
-//						via2NodeXpoint = data[count].n_xy.split(",")[0];
-//						via2NodeYpoint = data[count].n_xy.split(",")[1];
-//					} else if ((startToVia*1 + endToVia*1) < dis3) {
-//						dis3 = (startToVia*1 + endToVia*1);
-//						via3NodeNum = via2NodeNum;
-//						via3NodeName = via2NodeName;
-//						via3NodeXpoint = via2NodeXpoint;
-//						via3NodeYpoint = via2NodeYpoint;
-//						via2NodeNum = data[count].n_num;
-//						via2NodeName = data[count].n_name;
-//						via2NodeXpoint = data[count].n_xy.split(",")[0];
-//						via2NodeYpoint = data[count].n_xy.split(",")[1];
-//					}
-//					count2++;
-//					console.log("rank: "+via1NodeName+","+via2NodeName+","+via3NodeName);
-//				}
-//				count++;
-//				if (count == max) {
-//					clearTimeout(distanceget);
-//					$("#via1").text(via1NodeName+" 경유 "+ dis1 + "m");
-//					$("#via2").text(via2NodeName+" 경유 "+ dis2 + "m");
-//					$("#via3").text(via3NodeName+" 경유 "+ dis3 + "m");
+			var distanceget = setInterval(function() {
+				console.log(count);
+				if (data[count].n_name != startNodeName && data[count].n_name != endNodeName) {
+					getDistance(3, startNodeYpoint, startNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name, data[count].n_num);
+					getDistance(4, endNodeYpoint, endNodeXpoint, data[count].n_xy.split(",")[1], data[count].n_xy.split(",")[0], data[count].n_name, data[count].n_num);
+					console.log("node: "+data[count].n_name+"\ntotal:"+(startToVia*1 + endToVia*1));
+					if ((startToVia*1 + endToVia*1) < dis1) {
+						dis1 = (startToVia*1 + endToVia*1);
+						via2NodeNum = via1NodeNum;
+						via2NodeName = via1NodeName;
+						via2NodeXpoint = via1NodeXpoint;
+						via2NodeYpoint = via1NodeYpoint;
+						via1NodeNum = data[count].n_num;
+						via1NodeName = data[count].n_name;
+						via1NodeXpoint = data[count].n_xy.split(",")[0];
+						via1NodeYpoint = data[count].n_xy.split(",")[1];
+					} else if ((startToVia*1 + endToVia*1) < dis2) {
+						dis2 = (startToVia*1 + endToVia*1);
+						via3NodeNum = via2NodeNum;
+						via3NodeName = via2NodeName;
+						via3NodeXpoint = via2NodeXpoint;
+						via3NodeYpoint = via2NodeYpoint;
+						via2NodeNum = data[count].n_num;
+						via2NodeName = data[count].n_name;
+						via2NodeXpoint = data[count].n_xy.split(",")[0];
+						via2NodeYpoint = data[count].n_xy.split(",")[1];
+					} else if ((startToVia*1 + endToVia*1) < dis3) {
+						dis3 = (startToVia*1 + endToVia*1);
+						via3NodeNum = via2NodeNum;
+						via3NodeName = via2NodeName;
+						via3NodeXpoint = via2NodeXpoint;
+						via3NodeYpoint = via2NodeYpoint;
+						via2NodeNum = data[count].n_num;
+						via2NodeName = data[count].n_name;
+						via2NodeXpoint = data[count].n_xy.split(",")[0];
+						via2NodeYpoint = data[count].n_xy.split(",")[1];
+					}
+					count2++;
+					console.log("rank: "+via1NodeName+","+via2NodeName+","+via3NodeName);
+				}
+				count++;
+				if (count == max) {
+					clearTimeout(distanceget);
+					$("#via1").text(via1NodeName+" 경유 "+ dis1 + "m");
+					$("#via2").text(via2NodeName+" 경유 "+ dis2 + "m");
+					$("#via3").text(via3NodeName+" 경유 "+ dis3 + "m");
 					$('#viaNodes').css("display", "block");
 					$('#viaBlank').css("display", "none");
-					$("#via1").text("대전물류센터 경유 35565m");
-					$("#via2").text("대구물류센터 경유 42654m");
-					$("#via3").text("강남물류센터 경유 94564m");
-					via3NodeNum = 5;
-					via3NodeName = "대전물류센터";
-					via3NodeXpoint = "36.334398";
-					via3NodeYpoint = "127.432112";
-					via2NodeNum = 7;
-					via2NodeName = "대구물류센터";
-					via2NodeXpoint = "35.875885";
-					via2NodeYpoint = "128.596129";
-					via1NodeNum = 2;
-					via1NodeName = "강남물류센터";
-					via1NodeXpoint = "37.498165";
-					via1NodeYpoint = "127.028308";
+//					$("#via1").text("대전물류센터 경유 35565m");
+//					$("#via2").text("대구물류센터 경유 42654m");
+//					$("#via3").text("강남물류센터 경유 94564m");
+//					via3NodeNum = 5;
+//					via3NodeName = "대전물류센터";
+//					via3NodeXpoint = "36.334398";
+//					via3NodeYpoint = "127.432112";
+//					via2NodeNum = 7;
+//					via2NodeName = "대구물류센터";
+//					via2NodeXpoint = "35.875885";
+//					via2NodeYpoint = "128.596129";
+//					via1NodeNum = 2;
+//					via1NodeName = "강남물류센터";
+//					via1NodeXpoint = "37.498165";
+//					via1NodeYpoint = "127.028308";
 					isRunGetVia = false;
-//				}
-//			}, 1000);
+				}
+			}, 1000);
 		}
 	})
 }
@@ -254,46 +254,46 @@ function getViaNode(){
 
 //도로명 주소 API
 function goPopup(div) {
-//	var pop = window.open("/teamProject/popup/jusoPopup.jsp?div="+ div, "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
-	if (div == 1) {
-		jusoCallBack1("서울특별시 서초구 반포대로 3", "","06711");
-	} else if(div == 2){
-		jusoCallBack2("부산광역시 동구 중앙대로196번길 10","","48821");
-	}
+	var pop = window.open("/teamProject/popup/jusoPopup.jsp?div="+ div, "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+//	if (div == 1) {
+//		jusoCallBack1("서울특별시 서초구 반포대로 3", "","06711");
+//	} else if(div == 2){
+//		jusoCallBack2("부산광역시 동구 중앙대로196번길 10","","48821");
+//	}
 }
 
 function jusoCallBack1(roadAddrPart1, addrDetail, zipNo) {
 	$("#roadAddrPart1").val(roadAddrPart1);
 	$("#addrDetail1").val(addrDetail);
 	$("#zipNo1").val(zipNo);
-//	getStartNode(roadAddrPart1);
-	$("#startNode").val("강북물류센터");
-	$("#n_start").val(3);
-	startNodeNum = 3;
-	startNodeName = "강북물류센터";
-	startNodeXpoint = '37.555442';
-	startNodeYpoint = '126.936119';
+	getStartNode(roadAddrPart1);
+//	$("#startNode").val("강북물류센터");
+//	$("#n_start").val(3);
+//	startNodeNum = 3;
+//	startNodeName = "강북물류센터";
+//	startNodeXpoint = '37.555442';
+//	startNodeYpoint = '126.936119';
 	
-	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
-		 getViaNode();
-	}
+//	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
+//		 getViaNode();
+//	}
 }
 
 function jusoCallBack2(roadAddrPart1, addrDetail, zipNo) {
 	$("#roadAddrPart2").val(roadAddrPart1);
 	$("#addrDetail2").val(addrDetail);
 	$("#zipNo2").val(zipNo);
-//	getEndNode(roadAddrPart1);
-	$("#endNode").val("부산물류센터");
-	$("#n_end").val(9);
-	endNodeNum = 9;
-	endNodeName = "부산물류센터";
-	endNodeXpoint = '35.115069';
-	endNodeYpoint = '129.042064';
-	
-	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
-		 getViaNode();
-	}
+	getEndNode(roadAddrPart1);
+//	$("#endNode").val("부산물류센터");
+//	$("#n_end").val(9);
+//	endNodeNum = 9;
+//	endNodeName = "부산물류센터";
+//	endNodeXpoint = '35.115069';
+//	endNodeYpoint = '129.042064';
+//	
+//	if (startNodeName != '' && endNodeName != '' && isRunGetVia == false) {
+//		 getViaNode();
+//	}
 }
 
 
@@ -342,10 +342,29 @@ function rootSearch(i) {
 	}
 	
 	getXYpoint($('#roadAddrPart2').val());
-//	initTmap(startNodeXpoint, startNodeYpoint, viaX, viaY, endNodeXpoint, endNodeYpoint, lon, lat, t);
-	
+	initTmap(startNodeXpoint, startNodeYpoint, viaX, viaY, endNodeXpoint, endNodeYpoint, lon, lat, t);
+	avgDelevery();
 	$('#rootSearch').css("display", "none");
 	$('#rootSearchResult').css("display", "block");
+}
+
+function avgDelevery(){
+	$.ajax({
+		type : "POST",
+		url : "avgDelevery",
+		data : {startNodeNum: startNodeNum,
+			endNodeNum : endNodeNum
+		},
+		success : function(data) {
+			$('#avgdate').val(data + "일");
+			var today = new Date();
+			var year = today.getFullYear() + "";
+			year = year.substring(2);
+			var month =  today.getMonth()+1;
+			var day = today.getDate()+(data*1);
+			$('#duedate').val(year+"/"+month+"/"+day);
+		}
+ });
 }
 
 function chargeCal(){
