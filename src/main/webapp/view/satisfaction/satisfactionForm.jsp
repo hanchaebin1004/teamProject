@@ -33,9 +33,9 @@ $(document).ready(function(e){
 			alert("운송장 번호를 체크해주세요.");
 			idx = false;
 			return idx;
-		} else{
+		} /* else{
 			$('#surveyForm').submit();
-		}
+		} */
 	});
 	
 	//유효성 검사
@@ -85,7 +85,7 @@ $(document).ready(function(e){
 			},
 			dataType:"json",
 			success: function(data){
-				
+				$('input[name=r_num]').attr('value',data.r_num);
 				$('input[name=e_num]').attr('value',data.e_num);
 				$('input[name=r_receiver]').attr('value',data.r_receiver);
 				
@@ -153,6 +153,7 @@ $(document).ready(function(e){
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="form-element">
+							<input name="r_num" id="r_num" type="hidden" value="${surveyBoardAboutList.r_num}"/>
 							<!--  직원 이름  -->
 								<input name="e_num" id="e_num" type="text" value="${surveyBoardAboutList.e_num}" placeholder="담당 직원 번호"
 									readonly="readonly" />
@@ -180,7 +181,7 @@ $(document).ready(function(e){
 								<c:forEach items="${surveyAnswerList}" var="surveyAnswer">
 								<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
 								
-								<input name="${surveyAnswer.sq_num}" value="${surveyAnswer.sa_num}" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
+								<input name="satisfaction${surveyAnswer.sq_num}" value="${surveyAnswer.sa_num}" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
 								
 								</c:if>
 								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
@@ -225,16 +226,7 @@ $(document).ready(function(e){
 						<div class="col-lg-10">
 							<div class="form-element">
 								<p class="desc">본 자료는 택배 서비스 개선 목적으로 수집합니다.</p>
-								<p class="desc">제출 시에는 평가 게시에 동의, &nbsp;추후 게시판에 게시 될 수 있습니다.</p>
-							</div>
-						</div>
-					</div>
-					
-					<!-- 할거 메모 -->
-					<div class="row">
-						<div class="col-lg-10">
-							<div class="form-element">
-								<p>할거: 기본적인 공백, null값 검사 할 예정, 직원의 경우 운송장 검사 하면 긁어올수 있도록, 평가자 이름은 긁어오도록 하되 수정 가능하게. 별은 해당 별에 해당되는 거 말고도 이전 별들도 체크되게(ex.5점이면 1,2,3,4번째 별도 체크 이미지로 뜨게끔)</p>
+								<p class="desc">제출 시에는 평가 게시에 동의, &nbsp;추후 게시판에 게시됩니다.</p>
 							</div>
 						</div>
 					</div>

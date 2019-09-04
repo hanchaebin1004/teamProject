@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +20,7 @@ import model.SurveyBoardAnswerDataBean;
 import model.SurveyBoardDataBean;
 import model.SurveyBoardQuestionDataBean;
 import model.SurveyBoardWriteDataBean;
+import model.SurveyContentResultDataBean;
 import model.SurveyResultDataBean;
 import service.SurveyBoardDBBeanMybatis;
 
@@ -41,49 +41,6 @@ public class SatisfactionController {
 		} catch (Exception e) {
 			pageNum = 1;
 		}
-	}
-
-	// 목록 가져오기
-	@RequestMapping("list")
-	public ModelAndView surveylist() throws Exception {
-		mv.clear();
-
-		int pageSize = 6;
-		int currentPage = pageNum;
-
-		int count = surveyBoardDBBeanMybatis.getReadCount();
-		int startRow = (currentPage - 1) * pageSize;
-		int endRow = currentPage * pageSize;
-		if (count < endRow)
-			endRow = count;
-		List<SurveyBoardDataBean> surveyBoardList = null;
-
-		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
-			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow, endRow);
-		} else {
-			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow, pageSize);
-		}
-		System.out.println(surveyBoardList.get(0));
-		int number = count - ((currentPage - 1) * pageSize);
-		int bottomLine = 3;
-		// 5 page
-		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
-		int endPage = startPage + bottomLine - 1;
-		if (endPage > pageCount)
-			endPage = pageCount;
-		mv.addObject("count", count);
-		mv.addObject("pageNum", pageNum);
-		mv.addObject("surveyBoardList", surveyBoardList);
-		mv.addObject("number", number);
-		mv.addObject("startPage", startPage);
-		mv.addObject("bottomLine", bottomLine);
-		mv.addObject("endPage", endPage);
-		mv.addObject("pageCount", pageCount);
-
-		mv.setViewName("satisfaction/satisfactionBoard");
-		return mv;
-
 	}
 
 	// 질문, 선택지 가져오기
@@ -137,6 +94,7 @@ public class SatisfactionController {
 		return Integer.toString(resultCheck);
 	}
 
+	// 수령자, 직원번호 가져오기
 	@RequestMapping(value = "pNumCheck1", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> bringAbout(HttpServletRequest request) {
@@ -150,22 +108,102 @@ public class SatisfactionController {
 		}
 
 		Map<String, Object> aboutmap = new HashMap<String, Object>();
+		aboutmap.put("r_num", surveyBoardAboutList.get(0).getR_num());
 		aboutmap.put("e_num", surveyBoardAboutList.get(0).getE_num());
 		aboutmap.put("r_receiver", surveyBoardAboutList.get(0).getR_receiver());
 
 		return aboutmap;
 	}
 
+	// 입력처리
 	@RequestMapping("surveyPro")
 	public String surveyUploadPro(SurveyBoardWriteDataBean writeBoard, SurveyResultDataBean resultBoard) {
 		surveyBoardDBBeanMybatis.insertSurvey(writeBoard);
 		System.out.println("insertSurvey 실행===============");
-		
-		int number = writeBoard.getSb_num();
-		/* surveyBoardDBBeanMybatis.insertResult(resultBoard,number); */
+
+		int sb_num = writeBoard.getSb_num();
+		int e_num = writeBoard.getE_num();
+		surveyBoardDBBeanMybatis.insertResult(resultBoard, sb_num, e_num);
 		System.out.println("insertResult 실행===============");
-		
+
 		return "redirect:list?pageNum=1";
+	}
+
+	// 목록 가져오기
+	@RequestMapping("list")
+	public ModelAndView surveylist() throws Exception {
+		mv.clear();
+
+		int pageSize = 6;
+		int currentPage = pageNum;
+
+		int count = surveyBoardDBBeanMybatis.getReadCount();
+		int startRow = (currentPage - 1) * pageSize;
+		int endRow = currentPage * pageSize;
+		if (count < endRow)
+			endRow = count;
+		List<SurveyBoardDataBean> surveyBoardList = null;
+
+		if (surveyBoardDBBeanMybatis.mybatisConnector.getDbname().equals("Oracle")) {
+			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow + 1, endRow);
+		} else {
+			surveyBoardList = surveyBoardDBBeanMybatis.getSurveyList(startRow, pageSize);
+		}
+
+		int number = count - ((currentPage - 1) * pageSize);
+		int bottomLine = 3;
+		// 5 page
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
+		int endPage = startPage + bottomLine - 1;
+		if (endPage > pageCount)
+			endPage = pageCount;
+		mv.addObject("count", count);
+		mv.addObject("pageNum", pageNum);
+		mv.addObject("surveyBoardList", surveyBoardList);
+		mv.addObject("number", number);
+		mv.addObject("startPage", startPage);
+		mv.addObject("bottomLine", bottomLine);
+		mv.addObject("endPage", endPage);
+		mv.addObject("pageCount", pageCount);
+
+		mv.setViewName("satisfaction/satisfactionBoard");
+		return mv;
+
+	}
+
+	// 내용 가져오기
+	@RequestMapping("content")
+	public ModelAndView surveyContent(int sb_num) {
+		mv.clear();
+		SurveyBoardDataBean surveyBoardContent = surveyBoardDBBeanMybatis.getSurveyContent(sb_num);
+
+		List<SurveyContentResultDataBean> surveyContentResult = surveyBoardDBBeanMybatis.getSurveyContentResult(sb_num);
+
+		mv.addObject("surveyBoardContent", surveyBoardContent);
+		mv.addObject("surveyContentResult", surveyContentResult); 
+		mv.addObject("pageNum", pageNum);
+		mv.setViewName("satisfaction/satisfactionContent");
+		return mv;
+	}
+	
+	@RequestMapping("delete")
+	public ModelAndView delete(int sb_num) {
+		mv.clear();
+		mv.addObject("sb_num",sb_num);
+		mv.addObject("pageNum",pageNum);
+		mv.setViewName("satisfaction/surveyDelete");
+		return mv;
+	}
+	
+	@RequestMapping("deletePro")
+	public ModelAndView deleteSurvey(int sb_num, String passwd) {
+		mv.clear();
+		int check=surveyBoardDBBeanMybatis.deleteSurvey(sb_num,passwd);
+		mv.addObject("check",check);
+		mv.addObject("pageNum", pageNum);
+		mv.setViewName("satisfaction/deleteCheck");
+		return mv;
 	}
 
 }

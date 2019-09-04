@@ -63,7 +63,7 @@
 
 	<select id="bringAbout" parameterType="int" resultType="SurveyBringAbout">
 		select
-		d.e_num,r.r_receiver
+		r.r_num,d.e_num,r.r_receiver
 		from parcel p, deliverestimation d, recipient r
 		where p.p_num=r.p_num
 		and p.p_num=d.p_num
