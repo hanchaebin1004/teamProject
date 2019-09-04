@@ -10,7 +10,9 @@
 			var menu = '';
 			$.each(data, function(i, item){
 				if (item.tm_depth == 2 ) {
-					menu += '<li><a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a></li>';
+					if (item.tm_div != 9) {
+						menu += '<li><a href="${pageContext.request.contextPath}/'+item.tm_url+'">'+ item.tm_text +'</a></li>';
+					}
 				}
 			})
 			$("#footerMenu").append(menu);

@@ -51,7 +51,7 @@
 							<i class="flaticon-airplane"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">Air freight</h4>
+							<h4 class="service-title">택배 예약</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
@@ -62,7 +62,7 @@
 							<i class="flaticon-delivery-truck"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">Road freight</h4>
+							<h4 class="service-title">택배 조회</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 							<i class="flaticon-loader"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">WARHOUSING</h4>
+							<h4 class="service-title">픽업 예약</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 							<i class="flaticon-ferry"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">Ocean freight</h4>
+							<h4 class="service-title">만족도 평가</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 							<i class="flaticon-package"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">Logistic freight</h4>
+							<h4 class="service-title">회원가입</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
@@ -106,7 +106,7 @@
 							<i class="flaticon-baby-toy"></i>
 						</div>
 						<div class="service-txt">
-							<h4 class="service-title">Train freight</h4>
+							<h4 class="service-title">이건뭐하지</h4>
 							<p class="service-para">We offers a host of logistic management services and supply chain solutions.</p>
 						</div>
 					</div>
