@@ -205,5 +205,13 @@ public class SatisfactionController {
 		mv.setViewName("satisfaction/deleteCheck");
 		return mv;
 	}
-
+	
+	@RequestMapping("update")
+	public ModelAndView updateSurvey() {
+		mv.clear();
+		
+		mv.addObject("pageNum", pageNum);
+		mv.setViewName("satisfaction/deleteCheck");
+		return mv;
+	}
 }

@@ -67,8 +67,98 @@
 								<td colspan="4" style="font-size: 90%; text-align: left;">${surveyContentResult.sq_num}. ${surveyContentResult.sq_text}</td>
 							</tr>
 							<tr>
-								<td style="font-weight: bold;">평가</td>
-								<td colspan="11">${surveyContentResult.sa_item}</td>
+								<td style="font-weight: bold;"></td>
+								<c:if test="${surveyContentResult.sa_num%5==1}">
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+								</c:if>
+								<c:if test="${surveyContentResult.sa_num%5==2}">
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+								</c:if>
+								
+								<c:if test="${surveyContentResult.sa_num%5==3}">
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+								</c:if>
+								
+								<c:if test="${surveyContentResult.sa_num%5==4}">
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png" width="1">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									</td>
+									
+								</c:if>
+								
+								<c:if test="${surveyContentResult.sa_num%5==5}">
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+									<td>
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+									</td>
+								</c:if>
+								
+								<%-- <td colspan="11">${surveyContentResult.sa_item}</td> --%>
 							</tr>
 							</c:forEach>
 							<tr>

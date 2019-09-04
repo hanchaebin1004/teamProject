@@ -185,5 +185,6 @@ public class SurveyBoardDBBeanMybatis {
 		}
 		return x;
 	}
-
+	
+	
 }
