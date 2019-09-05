@@ -43,7 +43,6 @@ public class AcceptService {
 	public void insertWayBill(WayBill wayBill) throws Exception{
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		try {
-			System.out.println(wayBill);
 			int result = sqlSession.insert(namespace + ".insertWayBill", wayBill);
 		} catch (Exception e) { e.printStackTrace(); }
 		 finally {
@@ -59,6 +58,40 @@ public class AcceptService {
 		map.put("e", e);
 		try {
 			return sqlSession.selectOne(namespace + ".avgDelevery", map);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public void insertParcel(int node) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		HashMap map = new HashMap();
+		map.put("node", node);
+		try {
+			sqlSession.insert(namespace + ".insertParcel", map);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public int getParcelNum() {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getParcelNum");
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public void insertDS(int id, int node) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		HashMap map = new HashMap();
+		map.put("id", id);
+		map.put("node", node);
+		try {
+			sqlSession.insert(namespace + ".insertDS", map);
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();

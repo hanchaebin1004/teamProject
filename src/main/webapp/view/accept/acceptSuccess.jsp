@@ -6,7 +6,7 @@
 			<div class="col-lg-7">
 				<div class="breadcrumb-txt">
 					<span>접수</span>
-					<h1>예약 확인하기</h1>
+					<h1>예약 완료</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">식스택배는 고객님의 소중한 마음까지 전달합니다.</li>
@@ -19,25 +19,30 @@
 	<div class="breadcrumb-overlay"></div>
 </div>
 <!--  breadcrumb end  -->
-<div class="cta-section home-2">
-	<div class="container">
-		<div class="cta-container">
-			<div class="row align-items-center">
-				<div class="col-lg-9">
-					<div class="form-element">
-						<input name="name" type="text" placeholder="운송장번호를 입력하세요">
-					</div>
-				</div>
-				<div class="col-lg-3 text-center text-lg-right">
-					<a href="#" class="boxed-btn">
-						<span>조회하기</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cta-overlay"></div>
-</div>
+ <!--    Error section start   -->
+      <div class="error-section">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-6">
+                  <div class="not-found">
+                     <img src="<%=request.getContextPath() %>/assets/img/parselsuccess.jpg" alt="">
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="error-txt">
+                     <div class="oops">
+                        <img src="<%=request.getContextPath() %>/assets/img/payLogo.jpg" alt="">
+                     </div>
+                     <h2>${pacelNum}</h2>
+                     <p>고객님의 소중한 택배예약이 완료되었습니다</p>
+                     <p>택배번호를 기억해주세요</p>
+                     <a href="<%=request.getContextPath() %>/search/search" class="go-home-btn">택배 조회</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--    Error section end   -->
 <!--   cta section end    -->
 <!--  features section start  -->
 <div class="features-section home-2 border">
@@ -62,8 +67,8 @@
 								<i class="flaticon-email"></i>
 							</div>
 							<div class="feature-details">
-								<h4>On time delivery</h4>
-								<p>We offers logistic management services and supply chain perspiciatis unde omnis iste natus error sit voluptat.</p>
+								<h4>파손, 택배 사고 접수</h4>
+								<p>상품의 파손, 변질에 의한 택배 사고 접수는1:1 문의를 통해 직접 하실 수 있습니다.</p>
 							</div>
 						</div>
 						<div class="single-feature wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
@@ -71,8 +76,8 @@
 								<i class="flaticon-worldwide"></i>
 							</div>
 							<div class="feature-details">
-								<h4>global service</h4>
-								<p>We offers logistic management services and supply chain perspiciatis unde omnis iste natus error sit voluptat.</p>
+								<h4>글로벌 서비스</h4>
+								<p>언제 어디서든 편리하게 택배 발송 예약을 하실 수 있습니다.</p>
 							</div>
 						</div>
 					</div>
@@ -82,32 +87,3 @@
 	</div>
 </div>
 <!--  features section end  -->
-<style>
-.common-table-top {
-	margin-bottom: 15px;
-	padding: 18px 30px 15px;
-	border-bottom: solid 1px #bec0c2;
-	background: #f2f2f2
-}
-
-.common-table-top strong {
-	font-weight: 800;
-	font-size: 18px;
-	color: #007ac3
-}
-
-.common-table-top span:before {
-	display: inline-block;
-	content: '';
-	width: 7px;
-	height: 1px;
-	vertical-align: middle;
-	margin: 0 6px 0 11px;
-	background: #333
-}
-
-.common-table-top span {
-	font-size: 15px;
-	color: #333
-}
-</style>
