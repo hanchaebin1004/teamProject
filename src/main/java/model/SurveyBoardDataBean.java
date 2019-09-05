@@ -11,6 +11,8 @@ public class SurveyBoardDataBean {
 	private int e_num;
 	private Timestamp sb_regdate;
 	private int sb_readcount;
+	private int r_num;
+	private int p_num;
 	
 	public int getSb_num() {
 		return sb_num;
@@ -61,11 +63,28 @@ public class SurveyBoardDataBean {
 		this.sb_readcount = sb_readcount;
 	}
 	
+	public int getR_num() {
+		return r_num;
+	}
+	
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
+	}
+	
+	public int getP_num() {
+		return r_num;
+	}
+	
+	public void setP_num(int p_num) {
+		this.p_num = p_num;
+	}
+	
 	@Override
 	public String toString() {
 		return "SurveyBoardDataBean [sb_num=" + sb_num + ", sb_title=" + sb_title + ", r_receiver=" + r_receiver
 				+ ", sb_content=" + sb_content + ", sb_passwd=" + sb_passwd + ", e_num=" + e_num + ", sb_regdate="
-				+ sb_regdate + ", sb_readcount=" + sb_readcount + "]";
+				+ sb_regdate + ", sb_readcount=" + sb_readcount + ", r_num=" + r_num + "]";
 	}
+	
 	
 }

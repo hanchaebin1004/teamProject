@@ -52,11 +52,12 @@
 	text-align: center;
 	border-bottom: 3px solid #1792bf;
 }
-.table tr:first-child{
+
+.table tr:first-child {
 	background-color: #ffffff;
 }
 
-.table tr:hover{
+.table tr:hover {
 	background-color: #e7e9eb;
 }
 
@@ -83,10 +84,6 @@
 	display: none;
 }
 
-
-
-
-
 a.boxed-btn, button.boxed-btn {
 	display: inline-block;
 	position: relative;
@@ -105,5 +102,7 @@ a.boxed-btn, button.boxed-btn {
 	transition: .5s;
 }
 
-.star-one{
-}
+/* .starImg {
+	width: 30px;
+	height: auto;
+} */

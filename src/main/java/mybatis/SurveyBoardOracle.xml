@@ -16,6 +16,7 @@
 		WHERE sb.r_num = re.r_num
 		AND
 		sb.sb_num BETWEEN #{startRow} AND #{endRow}
+		order by sb.sb_num desc
 	</select>
 
 	<update id="updateReadCount" parameterType="int">
@@ -27,10 +28,12 @@
 		resultType="SurveyBoard">
 		select sb.sb_num, sb.sb_title, re.r_receiver,
 		sb.sb_content, sb.sb_passwd,
-		sb.e_num, sb.sb_regdate, sb.sb_readcount
+		sb.e_num, sb.sb_regdate, sb.sb_readcount,
+		re.r_num, re.p_num
 		FROM SURVEY_BOARD sb,
 		RECIPIENT re
-		WHERE sb.r_num = re.r_num
+		WHERE sb.r_num =
+		re.r_num
 		AND
 		sb.sb_num = #{sb_num}
 	</select>
@@ -93,15 +96,32 @@
 	</insert>
 
 
-	<select id="passwordCheck" parameterType="int" resultType="string">
+	<select id="passwordCheck" parameterType="int"
+		resultType="string">
 		select sb_passwd from survey_board where sb_num = #{sb_num}
 	</select>
 
 	<select id="deleteSurvey1" parameterType="int">
-		delete from survey_board where sb_num=#{sb_num}
+		delete from
+		survey_board where sb_num=#{sb_num}
 	</select>
-	
+
 	<select id="deleteSurvey2" parameterType="int">
-	delete from survey_result where sb_num=#{sb_num}
+		delete from
+		survey_result where sb_num=#{sb_num}
 	</select>
+
+	<update id="updateSurveyBoard" parameterType="SurveyInsert">
+		update SURVEY_BOARD
+		set
+		SB_TITLE=#{sb_title},SB_CONTENT=#{sb_content},SB_PASSWD=#{sb_passwd}
+		where sb_num=#{sb_num}
+	</update>
+
+	<update id="updateSurveyResult" parameterType="hashmap">
+		update survey_result
+		set sa_num=#{sa_num}
+		where sb_num=#{sb_num}
+		AND sq_num=#{sq_num}
+	</update>
 </mapper>

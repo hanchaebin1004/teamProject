@@ -19,7 +19,7 @@ $(document).ready(function(e){
 			return idx;
 		} else if($.trim($('#sb_title').val()) == ''||$.trim($('#sb_title').val()) ==' '){
 			alert("제목을 입력해주세요.");
-			$('#password').focus();
+			$('#sb_title').focus();
 			idx = false;
 			return idx;
 		} else if($.trim($('#sb_passwd').val()) == ''||$.trim($('#sb_passwd').val()) ==' '){

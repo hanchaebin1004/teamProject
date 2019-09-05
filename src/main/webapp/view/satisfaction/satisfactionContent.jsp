@@ -65,96 +65,57 @@
 							<tr>
 								<td></td>
 								<td colspan="4" style="font-size: 90%; text-align: left;">${surveyContentResult.sq_num}. ${surveyContentResult.sq_text}</td>
+								<td colspan="7"></td>
 							</tr>
 							<tr>
-								<td style="font-weight: bold;"></td>
+								<td></td>
 								<c:if test="${surveyContentResult.sa_num%5==1}">
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									<td style="float: left; margin-left: 18px;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
 									</td>
 								</c:if>
 								<c:if test="${surveyContentResult.sa_num%5==2}">
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									<td style="float: left; margin-left: 18px;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
 									</td>
 								</c:if>
 								
 								<c:if test="${surveyContentResult.sa_num%5==3}">
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									<td style="float: left; margin-left: 18px;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
 									</td>
 								</c:if>
 								
 								<c:if test="${surveyContentResult.sa_num%5==4}">
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png" width="1">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png">
+									<td style="float: left; margin-left: 18px;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="staruncheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_uncheck.png"  style="width: 30px; height: auto;">
 									</td>
 									
 								</c:if>
 								
-								<c:if test="${surveyContentResult.sa_num%5==5}">
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
-									</td>
-									<td>
-										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png">
+								<c:if test="${surveyContentResult.sa_num%5==0}">
+									<td style="float: left; margin-left: 18px;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
+										<img alt="starcheck" src="<%=request.getContextPath()%>/assets/img/satisfaction/star_check.png"  style="width: 30px; height: auto;">
 									</td>
 								</c:if>
 								
@@ -180,7 +141,7 @@
 									<span>삭제</span>
 								</button>
 								<button type="button" class="boxed-btn" style="margin-right: 20px;"
-									onclick="document.location.href='<%=request.getContextPath()%>/satisfaction/update?sb_num=${surveyBoardContent.sb_num}&pageNum=${pageNum}'">
+									onclick="document.location.href='<%=request.getContextPath()%>/satisfaction/updateMove?sb_num=${surveyBoardContent.sb_num}&pageNum=${pageNum}'">
 									<span>수정</span>
 								</button>
 								<button type="button" class="boxed-btn" style="margin-right: 20px;"

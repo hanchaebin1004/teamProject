@@ -181,37 +181,106 @@ public class SatisfactionController {
 		List<SurveyContentResultDataBean> surveyContentResult = surveyBoardDBBeanMybatis.getSurveyContentResult(sb_num);
 
 		mv.addObject("surveyBoardContent", surveyBoardContent);
-		mv.addObject("surveyContentResult", surveyContentResult); 
+		mv.addObject("surveyContentResult", surveyContentResult);
 		mv.addObject("pageNum", pageNum);
 		mv.setViewName("satisfaction/satisfactionContent");
 		return mv;
 	}
-	
+
+	// 삭제
 	@RequestMapping("delete")
 	public ModelAndView delete(int sb_num) {
 		mv.clear();
-		mv.addObject("sb_num",sb_num);
-		mv.addObject("pageNum",pageNum);
+		mv.addObject("sb_num", sb_num);
+		mv.addObject("pageNum", pageNum);
 		mv.setViewName("satisfaction/surveyDelete");
 		return mv;
 	}
-	
+
 	@RequestMapping("deletePro")
 	public ModelAndView deleteSurvey(int sb_num, String passwd) {
 		mv.clear();
-		int check=surveyBoardDBBeanMybatis.deleteSurvey(sb_num,passwd);
-		mv.addObject("check",check);
+		int check = surveyBoardDBBeanMybatis.deleteSurvey(sb_num, passwd);
+		mv.addObject("check", check);
 		mv.addObject("pageNum", pageNum);
 		mv.setViewName("satisfaction/deleteCheck");
 		return mv;
+	}
+
+	// 업데이트를 위한 비밀번호 확인폼으로 이동
+	@RequestMapping("updateMove")
+	public ModelAndView updateCheck(int sb_num) throws Exception {
+		mv.clear();
+		mv.addObject("sb_num", sb_num);
+		mv.addObject("pageNum", pageNum);
+		mv.setViewName("satisfaction/updateCheck");
+		return mv;
+	}
+
+	// 업데이트를 위한 비밀번호 확인
+	@RequestMapping("updateCheck")
+	public String updateCheck(int sb_num, String passwd) throws Exception {
+		mv.clear();
+		int check = surveyBoardDBBeanMybatis.updateCheckSurvey(sb_num, passwd);
+		/*mv.addObject("check", check);
+		mv.addObject("sb_num", sb_num);
+		mv.addObject("pageNum", pageNum);
+		mv.setViewName("satisfaction/updateCheckPro");*/
+		if (check==1) {
+			return "redirect:updateSurvey?sb_num="+sb_num+"&pageNum="+pageNum;
+		}
+		else {
+			return "redirect:updateCheckError?sb_num="+sb_num+"&pageNum="+pageNum;
+		}
 	}
 	
-	@RequestMapping("update")
-	public ModelAndView updateSurvey() {
+	//에러 떴을 시에
+		@RequestMapping("updateCheckError")
+		public ModelAndView updateCheckError(int sb_num) {
+			mv.clear();
+			mv.addObject("sb_num", sb_num);
+			mv.addObject("pageNum", pageNum);
+			mv.setViewName("satisfaction/updateCheckPro");
+			return mv;
+		}
+
+	// 업데이트
+	@RequestMapping("updateSurvey")
+	public ModelAndView updateSurvey(int sb_num) throws Exception {
 		mv.clear();
-		
+
+		// 결과물(만족도 게시판, 평가 결과)과 원래 질문, 선택지 가져오기
+		SurveyBoardDataBean surveyBoard = surveyBoardDBBeanMybatis.getSurveyContent(sb_num);
+		List<SurveyContentResultDataBean> contentResult = surveyBoardDBBeanMybatis.getSurveyContentResult(sb_num);
+		List<SurveyBoardQuestionDataBean> surveyQuestionList = surveyBoardDBBeanMybatis.getQuestionList();
+		;
+		List<SurveyBoardAnswerDataBean> surveyAnswerList = surveyBoardDBBeanMybatis.getAnswerList();
+
+		// 확인하기
 		mv.addObject("pageNum", pageNum);
-		mv.setViewName("satisfaction/deleteCheck");
+		mv.addObject("surveyBoard", surveyBoard);
+		mv.addObject("contentResult", contentResult);
+		mv.addObject("surveyQuestionList", surveyQuestionList);
+		mv.addObject("surveyAnswerList", surveyAnswerList);
+		mv.setViewName("satisfaction/surveyUpdateForm");
 		return mv;
 	}
+
+	@RequestMapping("updatePro")
+	public String updateSurveyPro(SurveyBoardWriteDataBean updateBoard, SurveyResultDataBean updateResultBoard,
+			int sb_num) {
+		mv.clear();
+		surveyBoardDBBeanMybatis.updateSurvey(updateBoard, sb_num);
+
+		int[] surveyResultupdate = { updateResultBoard.getSatisfaction1(), updateResultBoard.getSatisfaction2(),
+				updateResultBoard.getSatisfaction3(), updateResultBoard.getSatisfaction4(),
+				updateResultBoard.getSatisfaction5(), updateResultBoard.getSatisfaction6() };
+		
+		for (int i = 0; i < 6; i++) {
+			surveyBoardDBBeanMybatis.updateResultSurvey(sb_num, i+1,surveyResultupdate[i]);
+		}
+		
+		return "redirect:list?pageNum="+pageNum;
+	}
+
 }

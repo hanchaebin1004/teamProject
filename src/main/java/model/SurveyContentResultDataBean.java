@@ -30,6 +30,12 @@ public class SurveyContentResultDataBean {
 	public void setSa_item(String sa_item) {
 		this.sa_item = sa_item;
 	}
+	@Override
+	public String toString() {
+		return "SurveyContentResultDataBean [sq_num=" + sq_num + ", sq_text=" + sq_text + ", sa_num=" + sa_num
+				+ ", sa_item=" + sa_item + "]";
+	}
+	
 	
 	
 }
