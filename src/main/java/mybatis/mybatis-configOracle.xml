@@ -12,6 +12,7 @@
 		<typeAlias type="model.SurveyBoardWriteDataBean" alias="SurveyInsert" />
 		<typeAlias type="model.SurveyResultDataBean" alias="SurveyResultInsert" />
 		<typeAlias type="model.SurveyContentResultDataBean" alias="SurveyContent" />
+		<typeAlias type="model.NoticeDataBean" alias="Notice"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -28,5 +29,6 @@
 		<mapper resource="mybatis/TopMenuOracle.xml" />
 		<mapper resource="mybatis/SurveyBoardOracle.xml" />
 		<mapper resource="mybatis/SurveyBoardQnAOracle.xml" />
+		<mapper resource="mybatis/AdministerOracle.xml" />
 	</mappers>
 </configuration>
