@@ -82,30 +82,12 @@ public class AdministerController {
 		return "redirect:notice";
 	}
 
-	// 수령자, 직원번호 가져오기
-	@RequestMapping(value = "updateMove", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> bringAbout(int nb_num) {
-		List<NoticeDataBean> noticeElementAboutList = null;
-
-		noticeElementAboutList = administrationDBBeanMybatis.getBringNoticeAbout(nb_num);
-
-		Map<String, Object> aboutmap = new HashMap<String, Object>();
-		aboutmap.put("nb_num", noticeElementAboutList.get(0).getNb_num());
-		aboutmap.put("e_num", noticeElementAboutList.get(0).getE_num());
-		aboutmap.put("nb_title", noticeElementAboutList.get(0).getNb_title());
-		aboutmap.put("nb_content", noticeElementAboutList.get(0).getNb_content());
-
-		System.out.println(noticeElementAboutList.toString());
-		System.out.println(aboutmap.toString());
-		return aboutmap;
-	}
 
 	// 공지 수정
 	@RequestMapping("UpdateNotice")
-	public ModelAndView updateNotice(NoticeDataBean notice) {
+	public ModelAndView updateNotice(NoticeDataBean notice, int nb_num) {
 		mv.clear();
-
+		
 		// 수정 실행
 		administrationDBBeanMybatis.updateNotice(notice);
 		mv.setViewName("../admin_view/noticeManagement/noticeUpdate");

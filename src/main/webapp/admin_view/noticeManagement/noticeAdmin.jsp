@@ -30,8 +30,6 @@ $(document).ready(function(e){
 		} 
 	});
 	
-	
-	
 });
 </script>
 
@@ -60,7 +58,7 @@ $(document).ready(function(e){
 								<div class="row mb-3">
 									<div class="col-md-8 mx-auto">
 										<br>
-										<form name="WriteNotice" action="<%=request.getContextPath()%>/administer/WriteNotice" method="post">
+										<form name="WriteNotice" method="post">
 											<div class="form-group row showcase_row_area">
 												<div class="col-md-3 showcase_text_area">
 													<label for="inputType1">제목</label>
@@ -77,11 +75,11 @@ $(document).ready(function(e){
 													<textarea name="nb_content" class="form-control" id="nb_content" cols="12" rows="5" placeholder="공지사항 내용을 입력해주세요"></textarea>
 												</div>
 											</div>
-
+											<br>
 											<div class="row">
 												<div class="form-group showcase_row_area"
 													style="margin-left: 520px;">
-													<button type="submit" id="submitNotice" class="btn btn-warning btn-sm has-icon">
+													<button type="submit" id="submitNotice" value="write" onclick="javascript: form.action='<%=request.getContextPath()%>/administer/WriteNotice';" class="btn btn-warning btn-sm has-icon">
 														<i class="mdi mdi-check"></i>작성
 													</button>
 												</div>
