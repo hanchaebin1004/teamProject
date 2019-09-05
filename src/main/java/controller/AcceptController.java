@@ -34,10 +34,10 @@ public class AcceptController {
 		return mv;
 	}
 	
-	@RequestMapping("acceptCheck")
+	@RequestMapping("acceptSuccess")
 	public ModelAndView acceptCheck() {
 		mv.clear();
-		mv.setViewName("accept/acceptCheck");
+		mv.setViewName("accept/acceptSuccess");
 		return mv;
 	}
 	
@@ -96,9 +96,13 @@ public class AcceptController {
 		wayBill.setReceiver_add(wayBillTelAndAddr.r_addr());
 		
 		acceptService.insertWayBill(wayBill);
-		System.out.println("insert Success");
+		acceptService.insertParcel(wayBill.getN_start());
+		int pacelNum = acceptService.getParcelNum();
+		acceptService.insertDS(pacelNum, wayBill.getN_start());
 		
-		mv.setViewName("search/search");
+		mv.addObject("pacelNum", pacelNum);
+		
+		mv.setViewName("accept/acceptSuccess");
 		return mv;
 	}
 	

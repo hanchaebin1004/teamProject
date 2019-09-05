@@ -1,4 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url		:"${pageContext.request.contextPath}/topMenu",
+			method	: "POST",
+			data	: {},
+			success	: function(data){
+				var menu = '';
+				$.each(data, function(i, item){
+					if(item.tm_div == 9 && item.tm_depth == 2) {
+						menu += '<li>'+
+							'<a href="/'+item.tm_url+'">'+
+							'<span class="link-title">'+item.tm_text+'</span>'+
+							'<i class="mdi mdi-gauge link-icon"></i></a></li>'
+					}	
+				});
+				$("#adminMenu").append(menu);
+			}
+		})
+	});
+</script>
+
 <!-- partial -->
 <div class="page-body">
 	<!-- partial:partials/_sidebar.html -->
@@ -13,45 +37,6 @@
 				<h6 class="display-income">직급</h6>
 			</div>
 		</div>
-		<ul class="navigation-menu">
-			<li class="nav-category-divider">메뉴</li>
-			<li>
-				<a href="index.html">
-					<span class="link-title">HOME</span>
-					<i class="mdi mdi-gauge link-icon"></i>
-				</a>
-			</li>
-			<li>
-				<a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
-					<span class="link-title">관리</span>
-					<i class="mdi mdi-flask link-icon"></i>
-				</a>
-				<ul class="collapse navigation-submenu" id="sample-pages">
-					<li>
-						<a href="pages/sample-pages/login_1.html" target="_blank">팝업 관리</a>
-					</li>
-					<li>
-						<a href="pages/sample-pages/error_2.html" target="_blank">공지사항 관리</a>
-					</li>
-					<li>
-						<a href="pages/sample-pages/error_2.html" target="_blank">메뉴 관리</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
-					<span class="link-title">사원</span>
-					<i class="mdi mdi-bullseye link-icon"></i>
-				</a>
-				<ul class="collapse navigation-submenu" id="ui-elements">
-					<li>
-						<a href="pages/ui-components/buttons.html">평가 조회</a>
-					</li>
-					<li>
-						<a href="pages/ui-components/tables.html">진행도</a>
-					</li>
-				</ul>
-			</li>
+		<ul class="navigation-menu" id="adminMenu">
 		</ul>
-	
 	</div>

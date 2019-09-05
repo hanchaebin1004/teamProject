@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/assets_admin/css/demo_1/style.css">
     <!-- Layout style -->
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/asssets/images/favicon.ico" />
+    
   </head>
   <body class="header-fixed">
     <!-- partial:partials/_header.html -->
