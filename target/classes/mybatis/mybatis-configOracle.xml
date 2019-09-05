@@ -12,6 +12,9 @@
 		<typeAlias type="model.WayBill" alias="WayBill" />
 		<typeAlias type="model.MemberDataBean" alias="Member" />
 		<typeAlias type="model.Charge" alias="Charge" />
+		<typeAlias type="model.Emp" alias="Emp" />
+		<typeAlias type="model.Deliverestimation" alias="Deliverestimation" />
+		<typeAlias type="model.Parcel" alias="Parcel" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -31,5 +34,6 @@
 		<mapper resource="mybatis/SurveyBoardQnAOracle.xml" />
 		<mapper resource="mybatis/searchOracle.xml" />
 		<mapper resource="mybatis/MemberOracle.xml" />
+		<mapper resource="mybatis/AdminOracle.xml" />
 	</mappers>
 </configuration>

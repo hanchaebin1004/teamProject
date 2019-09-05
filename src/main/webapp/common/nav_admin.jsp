@@ -32,9 +32,9 @@
 				<img class="profile-img img-lg rounded-circle" src="<%=request.getContextPath()%>/assets_admin/images/profile/male/image_1.png" alt="profile image">
 			</div>
 			<div class="info-wrapper">
-				<p class="user-name">사원이름</p>
+				<p class="user-name">${emp.e_id }</p>
 				<%-- <c:if test="${!empty member }"> ${emp.e_name}</c:if> --%>
-				<h6 class="display-income">직급</h6>
+				<h6 class="display-income">${emp.position}</h6>
 			</div>
 		</div>
 		<ul class="navigation-menu" id="adminMenu">

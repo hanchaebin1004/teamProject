@@ -1,14 +1,27 @@
 package controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import model.Deliverestimation;
+import model.Emp;
+import service.AdminService;
 
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
 
 	ModelAndView mv = new ModelAndView();
+
+	@Autowired
+	AdminService adminservice;
 
 	@RequestMapping("main")
 	public ModelAndView main() {
@@ -46,9 +59,22 @@ public class AdminController {
 	}
 
 	@RequestMapping("emp")
-	public ModelAndView emp() {
+	public ModelAndView emp(HttpSession session) {
 		mv.clear();
+
+		Emp emp = (Emp) session.getAttribute("emp");
+
+		List<Deliverestimation> ds = adminservice.getDS(emp.getE_num());
+
+		mv.addObject("DSs", ds);
 		mv.setViewName("../admin_view/emp/emp");
 		return mv;
+	}
+
+	@RequestMapping("passParcel")
+	@ResponseBody
+	public int passParcel() throws Exception {
+		List nodeList = acceptService.getAllNodeDiv2();
+		return nodeList;
 	}
 }

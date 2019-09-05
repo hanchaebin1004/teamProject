@@ -33,4 +33,11 @@
 		update member set m_pw = #{m_pw},m_tel = #{m_tel},m_add = #{m_add} where m_id = #{m_id}
 	</update>
 
+	<select id="isMem" parameterType="String" resultType="int">
+		select count(*) from member where m_id = #{id}
+	</select>
+	
+	<select id="empLogin" parameterType="hashmap" resultType="Emp">
+		select * from EMP where e_id = #{id} and e_passwd = #{pw}
+	</select>
 </mapper>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.Emp;
 import model.MemberDataBean;
 import mybatis.MybatisConnector;
 
@@ -68,6 +69,28 @@ public class MemberService {
 			return sqlSession.update(namespace + ".user_meminformation", member);
 		} finally {
 			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public int isMember(String id) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".isMem", id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Emp empLogin(String id, String pw) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		HashMap map = new HashMap();
+		map.put("id", id);
+		map.put("pw", pw);
+		try {
+			System.out.println("service: "+id+","+pw);
+			return sqlSession.selectOne(namespace + ".empLogin", map);
+		} finally {
 			sqlSession.close();
 		}
 	}
