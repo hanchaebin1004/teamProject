@@ -9,7 +9,6 @@ $(document).ready(function(e){
 	
 	var idx = false;
 	
-	
 	//작성보내기 전에 확인
 	$('#updateSurvey').click(function(){
 		if($.trim($('#sb_title').val()) == ''||$.trim($('#sb_title').val()) ==' '){
