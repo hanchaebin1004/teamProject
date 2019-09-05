@@ -10,10 +10,8 @@
 		<typeAlias type="model.SurveyBoardQuestionDataBean" alias="SurveyBoardQuestion" />
 		<typeAlias type="model.SurveyBoardAnswerDataBean" alias="SurveyBoardAnswer" />
 		<typeAlias type="model.WayBill" alias="WayBill" />
-		
 		<typeAlias type="model.MemberDataBean" alias="Member" />
-		
-		
+		<typeAlias type="model.Charge" alias="Charge" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
