@@ -29,4 +29,8 @@
 	</select>
 
 
+	<update id="user_meminformation" parameterType="Member"> <!-- 회원정보수정 -->
+		update member set m_pw = #{m_pw},m_tel = #{m_tel},m_add = #{m_add} where m_id = #{m_id}
+	</update>
+
 </mapper>

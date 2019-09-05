@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import model.MemberDataBean;
 import mybatis.MybatisConnector;
 
-@Service //ÇöÀç Å¬·¡½º¸¦ ½ºÇÁ¸µ¿¡¼­ °ü¸®ÇÏ´Â service beanÀ¸·Î µî·Ï
+@Service //ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ service beanï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 public class MemberService {
 
 	private final String namespace = "mybatis.Member";
@@ -61,4 +61,15 @@ public class MemberService {
 			sqlSession.close();
 		}
 	}
+	public int user_meminformation(MemberDataBean member) throws Exception {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		System.out.println("---------service_user_meminformation");
+		try {
+			return sqlSession.update(namespace + ".user_meminformation", member);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
 }

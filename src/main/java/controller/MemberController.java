@@ -1,4 +1,4 @@
-package controller; /*Èå¸§Á¦¾î*/
+package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,41 +13,42 @@ import org.springframework.web.servlet.ModelAndView;
 import model.MemberDataBean;
 import service.MemberService;
 
-@Controller  //ÇöÀç Å¬·¡½º¸¦ ½ºÇÁ¸µ¿¡¼­ °ü¸®ÇÏ´Â ÄÁÆ®·Ñ·¯ beanÀ¸·Î »ý¼º
-@RequestMapping("/member/")  //¸ðµç ¸ÊÇÎÀº /member/¸¦ »ó¼Ó
-public class MemberController { 
-	//·Î±ëÀ» À§ÇÑ º¯¼ö
+@Controller
+@RequestMapping("/member/")
+public class MemberController {
+	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	ModelAndView mv = new ModelAndView();
 
 	@Autowired
 	public MemberService memberservice;
 
-	@RequestMapping("login") /* 01. ·Î±×ÀÎ È­¸é */
+	@RequestMapping("login") /* 01.ë¡œê·¸ì¸ */
 	public ModelAndView login() throws Exception {
 		mv.clear();
 		mv.setViewName("user/user_login");
 		return mv;
 	}
 
-	@RequestMapping("loginPro") // jsp¿¡¼­ nameÀ¸·Î ¾²ÀÓ -> loginPro(String m_id, String m_pw, HttpServletRequest req)
-	public ModelAndView loginPro(String m_id, String m_pw, HttpServletRequest req) throws Exception {
+	@RequestMapping("loginPro") // jspï¿½ï¿½ï¿½ï¿½ nameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> loginPro(String m_id, String m_pw,
+								// HttpServletRequest req)
+	public ModelAndView loginPro(String m_id, String m_pw, HttpSession session) throws Exception {
 		System.out.println("===========================================================");
 		System.out.println(m_id + ":" + m_pw);
 		MemberDataBean member = memberservice.user_login(m_id, m_pw);
-		req.getSession().setAttribute("member", member);
-		System.out.println("toStringÇÔ" + member);
+		session.setAttribute("member", member);
+		System.out.println("toStringë©¤ë²„" + member);
 		ModelAndView model = new ModelAndView();
-		
-		if(member == null) {
+
+		if (member == null) {
 			model.setViewName("redirect:/member/login");
-			model.addObject("loginNotOk","1");
-		}else {
+			model.addObject("loginNotOk", "1");
+		} else {
 			model.setViewName("redirect:/main");
 		}
 		return model;
 	}
 
-	@RequestMapping("logout") /* 03. ·Î±×¾Æ¿ô Ã³¸® */
+	@RequestMapping("logout") /* 03. ë¡œê·¸ì•„ì›ƒ */
 	public String logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		HttpSession session = req.getSession(false);
 		if (session != null) {
@@ -56,7 +57,7 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	@RequestMapping("memJoin") /* È¸¿ø°¡ÀÔ */
+	@RequestMapping("memJoin") /* íšŒì›ê°€ìž… */
 	public ModelAndView memJoin(MemberDataBean member) {
 		mv.clear();
 
@@ -67,34 +68,61 @@ public class MemberController {
 		return mv;
 	}
 
-	@RequestMapping("memJoin2") /* È¸¿ø°¡ÀÔ */
+	@RequestMapping("memJoin2")
 	public ModelAndView memJoin2(MemberDataBean member, String wRoadAdderess, String wRestAddress, String wPostCode)
 			throws Exception {
 		mv.clear();
 
 		member.setM_add(wPostCode + " " + wRoadAdderess + " " + wRestAddress);
 		member.setE_num("1");
-
-		// ¼­ºñ½º¸¦ ÅëÇØ °¡Àå Å« È¸¿ø ¹øÈ£¸¦ °¡Àú¿À°í½Í¾î
-
-		// ¼­ºñ½º¸¦ ÅëÇØ¼­ °¡ÀåÅ« È¸¿ø¹øÈ£¸¦ Ã£¾Æ¿Í =>>> 1 ÀÌ°É String maxMemNum ¿¡ ³ÖÀ»°Å¾ß ±×·±´ã¿¡
-		// 2 member.setM_num(maxMemNum)À¸·Î °ªÀ» ³ÖÀ»°Å¾ß ±×·³ ¾î¶»°Ô ÇØ¾ßÇÒ±î¿ä?
-
 		int maxMemNum = memberservice.getMaxNum();
-
 		member.setM_num(String.valueOf(maxMemNum + 1));
-
 		memberservice.insertMember(member);
-
 		mv.setViewName("user/user_login");
 		return mv;
 	}
 
-	@RequestMapping("memInformation") /* È¸¿øÁ¤º¸»ó¼¼ */
-	public ModelAndView memInformation() {
+	@RequestMapping("memInformation") /* ë‚´ì •ë³´ */
+	public ModelAndView memInformation(HttpSession session) {
 		mv.clear();
+		MemberDataBean member = (MemberDataBean)session.getAttribute("member");
+		
+		System.out.println(member.getM_add());
+		String[] addrs = member.getM_add().split(" ");
+		
+		String wRoadAdderess = addrs[1];
+		String wRestAddress = addrs[2];
+		String wPostCode = addrs[0];
+		
+		mv.addObject("wRoadAdderess", wRoadAdderess);
+		mv.addObject("wRestAddress", wRestAddress);
+		mv.addObject("wPostCode", wPostCode);
+		
 		mv.setViewName("user/user_meminformation");
 		return mv;
 	}
-	
+
+	@RequestMapping("memUpdate") /* ë‚´ì •ë³´ìˆ˜ì • */
+	public ModelAndView memUpdate(MemberDataBean member, HttpSession session, String wRoadAdderess, String wRestAddress, String wPostCode) throws Exception {
+		mv.clear();
+		member.setM_add(wPostCode + " " + wRoadAdderess + " " + wRestAddress);
+		System.out.println(member);
+		memberservice.user_meminformation(member);
+		
+		MemberDataBean memberAfter = memberservice.user_login(member.getM_id(), member.getM_pw());
+		session.setAttribute("member", memberAfter);
+		String[] addrs = memberAfter.getM_add().split(" ");
+		
+		String wRoad = addrs[1];
+		String wRest = addrs[2];
+		String wPost = addrs[0];
+		
+		
+		mv.addObject("wRoadAdderess", wRoad);
+		mv.addObject("wRestAddress", wRest);
+		mv.addObject("wPostCode", wPost);
+		mv.setViewName("user/user_meminformation");
+		return mv;
+	}
+
 }

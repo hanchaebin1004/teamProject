@@ -172,7 +172,7 @@
 												<a class="logout" href="<%=request.getContextPath()%>/member/logout" style="font-size: 13px;">로그아웃</a>
 											</li>
 											<li>
-												<a class="logout" href="<%=request.getContextPath()%>/member/update" style="font-size: 13px;">내정보수정</a>
+												<a class="logout" href="<%=request.getContextPath()%>/member/memInformation" style="font-size: 13px;">마이페이지</a>
 											</li>
 
 										</c:if>
