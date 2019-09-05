@@ -151,13 +151,8 @@ $(document).ready(function(e){
 						</div>
 					</div>
 					<!-- 비밀번호 -->
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="form-element">
-								<input name="sb_passwd" id="sb_passwd" type="password" placeholder="게시글의 비밀번호를 입력해주세요.">
-							</div>
-						</div>
-					</div>
+					
+								<input name="sb_passwd" id="sb_passwd" type="hidden" value="${surveyBoard.sb_passwd}" readonly="readonly">
 					<!-- 안내사항 -->
 					<div class="row">
 						<div class="col-lg-10">
