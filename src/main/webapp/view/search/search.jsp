@@ -12,7 +12,6 @@ if(reserved == 1){
 <script>	
 var endX, endY ;
 function getRoot(){
-
 //도착지 좌표
 $.ajax({
 	method:"GET",
@@ -20,7 +19,7 @@ $.ajax({
 	async:false,
 	data:{
 		"coordType" : "WGS84GEO",
-		"fullAddr" : "${waybill.receiver_add}", 
+		"fullAddr" : "${waybill.receiver_add.substring(6)}", 
 		"appKey" : "05d93f1f-6203-482f-89f0-ba7626c327fe",
 	},
 	
@@ -42,6 +41,7 @@ $.ajax({
 		}
 
 		// 검색 결과
+		
 		endX = lon
 		endY = lat
 		console.log("endPoint : " + endX + ", " + endY)
@@ -115,8 +115,8 @@ var map = new Tmap.Map({
 							 "viaY" : "${rootnode.viaX}" 
 						 },
 						 {
-							 "viaPointId" : "test01",//경유지 id
-							 "viaPointName" : "nmae01",//경유지 명칭
+							 "viaPointId" : "test02",//경유지 id
+							 "viaPointName" : "nmae02",//경유지 명칭
 							  //경유지의 위경도 좌표입니다.
 							 "viaX" : "${rootnode.endY}",
 							 "viaY" : "${rootnode.endX}" 
@@ -314,7 +314,9 @@ function onModal(loc){
                            <div class="card-body">
                              도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             <c:if test="${qList.size() > 1 }" >
                              택배 품질&nbsp; :&nbsp; ${qList.get(1).quality}<br>
+                             </c:if>
                               <button class="btn btn-link btn-block" type="button" id="pickup1" 
                               style="background-color:#E6FFFF;margin-top:15px;"
                               onclick="onModal('${rootnode.viaName}')">
@@ -335,7 +337,9 @@ function onModal(loc){
                            <div class="card-body">
                              도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
+                             <c:if test="${qList.size() > 2 }" >
                              택배 품질&nbsp; :&nbsp; ${qList.get(2).quality}<br>
+                             </c:if>
                               <button class="btn btn-link btn-block" type="button" id="pickup2"
                                style="background-color:#E6FFFF;margin-top:15px;"
                                onclick="onModal('${rootnode.endName}')">

@@ -35,7 +35,8 @@ public class SearchController {
     	mv.clear();
     	WayBill wb = searchDBBeanMybatis.searchPost(w_num);
     	RootNode rn = searchDBBeanMybatis.selectNodeCode(w_num);
-    	
+    	System.out.println(rn);
+    	System.out.println(wb);
     	List<Qualities> list = new ArrayList<Qualities>();
     	list = searchDBBeanMybatis.selectQualities(w_num);
     	
