@@ -66,7 +66,7 @@ public class AdminController {
 		Emp emp = (Emp) session.getAttribute("emp");
 
 		List<Deliverestimation> ds = adminservice.getDS(emp.getE_num());
-		
+
 		mv.addObject("DSs", ds);
 		mv.setViewName("../admin_view/emp/emp");
 		return mv;
@@ -74,11 +74,12 @@ public class AdminController {
 
 	@RequestMapping("passParcel")
 	@ResponseBody
-	public int passParcel(String emp, String quality, String ds_num, int cn, String receiver, String receiverLoaction) throws Exception {
+	public int passParcel(String emp, String quality, String ds_num, int cn, String receiver, String receiverLoaction)
+			throws Exception {
 		// List nodeList = adminservice.getAllNodeDiv2();
-		System.out.println("emp: " + emp + "\tquality: " + quality+"\tds_num: "+ds_num);
+		System.out.println("emp: " + emp + "\tquality: " + quality + "\tds_num: " + ds_num);
 		int result = 0;
-		System.out.println("pass currentNode: "+cn);
+		System.out.println("pass currentNode: " + cn);
 		if (cn == 3) {
 			adminservice.clearParcel(ds_num, receiver, receiverLoaction, emp);
 		} else {
@@ -91,13 +92,27 @@ public class AdminController {
 	@ResponseBody
 	public HashMap workProcess(String num) throws Exception {
 		HashMap map = new HashMap();
-
+		System.out.println("ds_num: "+num);
 		int currentNode = adminservice.getCurrentNode(num);
-		System.out.println("currentNode: "+currentNode);
-		if (currentNode == 1 || currentNode == 2) {
-			List<Emp> emps = adminservice.getNextEmp(num, currentNode);
-			map.put("emps", emps);
-		} 
+		System.out.println("currentNode: " + currentNode);
+		int pick = adminservice.isPickup(num);
+		System.out.println("pick: " + pick);
+		if (pick == 0) {
+			if (currentNode == 1 || currentNode == 2) {
+				List<Emp> emps = adminservice.getNextEmp(num, currentNode);
+				map.put("emps", emps);
+			}
+		} else {
+			if (currentNode == 1 || currentNode == 2) {
+				List<Emp> emps = adminservice.getNextEmp(num, currentNode);
+				String node = adminservice.getpick(num);
+				String empnode = adminservice.getempNode(num);
+				System.out.println("node: "+ node +"\tempnode: "+empnode);
+				if (!node.equals(empnode)) {
+					map.put("emps", emps);
+				}
+			}
+		}
 		map.put("currentNode", currentNode);
 		return map;
 	}
