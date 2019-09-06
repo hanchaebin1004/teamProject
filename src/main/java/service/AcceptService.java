@@ -85,6 +85,15 @@ public class AcceptService {
 		}
 	}
 	
+	public int getWbNum() {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getWbNum");
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public void insertDS(int id, int node) {
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		HashMap map = new HashMap();

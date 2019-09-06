@@ -52,9 +52,15 @@
 	<update id="updateParcel" parameterType="hashmap">
 		update parcel set p_location = (select n.n_name from node n, emp e where e.e_num = #{emp} and e.n_num = n.n_num), p_quality = #{quality} where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{ds_num})
 	</update>
-	<update id="passParcel" parameterType="hashmap">
-		update DELIVERESTIMATION set e_num = #{emp}, ds_result = #{quality}, ds_date = to_date(SYSDATE,'RR/MM/DD') where ds_num = #{ds_num}
-	</update>
+	<insert id="passParcel" parameterType="hashmap">
+		insert into DELIVERESTIMATION values(
+			(select max(ds_num)+1 from DELIVERESTIMATION),
+			(select p_num from DELIVERESTIMATION where ds_num = #{ds_num}),
+			#{emp},
+			to_date(SYSDATE,'RR/MM/DD'),
+			#{quality}
+		)
+	</insert>
 	<update id="clearParcel" parameterType="String">
 		update parcel set receive = 'y' where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{ds_num})
 	</update>

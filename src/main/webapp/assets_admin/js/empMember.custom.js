@@ -82,7 +82,9 @@ function passParcel(ds_num, emp, quality){ //택배번호, 다음직원번호, �
         	 
         	 if (data == 1) {
 				alert("넘기기 성공");
-			}else{
+			}else if(data == 0){
+				alert("고객전달 성공");
+			} else {
 				alert("실패");
 			}
         	 $('#'+ds_num+'row').remove();

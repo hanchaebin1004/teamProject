@@ -80,7 +80,7 @@ public class AdminService {
 			map.put("ds_num", ds_num);
 			System.out.println(map);
 			sqlSession.update(namespace + ".updateParcel", map);
-			return sqlSession.update(namespace + ".passParcel", map);
+			return sqlSession.insert(namespace + ".passParcel", map);
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();

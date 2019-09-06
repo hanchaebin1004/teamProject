@@ -33,7 +33,7 @@
                      <div class="oops">
                         <img src="<%=request.getContextPath() %>/assets/img/payLogo.jpg" alt="">
                      </div>
-                     <h2>${pacelNum}</h2>
+                     <h2>${wbNum}</h2>
                      <p>고객님의 소중한 택배예약이 완료되었습니다</p>
                      <p>택배번호를 기억해주세요</p>
                      <a href="<%=request.getContextPath() %>/search/search" class="go-home-btn">택배 조회</a>

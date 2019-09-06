@@ -49,6 +49,10 @@
 	<select id="getParcelNum" parameterType="hashmap" resultType="int">
 		select p_num from parcel where w_num = (select max(w_num) from waybill)
 	</select>
+	
+	<select id="getWbNum" parameterType="hashmap" resultType="int">
+		select w_num from waybill where w_num = (select max(w_num) from waybill)
+	</select>
 
 	<insert id="insertDS" parameterType="hashmap">
 		insert into DELIVERESTIMATION

@@ -100,7 +100,9 @@ public class AcceptController {
 		int pacelNum = acceptService.getParcelNum();
 		acceptService.insertDS(pacelNum, wayBill.getN_start());
 		
-		mv.addObject("pacelNum", pacelNum);
+		int wbNum = acceptService.getWbNum();
+		
+		mv.addObject("wbNum", wbNum);
 		
 		mv.setViewName("accept/acceptSuccess");
 		return mv;
