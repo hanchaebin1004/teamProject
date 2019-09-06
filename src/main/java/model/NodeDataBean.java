@@ -1,6 +1,6 @@
 package model;
 
-public class NodeDataBeon {
+public class NodeDataBean {
 
 	private int n_num;
 	private String n_name; 

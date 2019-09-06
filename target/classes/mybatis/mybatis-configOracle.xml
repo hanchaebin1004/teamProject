@@ -5,7 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="model.TopMenuDataBean" alias="TopMenu" />
-		<typeAlias type="model.NodeDataBeon" alias="Node" />
+		<typeAlias type="model.NodeDataBean" alias="Node" />
 		<typeAlias type="model.SurveyBoardDataBean" alias="SurveyBoard" />
 		<typeAlias type="model.SurveyBoardQuestionDataBean" alias="SurveyBoardQuestion" />
 		<typeAlias type="model.SurveyBoardAnswerDataBean" alias="SurveyBoardAnswer" />
