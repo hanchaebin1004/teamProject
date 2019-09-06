@@ -131,22 +131,7 @@ $(document).ready(function(e){
 					<div class="grid">
 						<p class="grid-header">조회</p>
 						<div class="item-wrapper">
-							서치버튼 추가
-							<div>
-								<form action="#">
-									<div class="form-group row showcase_row_area">
-										<div class="col-md-4 showcase_content_area"
-											style="margin-left: 690px;">
-											<input type="text" class="form-control" id="inputType10" placeholder="Search">
-
-										</div>
-										<button type="button"
-											class="btn action-btn btn-sm btn-like btn-outline-danger btn-rounded">
-											<i class="mdi mdi-arrow-right-bold"></i>
-										</button>
-									</div>
-								</form>
-							</div>
+							
 							<div class="table-responsive">
 								<table class="table info-table">
 

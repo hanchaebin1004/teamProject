@@ -20,6 +20,8 @@ public class AdministrationDBBeanMybatis {
 	@Autowired
 	public MybatisConnector mybatisConnector;
 	
+	/*==================================공지사항======================================================*/
+	
 	public List<NoticeDataBean> getNoticeList() throws Exception {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		try {
@@ -121,6 +123,8 @@ public class AdministrationDBBeanMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	/*==================================메뉴======================================================*/
 
 	public List<TopMenuDataBean> getTopMenuList() {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
@@ -131,6 +135,65 @@ public class AdministrationDBBeanMybatis {
 		}
 	}
 	
+	public int getTopMenuCount() {
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		int number = sqlSession.selectOne(namespace1 + ".getTopMenuNum");
+		try {
+			System.out.println("search 0k:" + number);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return number;
+	}
+	
+	public void insertTopMenu(TopMenuDataBean topMenu, String tm_parentYN) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		try {
+			if (tm_parentYN.equals("y")) {
+				int result = sqlSession.insert(namespace1 + ".insertTopMenu", topMenu);
+				System.out.println("insert  0k:" + result);
+			}
+			else if (tm_parentYN.equals("n")) {
+				int result = sqlSession.insert(namespace1 + ".insertTopMenuNotparent", topMenu);
+				System.out.println("insert  0k:" + result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public List<TopMenuDataBean> getMenuInfo(int tm_num) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		try {
+			return sqlSession.selectList(namespace1 + ".bringMenuInfo", tm_num);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public void updateTopMenu(TopMenuDataBean topMenu, String tm_parentYN) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();
+		try {
+			if (tm_parentYN.equals("y")) {
+			int result = sqlSession.update(namespace1 + ".updateTopMenu",topMenu);
+			System.out.println("update  0k:" + result);
+			}
+			else if (tm_parentYN.equals("n")) {
+				int result = sqlSession.update(namespace1 + ".updateTopMenuNotparent",topMenu);
+				System.out.println("update  0k:" + result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
 
 
 	public void deleteMenu(int tm_num) {
@@ -145,27 +208,7 @@ public class AdministrationDBBeanMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	
 
-	public int getTopMenuCount() {
-		SqlSession sqlSession = mybatisConnector.sqlSession();
-		int number = sqlSession.selectOne(namespace1 + ".getNoticeNum");
-		try {
-			System.out.println("search 0k:" + number);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.close();
-		}
-		return number;
-	}
-
-	
-	public void updateTopMenuNum(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-	
 }

@@ -42,6 +42,7 @@ public class AdministerController {
 		return mv;
 	}
 
+	// 공지
 	@RequestMapping("notice")
 	public ModelAndView noticeList() throws Exception {
 		mv.clear();
@@ -67,15 +68,15 @@ public class AdministerController {
 
 			// 셋팅
 			notice.setNb_num(bringNb_num);
-			//e_num 바꿀 부분
+			// e_num 바꿀 부분
 			notice.setE_num(1111);
 
 			System.out.println(notice.toString());
 			// 작성 실행
 			administrationDBBeanMybatis.insertNotice(notice);
 		} else {
-			
-			//e_num 바꿀 부분
+
+			// e_num 바꿀 부분
 			notice.setE_num(2222);
 			administrationDBBeanMybatis.updateNotice(notice);
 		}
@@ -89,11 +90,11 @@ public class AdministerController {
 		mv.clear();
 		// 삭제 실행
 		administrationDBBeanMybatis.deleteNotice(nb_num);
-		
+
 		int count = administrationDBBeanMybatis.getNoticeSelectCount(nb_num);
 		if (count != 0) {
 			for (int i = 1; i <= count; i++) {
-				administrationDBBeanMybatis.updateNoticeNum(nb_num+i);
+				administrationDBBeanMybatis.updateNoticeNum(nb_num + i);
 			}
 		}
 		return "redirect:notice";
@@ -115,6 +116,7 @@ public class AdministerController {
 		return aboutmap;
 	}
 
+	// 메뉴
 	@RequestMapping("menu")
 	public ModelAndView menu() {
 		mv.clear();
@@ -127,22 +129,64 @@ public class AdministerController {
 
 	// 메뉴 작성 및 수정
 	@RequestMapping("writeMenu")
-	public ModelAndView writeMenu(TopMenuDataBean topMenu, int tm_num) {
+	public String writeMenu(TopMenuDataBean topMenu, int tm_num, String tm_parentYN) {
 		mv.clear();
-		mv.setViewName("../admin_view/menuManagement/menuAdmin");
-		return mv;
+		System.out.println(topMenu.toString());
+		System.out.println(tm_num);
+		if (tm_num == 0) {
+			// 조회
+			int bringTm_num = administrationDBBeanMybatis.getTopMenuCount();
+			if (bringTm_num != 0) {
+				bringTm_num = bringTm_num + 1;
+			} else {
+				bringTm_num = 1;
+			}
+
+			// 셋팅
+			topMenu.setTm_num(bringTm_num);
+
+			// e_num 바꿀 부분
+			topMenu.setE_num(1111);
+
+			System.out.println(topMenu.toString());
+			// 작성 실행
+			administrationDBBeanMybatis.insertTopMenu(topMenu, tm_parentYN);
+		} else {
+			// e_num 바꿀 부분
+			topMenu.setE_num(2222);
+
+			administrationDBBeanMybatis.updateTopMenu(topMenu, tm_parentYN);
+		}
+
+		return "redirect:menu";
 	}
+
+	// 글번호, 제목, 내용 가져오기
+	@RequestMapping(value = "getMenu", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getMenu(int tm_num) {
+
+		List<TopMenuDataBean> menuBringInfo = null;
+		menuBringInfo = administrationDBBeanMybatis.getMenuInfo(tm_num);
+		Map<String, Object> aboutmap = new HashMap<String, Object>();
+
+		aboutmap.put("getTm_num", menuBringInfo.get(0).getTm_num());
+		aboutmap.put("getTm_text", menuBringInfo.get(0).getTm_text());
+		aboutmap.put("getTm_div", menuBringInfo.get(0).getTm_div());
+		aboutmap.put("getTm_url", menuBringInfo.get(0).getTm_url());
+		aboutmap.put("getTm_use", menuBringInfo.get(0).getTm_use());
+		aboutmap.put("getTm_parent", menuBringInfo.get(0).getTm_parent());
+		
+		System.out.println(aboutmap.toString());
+		
+		return aboutmap;
+	}
+
 
 	// 메뉴 삭제
 	@RequestMapping("deleteMenu")
 	public String deleteMenu(int tm_num) {
 		mv.clear();
-		/*
-		 * int count = administrationDBBeanMybatis.getTopMenuCount();
-		 * 
-		 * //데이터 베이스 업데이트 일어나야함. //수정 안하면 출력되다가 안됨. for (int i = 0; i < count; i++) {
-		 * administrationDBBeanMybatis.updateTopMenuNum(tm_num+i); }
-		 */
 
 		// 삭제 실행
 		administrationDBBeanMybatis.deleteMenu(tm_num);

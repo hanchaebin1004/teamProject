@@ -4,14 +4,64 @@
 <mapper namespace="mybatis.TopMenu">
 
 	<select id="getTopMenus" resultType="TopMenu">
-		select * from top_menu where tm_use = 'y' order by tm_num, tm_div asc
+		select * from top_menu where
+		tm_use = 'y' order by tm_num, tm_div asc
 	</select>
-	
+
 	<select id="topMenuList" resultType="TopMenu">
-		select * from top_menu ORDER BY tm_div
+		select * from top_menu ORDER
+		BY tm_div
 	</select>
+
+	<select id="getTopMenuNum" resultType="int">
+		select max(tm_num) from top_menu
+	</select>
+
+	<insert id="insertTopMenu" parameterType="TopMenu">
+		insert into top_menu values
+		(#{tm_num},#{e_num},#{tm_text},#{tm_depth},#{tm_div},#{tm_url},#{tm_use},#{tm_parent})
+	</insert>
 	
+	<insert id="insertTopMenuNotparent" parameterType="TopMenu">
+		insert into top_menu values
+		(#{tm_num},#{e_num},#{tm_text},#{tm_depth},#{tm_div},#{tm_url},#{tm_use},null)
+	</insert>
+	
+	
+
+	<update id="updateTopMenu" parameterType="TopMenu">
+		update top_menu 
+		set 
+		e_num=#{e_num}, 
+		tm_text=#{tm_text},
+		tm_depth=2,
+		tm_div=#{tm_div},
+		tm_url=#{tm_url},
+		tm_use=#{tm_use}, 
+		tm_parent=#{tm_parent}
+		where tm_num=#{tm_num}
+	</update>
+	
+	<update id="updateTopMenuNotparent" parameterType="TopMenu">
+		update top_menu 
+		set 
+		e_num=#{e_num}, 
+		tm_text=#{tm_text},
+		tm_depth=1,
+		tm_div=#{tm_div},
+		tm_url=#{tm_url},
+		tm_use=#{tm_use}, 
+		tm_parent=null
+		where tm_num=#{tm_num}
+	</update>
+
 	<delete id="deleteTopMenu" parameterType="int">
-		delete from top_menu where tm_num=#{tm_num}
+		delete from top_menu
+		where tm_num=#{tm_num}
 	</delete>
+	
+	
+	<select id="bringMenuInfo" parameterType="int" resultType="TopMenu">
+		select * from top_menu where tm_num=#{tm_num}
+	</select>
 </mapper>
