@@ -291,7 +291,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(0).quality}<br>
                               <button class="btn btn-link btn-block" type="button" id="pickup0"
@@ -312,7 +312,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(1).quality}<br>
                               <button class="btn btn-link btn-block" type="button" id="pickup1" 
@@ -333,7 +333,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(2).quality}<br>
                               <button class="btn btn-link btn-block" type="button" id="pickup2"
@@ -354,7 +354,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; <fmt:formatDate value="${waybill.w_duedate}" pattern="yyyy-MM-dd"/><br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div}<br>
                            </div>
                         </div>
