@@ -41,7 +41,7 @@ public class SearchController {
     	
     	Parcel parcel = searchDBBeanMybatis.selectWhereNow(w_num);
     	String whereNow = parcel.getP_location();
-    	int p_num = parcel.getP_num();
+    	String p_num = parcel.getP_num();
     
     	mv.addObject("rootnode", rn);
     	mv.addObject("waybill", wb);

@@ -4,16 +4,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Pickup {
-	private int p_num;
+	private String p_num;
 	private String pu_area;
 	private int pu_time;
 	private Date pu_date;
 
-	public int getP_num() {
+	public String getP_num() {
 		return p_num;
 	}
 
-	public void setP_num(int p_num) {
+	public void setP_num(String p_num) {
 		this.p_num = p_num;
 	}
 
@@ -24,7 +24,6 @@ public class Pickup {
 	public void setPu_area(String pu_area) {
 		this.pu_area = pu_area;
 	}
-
 
 	public int getPu_time() {
 		return pu_time;
@@ -51,5 +50,5 @@ public class Pickup {
 		return "Pickup [p_num=" + p_num + ", pu_area=" + pu_area + ", pu_time=" + pu_time + ", pu_date=" + pu_date
 				+ "]";
 	}
-	
+
 }

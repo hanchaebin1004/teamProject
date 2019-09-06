@@ -7,14 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.Charge;
-import model.WayBill;
+import model.Emp;
+import model.MemberDataBean;
 import mybatis.MybatisConnector;
 
-@Service
-public class AcceptService {
+@Service //���� Ŭ������ ���������� �����ϴ� service bean���� ���
+public class MemberService {
 
-	private final String namespace = "mybatis.Accept";
+	private final String namespace = "mybatis.Member";
 
 	@Autowired
 	public MybatisConnector mybatisConnentor;
@@ -26,75 +26,73 @@ public class AcceptService {
 		} finally {
 			sqlSession.close();
 		}
+
 	}
-	
-	public Charge chargeCal(String size, String area) {
+
+	public void insertMember(MemberDataBean member) throws Exception {
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
-		HashMap map = new HashMap();
-		map.put("size", size);
-		map.put("area", area);
 		try {
-			return sqlSession.selectOne(namespace + ".chargeCal", map);
+			System.out.println(member);
+			sqlSession.insert(namespace + ".insertMember", member);
 		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public void insertWayBill(WayBill wayBill) throws Exception{
-		SqlSession sqlSession = mybatisConnentor.sqlSession();
-		try {
-			int result = sqlSession.insert(namespace + ".insertWayBill", wayBill);
-		} catch (Exception e) { e.printStackTrace(); }
-		 finally {
 			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
 
-	public String avgDelevery(String s, String e) {
+	public int getMaxNum() {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getMaxNum");
+		} finally {
+			sqlSession.close();
+		}
+
+	}
+
+	public MemberDataBean user_login(String m_id, String m_pw) throws Exception {
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		HashMap map = new HashMap();
-		map.put("s", s);
-		map.put("e", e);
+		map.put("m_id", m_id);
+		map.put("m_pw", m_pw);
+		System.out.println("---------service_login");
 		try {
-			return sqlSession.selectOne(namespace + ".avgDelevery", map);
+			return sqlSession.selectOne(namespace + ".user_login", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	public int user_meminformation(MemberDataBean member) throws Exception {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		System.out.println("---------service_user_meminformation");
+		try {
+			return sqlSession.update(namespace + ".user_meminformation", member);
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
 	
-	public void insertParcel(int node) {
-		SqlSession sqlSession = mybatisConnentor.sqlSession();
-		HashMap map = new HashMap();
-		map.put("node", node);
-		try {
-			sqlSession.insert(namespace + ".insertParcel", map);
-		} finally {
-			sqlSession.commit();
-			sqlSession.close();
-		}
-	}
-	
-	public int getParcelNum() {
+	public int isMember(String id) {
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		try {
-			return sqlSession.selectOne(namespace + ".getParcelNum");
+			return sqlSession.selectOne(namespace + ".isMem", id);
 		} finally {
 			sqlSession.close();
 		}
 	}
 	
-	public void insertDS(int id, int node) {
+	public Emp empLogin(String id, String pw) {
 		SqlSession sqlSession = mybatisConnentor.sqlSession();
 		HashMap map = new HashMap();
 		map.put("id", id);
-		map.put("node", node);
+		map.put("pw", pw);
 		try {
-			sqlSession.insert(namespace + ".insertDS", map);
+			System.out.println("service: "+id+","+pw);
+			return sqlSession.selectOne(namespace + ".empLogin", map);
 		} finally {
-			sqlSession.commit();
 			sqlSession.close();
 		}
 	}
+	
 }

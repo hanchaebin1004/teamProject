@@ -2,21 +2,21 @@ package model;
 
 public class Parcel {
 
-	private int p_num;
-	private int w_num;
+	private String p_num;
+	private String w_num;
 	private String p_location;
 	private String p_quality;
 	private String receive;
-	public int getP_num() {
+	public String getP_num() {
 		return p_num;
 	}
-	public void setP_num(int p_num) {
+	public void setP_num(String p_num) {
 		this.p_num = p_num;
 	}
-	public int getW_num() {
+	public String getW_num() {
 		return w_num;
 	}
-	public void setW_num(int w_num) {
+	public void setW_num(String w_num) {
 		this.w_num = w_num;
 	}
 	public String getP_location() {
@@ -42,6 +42,4 @@ public class Parcel {
 		return "Parcel [p_num=" + p_num + ", w_num=" + w_num + ", p_location=" + p_location + ", p_quality=" + p_quality
 				+ ", receive=" + receive + "]";
 	}
-	
-	
 }
