@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.NoticeDataBean;
+import model.SurveyBoardAboutDataBean;
 import service.AdministrationDBBeanMybatis;
 
 @Controller
@@ -50,26 +51,31 @@ public class AdministerController {
 		return mv;
 	}
 
-	// 공지 작성
+	// 공지 작성 / 수정
 	@RequestMapping("WriteNotice")
-	public String writeNotice(NoticeDataBean notice) {
+	public String writeNotice(NoticeDataBean notice, int nb_num) {
 		mv.clear();
+		if (nb_num==0) {
+			// 조회
+			int bringNb_num = administrationDBBeanMybatis.getNoticeNum();
+			if (bringNb_num != 0) {
+				bringNb_num = bringNb_num + 1;
+			} else {
+				bringNb_num = 1;
+			}
 
-		// 조회
-		int nb_num = administrationDBBeanMybatis.getNoticeNum();
-		if (nb_num != 0) {
-			nb_num = nb_num + 1;
-		} else {
-			nb_num = 1;
+			// 셋팅
+			notice.setNb_num(bringNb_num);
+			notice.setE_num(1111);
+
+			System.out.println(notice.toString());
+			// 작성 실행
+			administrationDBBeanMybatis.insertNotice(notice);
 		}
-
-		// 셋팅
-		notice.setNb_num(nb_num);
-		notice.setE_num(1111);
-
-		System.out.println(notice.toString());
-		// 작성 실행
-		administrationDBBeanMybatis.insertNotice(notice);
+		else {
+			administrationDBBeanMybatis.updateNotice(notice);
+		}
+		
 		return "redirect:notice";
 	}
 
@@ -81,18 +87,23 @@ public class AdministerController {
 		administrationDBBeanMybatis.deleteNotice(nb_num);
 		return "redirect:notice";
 	}
-
-
-	// 공지 수정
-	@RequestMapping("UpdateNotice")
-	public ModelAndView updateNotice(NoticeDataBean notice, int nb_num) {
-		mv.clear();
+	
+	// 수령자, 직원번호 가져오기
+	@RequestMapping(value = "bringInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> bringAbout(int nb_num) {
+		/* int nb_num = Integer.parseInt(request.getParameter("nb_num")); */
+		List<NoticeDataBean> noticeBringInfo = null;
 		
-		// 수정 실행
-		administrationDBBeanMybatis.updateNotice(notice);
-		mv.setViewName("../admin_view/noticeManagement/noticeUpdate");
-		return mv;
+		noticeBringInfo = administrationDBBeanMybatis.getNoticeInfo(nb_num);
+		Map<String, Object> aboutmap = new HashMap<String, Object>();
+		
+		aboutmap.put("getNb_num", noticeBringInfo.get(0).getNb_num());
+		aboutmap.put("getNb_title", noticeBringInfo.get(0).getNb_title());
+		aboutmap.put("getNb_content", noticeBringInfo.get(0).getNb_content());
+		return aboutmap;
 	}
+
 
 	@RequestMapping("menu")
 	public ModelAndView menu() {

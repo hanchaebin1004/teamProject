@@ -12,8 +12,6 @@ import mybatis.MybatisConnector;
 @Service
 public class AdministrationDBBeanMybatis {
 	
-	//namespace1은 전체적 기능 담당
-	//namespace2는 질문, 선택지 리스트 가져오기 담당
 	private final String namespace = "mybatis.Administer";
 
 	@Autowired
@@ -80,7 +78,7 @@ public class AdministrationDBBeanMybatis {
 		}
 	}
 
-	public List<NoticeDataBean> getBringNoticeAbout(int nb_num) {
+	public List<NoticeDataBean> getNoticeInfo(int nb_num) {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
 		
 		try {
@@ -90,12 +88,5 @@ public class AdministrationDBBeanMybatis {
 		}
 		
 	}
-
-	public NoticeDataBean selectNoticeOne(String sb_num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 	
 }

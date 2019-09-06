@@ -30,6 +30,55 @@ $(document).ready(function(e){
 		} 
 	});
 	
+	
+	//값 가져오기
+	$('#updateMove').click(function(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/administer/bringInfo",
+			type: "GET",
+			data:{
+				"nb_num":$('#updateMove').val()
+			},
+			dataType:"json",
+			success: function(data){
+				console.log(data.getNb_num);
+				$('input[name=nb_num]').attr('value',data.getNb_num);
+				$('input[name=nb_title]').attr('value',data.getNb_title);
+				/* $('input[name=nb_content]').attr('text()',data.getNb_content); */
+			},
+			error: function(){
+				
+			}
+		});
+	});
+	
+	
+	
+	//값 가져오기
+	$('.button').click(function(){
+		var nbNum = $(this).attr('value');
+		alert(nbNum);
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/administer/bringInfo",
+			type: "GET",
+			data:{
+				"nb_num":$(this).val()
+			},
+			dataType:"json",
+			success: function(data){
+				console.log(data.getNb_num);
+				$('input[name=nb_num]').attr('value',data.getNb_num);
+				$('input[name=nb_title]').attr('value',data.getNb_title);
+				/* $('input[name=nb_content]').attr('value',data.getNb_content); */
+			},
+			error: function(){
+				
+			}
+		});
+	});
+	
+	
 });
 </script>
 
@@ -58,10 +107,11 @@ $(document).ready(function(e){
 								<div class="row mb-3">
 									<div class="col-md-8 mx-auto">
 										<br>
-										<form name="WriteNotice" method="post">
+										<form name="WriteNotice" method="post" action="<%=request.getContextPath()%>/administer/WriteNotice">
+										<input type="hidden" name="nb_num">
 											<div class="form-group row showcase_row_area">
 												<div class="col-md-3 showcase_text_area">
-													<label for="inputType1">제목</label>
+													<label for="nb_title">제목</label>
 												</div>
 												<div class="col-md-9 showcase_content_area">
 													<input type="text" class="form-control" id="nb_title" name="nb_title" placeholder="제목을 입력해주세요">
@@ -69,7 +119,7 @@ $(document).ready(function(e){
 											</div>
 											<div class="form-group row showcase_row_area">
 												<div class="col-md-3 showcase_text_area">
-													<label for="inputType2">내용</label>
+													<label for="nb_content">내용</label>
 												</div>
 												<div class="col-md-9 showcase_content_area">
 													<textarea name="nb_content" class="form-control" id="nb_content" cols="12" rows="5" placeholder="공지사항 내용을 입력해주세요"></textarea>
@@ -79,7 +129,7 @@ $(document).ready(function(e){
 											<div class="row">
 												<div class="form-group showcase_row_area"
 													style="margin-left: 520px;">
-													<button type="submit" id="submitNotice" value="write" onclick="javascript: form.action='<%=request.getContextPath()%>/administer/WriteNotice';" class="btn btn-warning btn-sm has-icon">
+													<button type="submit" id="submitNotice" value="write" class="btn btn-warning btn-sm has-icon">
 														<i class="mdi mdi-check"></i>작성
 													</button>
 												</div>
@@ -102,17 +152,16 @@ $(document).ready(function(e){
 					<div class="grid">
 						<p class="grid-header">조회</p>
 						<div class="item-wrapper">
-							<!-- 서치버튼 추가 -->
+							서치버튼 추가
 							<div>
 								<form action="#">
 									<div class="form-group row showcase_row_area">
 										<div class="col-md-4 showcase_content_area"
 											style="margin-left: 690px;">
-											<input type="text" class="form-control" id="inputType10"
-												placeholder="Search">
+											<input type="text" class="form-control" id="inputType10" placeholder="Search">
 
 										</div>
-										<button type="reset"
+										<button type="button"
 											class="btn action-btn btn-sm btn-like btn-outline-danger btn-rounded">
 											<i class="mdi mdi-arrow-right-bold"></i>
 										</button>
@@ -143,7 +192,7 @@ $(document).ready(function(e){
 													<i class="mdi mdi-dots-vertical"> </i>
 												</button>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" id="updateMove" href="<%=request.getContextPath()%>/administer/notice">수정하기</a> 
+													<button type="button" name="updateMovenb_num" value="${noticeList.nb_num}" class="dropdown-item button">수정하기</button> 
 													<a class="dropdown-item" href="<%=request.getContextPath()%>/administer/DeleteNotice?nb_num=${noticeList.nb_num}">삭제하기</a>
 												</div>
 											</td>	

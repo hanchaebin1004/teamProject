@@ -57,9 +57,9 @@
 	background-color: #ffffff;
 }
 
-.table tr:hover {
+/* .table tr:hover {
 	background-color: #e7e9eb;
-}
+} */
 
 .table th, .table td {
 	padding: 10px;

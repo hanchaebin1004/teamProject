@@ -30,5 +30,6 @@
 		<mapper resource="mybatis/SurveyBoardOracle.xml" />
 		<mapper resource="mybatis/SurveyBoardQnAOracle.xml" />
 		<mapper resource="mybatis/AdministerOracle.xml" />
+		<mapper resource="mybatis/NoticeBoardOracle.xml" />
 	</mappers>
 </configuration>
