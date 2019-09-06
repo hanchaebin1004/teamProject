@@ -31,34 +31,13 @@ $(document).ready(function(e){
 	});
 	
 	
-	//값 가져오기
-	$('#updateMove').click(function(){
-		$.ajax({
-			url: "${pageContext.request.contextPath}/administer/bringInfo",
-			type: "GET",
-			data:{
-				"nb_num":$('#updateMove').val()
-			},
-			dataType:"json",
-			success: function(data){
-				console.log(data.getNb_num);
-				$('input[name=nb_num]').attr('value',data.getNb_num);
-				$('input[name=nb_title]').attr('value',data.getNb_title);
-				/* $('input[name=nb_content]').attr('text()',data.getNb_content); */
-			},
-			error: function(){
-				
-			}
-		});
-	});
+	
 	
 	
 	
 	//값 가져오기
 	$('.button').click(function(){
 		var nbNum = $(this).attr('value');
-		alert(nbNum);
-		
 		$.ajax({
 			url: "${pageContext.request.contextPath}/administer/bringInfo",
 			type: "GET",
@@ -108,7 +87,7 @@ $(document).ready(function(e){
 									<div class="col-md-8 mx-auto">
 										<br>
 										<form name="WriteNotice" method="post" action="<%=request.getContextPath()%>/administer/WriteNotice">
-										<input type="hidden" name="nb_num">
+										<input type="hidden" name="nb_num" value="0">
 											<div class="form-group row showcase_row_area">
 												<div class="col-md-3 showcase_text_area">
 													<label for="nb_title">제목</label>
@@ -175,6 +154,9 @@ $(document).ready(function(e){
 										<tr>
 											<th>제목</th>
 											<th>내용</th>
+											<th>작성자</th>
+											
+											<th>조회수</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -183,7 +165,8 @@ $(document).ready(function(e){
 										<tr>
 											<td>${noticeList.nb_title}</td>
 											<td>${noticeList.nb_content}</td>
-
+											<td>${noticeList.e_num}</td>
+											<td>${noticeList.nb_readcount}</td>
 											<td class="actions">
 												<button type="button"
 													class="btn btn-trasnparent action-btn btn-xs component-flat pr-0"

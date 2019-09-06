@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../common/head_admin.jsp" />
 <jsp:include page="../../common/nav_admin.jsp" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets_admin/css/customAdmin/adminStyleEdit.css">
-
+<script>
+function setDisplay(){
+    if($('input:radio[id=tm_parentY]').is(':checked')){
+        $('#showSelect').show();
+    } else if($('input:radio[id=tm_parentN]').is(':checked')){
+        $('#showSelect').hide();
+    } else {
+    	 $('#showSelect').hide();
+	}
+}
+</script>
 <!-- body 시작 -->
 <!-- partial -->
 <div class="page-content-wrapper">
@@ -30,18 +41,19 @@
 										<br>
 										<form>
 											<div class="form-group row showcase_row_area">
+											<input type="hidden" name="tm_num" value="0">
 												<div class="col-md-2 showcase_text_area">
 													<label for="inputType1">메뉴</label>
 												</div>
 												<div class="col-md-4 showcase_content_area">
-													<input type="text" class="form-control" id="inputType1"
+													<input type="text" name="tm_text" class="form-control" id="tm_text"
 														placeholder="메뉴명">
 												</div>
 												<div class="col-md-2 showcase_text_area">
 													<label for="inputType2">구분</label>
 												</div>
 												<div class="col-md-4 showcase_content_area">
-													<select class="custom-select">
+													<select class="custom-select" name="tm_div">
 														<option selected>선택해주세요.</option>
 														<option value="1">회원</option>
 														<option value="2">직원</option>
@@ -66,17 +78,52 @@
 												<div class="col-md-9 showcase_content_area">
 													<div class="form-inline">
 														<div class="radio mb-3">
-															<label class="radio-label mr-3"> <input
-																name="sample" type="radio" checked>사용<i
-																class="input-frame"></i>
+															<label class="radio-label mr-3"> 
+															<input name="tm_use" type="radio" value="y">사용<i class="input-frame"></i>
 															</label>
 														</div>
 														<div class="radio mb-3">
-															<label class="radio-label"> <input name="sample"
-																type="radio">사용안함<i class="input-frame"></i>
+															<label class="radio-label"> 
+															<input name="tm_use" type="radio" value="n" checked="checked">사용안함<i class="input-frame"></i>
 															</label>
 														</div>
 													</div>
+												</div>
+											</div>
+											
+											<div class="form-group row showcase_row_area">
+												<div class="col-md-2 showcase_text_area">
+													<label for="inputType4">상위 메뉴 여부</label>
+												</div>
+												<div class="col-md-9 showcase_content_area">
+													<div class="form-inline">
+														<div class="radio mb-3">
+															<label class="radio-label mr-3"> 
+															<input name="tm_parentYN" type="radio" id="tm_parentY" value="y" onchange="setDisplay()" checked="checked">있음
+															<i class="input-frame"></i>
+															</label>
+														</div>
+														<div class="radio mb-3">
+															<label class="radio-label"> 
+															<input name="tm_parentYN" type="radio" id="tm_parentN" value="n" onchange="setDisplay()">없음
+															<i class="input-frame"></i>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="form-group row showcase_row_area" id="showSelect">
+												<div class="col-md-2 showcase_text_area">
+													<label for="inputType2">상위메뉴</label>
+												</div>
+												<div class="col-md-4 showcase_content_area">
+													<select class="custom-select" name="tm_parent">
+														<option selected>선택해주세요.</option>
+														<option value="1">회원</option>
+														<option value="2">직원</option>
+														<option value="3">관리자</option>
+													</select>
 												</div>
 											</div>
 
@@ -141,18 +188,29 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${topMenuList}" var="topMenuList">
 										<tr>
-											<td>1</td>
-											<td>직원</td>
-											<td>테스트</td>
-											<td>누굴까</td>
-											<td>없음</td>
-											<td>주소지롱 블라블라</td>
-											<td>Y</td>
-											<td class="actions"><i class="mdi mdi-dots-vertical"></i>
+											<td>${topMenuList.tm_num}</td>
+											<td>${topMenuList.tm_div}</td>
+											<td>${topMenuList.tm_text}</td>
+											<td>${topMenuList.e_num}</td>
+											<td>${topMenuList.tm_parent}</td>
+											<td>${topMenuList.tm_url}</td>
+											<td>${topMenuList.tm_use}</td>
+											<td class="actions">
+												<button type="button"
+													class="btn btn-trasnparent action-btn btn-xs component-flat pr-0"
+													data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false">
+													<i class="mdi mdi-dots-vertical"> </i>
+												</button>
+												<div class="dropdown-menu dropdown-menu-right">
+													<button type="button" name="updateMovenb_num" value="${topMenuList.tm_num}" class="dropdown-item button">수정하기</button> 
+													<a class="dropdown-item" href="<%=request.getContextPath()%>/administer/deleteMenu?tm_num=${topMenuList.tm_num}">삭제하기</a>
+												</div>
 											</td>
 										</tr>
-										<tr></tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
