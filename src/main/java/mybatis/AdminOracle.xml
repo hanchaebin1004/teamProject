@@ -9,6 +9,53 @@
 <mapper namespace="mybatis.Admin">
 
 	<select id="getDS" parameterType="String" resultType="Deliverestimation">
-		select * from deliverestimation where e_num = #{id}
+		select d.* from parcel p , DELIVERESTIMATION d where receive = 'n' and d.P_NUM = p.P_NUM and d.E_NUM = #{num}
 	</select>
+	
+	
+	<select id="isStartNode" parameterType="String" resultType="int">
+		select count(DISTINCT w.W_NUM) as isStartNod from waybill w, DELIVERESTIMATION d
+		where (select n.n_num from node n, PARCEL p where p.P_LOCATION = n.N_NAME and
+		p.P_NUM = (select d.P_NUM from DELIVERESTIMATION d where d.DS_NUM = #{num})) = w.N_START
+		and w.W_NUM = (select p.W_NUM from parcel p, DELIVERESTIMATION d where d.DS_NUM = #{num} and d.P_NUM = p.P_NUM) 
+	</select>
+	<select id="isViaNode" parameterType="String" resultType="int">
+		select count(DISTINCT w.W_NUM) as isStartNod from waybill w, DELIVERESTIMATION d
+		where (select n.n_num from node n, PARCEL p where p.P_LOCATION = n.N_NAME and
+		p.P_NUM = (select d.P_NUM from DELIVERESTIMATION d where d.DS_NUM = #{num})) = w.N_VIA
+		and w.W_NUM = (select p.W_NUM from parcel p, DELIVERESTIMATION d where d.DS_NUM = #{num} and d.P_NUM = p.P_NUM) 
+	</select>
+	<select id="isEndNode" parameterType="String" resultType="int">
+		select count(DISTINCT w.W_NUM) as isStartNod from waybill w, DELIVERESTIMATION d
+		where (select n.n_num from node n, PARCEL p where p.P_LOCATION = n.N_NAME and
+		p.P_NUM = (select d.P_NUM from DELIVERESTIMATION d where d.DS_NUM = #{num})) = w.N_END
+		and w.W_NUM = (select p.W_NUM from parcel p, DELIVERESTIMATION d where d.DS_NUM = #{num} and d.P_NUM = p.P_NUM) 
+	</select>
+	
+	
+	<select id="getViaNum" parameterType="String" resultType="int">
+		select DISTINCT w.N_VIA as isStartNod from waybill w, DELIVERESTIMATION d
+		where (select n.n_num from node n, PARCEL p where p.P_LOCATION = n.N_NAME and
+		p.P_NUM = (select d.P_NUM from DELIVERESTIMATION d where d.DS_NUM = #{num})) = w.N_START
+		and w.W_NUM = (select p.W_NUM from parcel p, DELIVERESTIMATION d where d.DS_NUM = #{num} and d.P_NUM = p.P_NUM) 
+	</select>
+	<select id="getEndNum" parameterType="String" resultType="int">
+		select DISTINCT w.N_END as isStartNod from waybill w, DELIVERESTIMATION d
+		where (select n.n_num from node n, PARCEL p where p.P_LOCATION = n.N_NAME and
+		p.P_NUM = (select d.P_NUM from DELIVERESTIMATION d where d.DS_NUM = #{num})) = w.N_VIA
+		and w.W_NUM = (select p.W_NUM from parcel p, DELIVERESTIMATION d where d.DS_NUM = #{num} and d.P_NUM = p.P_NUM)
+	</select>
+	<select id="getEmps" parameterType="int" resultType="Emp">
+		select * from emp where N_NUM = #{node}
+	</select>
+	
+	<update id="updateParcel" parameterType="hashmap">
+		update parcel set p_location = (select n.n_name from node n, emp e where e.e_num = #{emp} and e.n_num = n.n_num), p_quality = #{quality} where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{ds_num})
+	</update>
+	<update id="passParcel" parameterType="hashmap">
+		update DELIVERESTIMATION set e_num = #{emp}, ds_result = #{quality}, ds_date = to_date(SYSDATE,'RR/MM/DD') where ds_num = #{ds_num}
+	</update>
+	<update id="clearParcel" parameterType="hashmap">
+		update parcel set receive = 'y' where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{ds_num})
+	</update>
 </mapper>

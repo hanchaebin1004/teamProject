@@ -38,6 +38,7 @@ function getStartNode(addr) {
 		method : "POST",
 		data : {},
 		success : function(data) {
+			console.log(data)
 			allNodes = data;
 			getXYpoint(addr);
 			var count = 0;
@@ -48,7 +49,7 @@ function getStartNode(addr) {
 				console.log(count+": "+distance);
 				count++;
 				if (count == max) {
-					console.log("nearestNode: " + startNodeName + "(" + distance + "m)");
+					console.log("nearestNode: " + startNodeNum + "-" + startNodeName + "(" + distance + "m)");
 					clearTimeout(distanceget);
 					$("#startNode").val(startNodeName);
 					$("#n_start").val(startNodeNum);

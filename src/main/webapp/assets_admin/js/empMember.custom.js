@@ -55,3 +55,33 @@ $(function () {
 	        (r = new ApexCharts(document.querySelector("#radial-chart"), a)).render()
 	    }
 	});
+
+function clickRadio(num, q){
+	$('#quality_'+num).val(q);
+}
+
+function passParcel(ds_num, emp, quality){
+	
+	var result = $('#quality_'+ds_num).val();
+	var cn = $('#cn').val();
+	console.log(ds_num+","+emp+","+ quality+","+cn);
+	$.ajax({
+         url      	:"passParcel",
+         method   	: "POST",
+         data   	: {emp : emp,
+        	 		   quality : quality,
+        	 		  ds_num : ds_num,
+        	 		  cn 	: cn
+	        		  },
+         success  	: function(data){
+        	 
+        	 if (data == 1) {
+				alert("넘기기 성공");
+			}else{
+				alert("실패");
+			}
+        	 $('#'+ds_num+'row').remove();
+        	 
+         }
+	})
+}

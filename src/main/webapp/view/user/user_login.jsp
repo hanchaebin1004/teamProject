@@ -120,7 +120,7 @@ function fn_login() {
 						<br>
 						<div class="col-md-12">
 							<div class="form-element">
-								<button type="button" id="login_btn">
+								<button type="submit" id="login_btn">
 									<span>로그인</span>
 								</button>
 							</div>

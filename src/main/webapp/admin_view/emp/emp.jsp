@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<html lang="en">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -206,7 +207,9 @@
 									</tr>
 								</thead>
 								<tbody>
+									<input type="hidden" id="e_num" value="${emp.e_num }">
 									<c:forEach var="ds" items="${DSs}">
+										<c:if test=""></c:if>
 										<tr id="${ds.ds_num }row">
 											<td>${ds.ds_num }</td>
 											<td>${ds.p_num }</td>
@@ -220,19 +223,31 @@
 														<div class="item-wrapper">
 															<div class="demo-wrapper">
 																<div class="btn-group mb-0" data-toggle="buttons">
-																	<input type="hidden" id="quality_${ds.ds_num }">
-																	<label class="btn btn-outline-info active" onclick="clickRadio(${ds.ds_num },'상')">
-																		<input type="radio"  id="high_${ds.ds_num}" >
-																		상
-																	</label>
-																	<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num },'중')">
-																		<input type="radio"  id="middle_${ds.ds_num}">
-																		중
-																	</label>
-																	<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num },'하')" >
-																		<input type="radio"  id="row_${ds.ds_num}">
-																		하
-																	</label>
+																	<input type="hidden" id="quality_${ds.ds_num }" value="${ds.ds_result}">
+																	<c:if test="${ds.ds_result eq '상'}">
+																		<label class="btn btn-outline-info active" onclick="clickRadio(${ds.ds_num},'상')"> <input type="radio" id="high_${ds.ds_num}"> 상
+																		</label>
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'중')"> <input type="radio" id="middle_${ds.ds_num}"> 중
+																		</label>
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'하')"> <input type="radio" id="row_${ds.ds_num}"> 하
+																		</label>
+																	</c:if>
+																	<c:if test="${ds.ds_result eq '중'}">
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'상')"> <input type="radio" id="high_${ds.ds_num}"> 상
+																		</label>
+																		<label class="btn btn-outline-info active" onclick="clickRadio(${ds.ds_num},'중')"> <input type="radio" id="middle_${ds.ds_num}"> 중
+																		</label>
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'하')"> <input type="radio" id="row_${ds.ds_num}"> 하
+																		</label>
+																	</c:if>
+																	<c:if test="${ds.ds_result eq '하'}">
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'상')"> <input type="radio" id="high_${ds.ds_num}"> 상
+																		</label>
+																		<label class="btn btn-outline-info" onclick="clickRadio(${ds.ds_num},'중')"> <input type="radio" id="middle_${ds.ds_num}"> 중
+																		</label>
+																		<label class="btn btn-outline-info active" onclick="clickRadio(${ds.ds_num},'하')"> <input type="radio" id="row_${ds.ds_num}"> 하
+																		</label>
+																	</c:if>
 																</div>
 															</div>
 														</div>
@@ -244,7 +259,28 @@
 													<div class="grid-body">
 														<div class="item-wrapper">
 															<div class="demo-wrapper">
-																<button type="button" class="btn btn-outline-warning" onclick="passParcel()">완료</button>
+																<button type="button" class="btn btn-outline-warning" onclick="workProcess(${ds.ds_num})">넘기기</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- 업무처리 모달창  -->
+												<div class="w3-container">
+													<div id="id${ds.ds_num}" class="w3-modal" style="z-index: 2001;">
+														<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width: 600px">
+															<div class="w3-center">
+																<br>
+																<span onclick="document.getElementById('id${ds.ds_num}').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+																<img src="<%=request.getContextPath()%>/assets/img/payLogo.jpg" style="width: 30%" class="w3-circle w3-margin-top">
+															</div>
+															<div class="w3-section col-lg-12">
+																	<input type="hidden" name="nextEmp${ds.ds_num}" id="nextEmp${ds.ds_num}"/>
+																<div class="col-lg-12" style="float: left;" id="empList${ds.ds_num }">
+																</div>
+																<button class="w3-button w3-block w3-green w3-section w3-padding" type="button" onclick="passParcel(${ds.ds_num},$('#nextEmp${ds.ds_num}').val(),$('#quality_${ds.ds_num}').val())">넘기기</button>
+															</div>
+															<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+																<button onclick="document.getElementById('id${ds.ds_num}').style.display='none'" type="button" class="w3-button w3-red">취소</button>
 															</div>
 														</div>
 													</div>
@@ -260,43 +296,44 @@
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="cn"/>
 	</div>
 	<script>
-	function clickRadio(num, q){
-		$('#quality_'+num).val(q);
-	}
-	function passParcel(){
+	
+	function workProcess(ds_num){
+		$("#empList"+ds_num).empty();
+		
 		$.ajax({
-	         url      :"${pageContext.request.contextPath}/passParcel",
-	         method   : "POST",
-	         data   : {},
-	         success   : function(data){
-	        	 
-	        	 
+	         url      	:"workProcess",
+	         method   	: "POST",
+	         dataType: "json",     
+	         data   	: {num : ds_num},
+	         success  	: function(data){
+	        	$('#cn').val(data.currentNode);
+	        	console.log(data);
+	        	if (data.emps == null) {
+	        		$('#nextEmp'+ds_num).val($('#e_num').val());					
+				} else{
+		        	 var emps = '다음 간선지 직원<br>';
+		        	 $.each(data.emps, function(i, emp) {
+		        		 emps += '<input type="radio" name="nextEmp'+ds_num+'" onclick="nextEmp('+ds_num+','+emp.e_num+')" value="'+emp.e_num+'">'+emp.e_num;
+		        	 })
+		        	 $("#empList"+ds_num).append(emps);
+				}
+	        	 $('#id'+ds_num).css("display",'block');
 	         }
 		})
 	}
-		
-	
-	
+	function nextEmp(ds_num,e_num){
+		$('#nextEmp'+ds_num).val(e_num);
+	}
 	</script>
+	<script src="<%=request.getContextPath()%>/assets_admin/js/empMember.custom.js"></script>
 	</div>
-	<!-- content viewport ends -->
-
-	<!-- partial -->
 	</div>
-	<!-- page content ends -->
 	</div>
-	<!--page body ends -->
-	<!-- SCRIPT LOADING START FORM HERE /////////////-->
-	<!-- plugins:js -->
 	<script src="<%=request.getContextPath()%>/assets_admin/vendors/js/core.js"></script>
 	<script src="<%=request.getContextPath()%>/assets_admin/vendors/js/vendor.addons.js"></script>
-	<!-- endinject -->
-	<!-- Vendor Js For This Page Ends-->
-	<!-- Vendor Js For This Page Ends-->
-	<!-- build:js -->
 	<script src="<%=request.getContextPath()%>/assets_admin/js/template.js"></script>
-	<!-- endbuild -->
 </body>
 </html>

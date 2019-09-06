@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class AdminController {
 		Emp emp = (Emp) session.getAttribute("emp");
 
 		List<Deliverestimation> ds = adminservice.getDS(emp.getE_num());
-
+		
 		mv.addObject("DSs", ds);
 		mv.setViewName("../admin_view/emp/emp");
 		return mv;
@@ -73,8 +74,30 @@ public class AdminController {
 
 	@RequestMapping("passParcel")
 	@ResponseBody
-	public int passParcel() throws Exception {
-		List nodeList = acceptService.getAllNodeDiv2();
-		return nodeList;
+	public int passParcel(String emp, String quality, String ds_num, int cn) throws Exception {
+		// List nodeList = adminservice.getAllNodeDiv2();
+		System.out.println("emp: " + emp + "\tquality: " + quality+"\tds_num: "+ds_num);
+		
+		int result = adminservice.passParcel(emp, quality, ds_num);
+		System.out.println("pass currentNode: "+cn);
+		if (cn == 3) {
+			adminservice.clearParcel(ds_num);
+		}
+		return result;
+	}
+
+	@RequestMapping("workProcess")
+	@ResponseBody
+	public HashMap workProcess(String num) throws Exception {
+		HashMap map = new HashMap();
+
+		int currentNode = adminservice.getCurrentNode(num);
+		System.out.println("currentNode: "+currentNode);
+		if (currentNode == 1 || currentNode == 2) {
+			List<Emp> emps = adminservice.getNextEmp(num, currentNode);
+			map.put("emps", emps);
+		} 
+		map.put("currentNode", currentNode);
+		return map;
 	}
 }
