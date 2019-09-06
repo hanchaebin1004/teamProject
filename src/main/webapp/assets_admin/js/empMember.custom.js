@@ -60,18 +60,23 @@ function clickRadio(num, q){
 	$('#quality_'+num).val(q);
 }
 
-function passParcel(ds_num, emp, quality){
+function passParcel(ds_num, emp, quality){ //택배번호, 다음직원번호, 택배품질
 	
-	var result = $('#quality_'+ds_num).val();
-	var cn = $('#cn').val();
-	console.log(ds_num+","+emp+","+ quality+","+cn);
+	var cn = $('#cn').val(); //현재 택배가 있는 간선지구분(start, via, end)
+	var receiver = $('#receiver'+ds_num).val();
+	var receiverLoaction = $('#receiveLocation'+ds_num).val();
+	
+	console.log(ds_num+","+emp+","+ quality+","+cn+","+receiver+","+receiverLoaction);
+	
 	$.ajax({
          url      	:"passParcel",
          method   	: "POST",
          data   	: {emp : emp,
         	 		   quality : quality,
-        	 		  ds_num : ds_num,
-        	 		  cn 	: cn
+        	 		   ds_num : ds_num,
+        	 		   cn 	: cn,
+        	 		  receiver	: receiver,
+        	 		 receiverLoaction : receiverLoaction
 	        		  },
          success  	: function(data){
         	 

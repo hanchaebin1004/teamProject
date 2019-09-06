@@ -74,14 +74,14 @@ public class AdminController {
 
 	@RequestMapping("passParcel")
 	@ResponseBody
-	public int passParcel(String emp, String quality, String ds_num, int cn) throws Exception {
+	public int passParcel(String emp, String quality, String ds_num, int cn, String receiver, String receiverLoaction) throws Exception {
 		// List nodeList = adminservice.getAllNodeDiv2();
 		System.out.println("emp: " + emp + "\tquality: " + quality+"\tds_num: "+ds_num);
 		
 		int result = adminservice.passParcel(emp, quality, ds_num);
 		System.out.println("pass currentNode: "+cn);
 		if (cn == 3) {
-			adminservice.clearParcel(ds_num);
+			adminservice.clearParcel(ds_num, receiver, receiverLoaction, emp);
 		}
 		return result;
 	}

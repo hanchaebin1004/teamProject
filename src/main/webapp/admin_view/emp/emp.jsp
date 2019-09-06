@@ -312,7 +312,9 @@
 	        	$('#cn').val(data.currentNode);
 	        	console.log(data);
 	        	if (data.emps == null) {
-	        		$('#nextEmp'+ds_num).val($('#e_num').val());					
+	        		$('#nextEmp'+ds_num).val($('#e_num').val());
+	        		var receiver = '수령인명: <input type="text" id="receiver'+ds_num+'"><br>수령장소<input type="text" id="receiveLocation'+ds_num+'"><br>';
+	        		$("#empList"+ds_num).append(receiver);
 				} else{
 		        	 var emps = '다음 간선지 직원<br>';
 		        	 $.each(data.emps, function(i, emp) {
