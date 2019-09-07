@@ -94,8 +94,7 @@ public class SurveyBoardDBBeanMybatis {
 	//선택지 가져오기
 	public List<SurveyBoardAnswerDataBean> getAnswerList() throws Exception {
 		SqlSession sqlSession = mybatisConnector.sqlSession();
-		HashMap map = new HashMap();
-
+		
 		try {
 			return sqlSession.selectList(namespace2 + ".surveyAnswerList");
 		} finally {

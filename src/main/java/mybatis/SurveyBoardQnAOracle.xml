@@ -6,7 +6,7 @@
 	<select id="surveyQuestionList" resultType="SurveyBoardQuestion">
 		select *
 		from
-		survey_question
+		survey_question order by sq_num
 	</select>
 
 
@@ -18,26 +18,26 @@
 		WHERE sq.sq_num=sa.sq_num
 		<choose>
 			<when test="sq_num == 1">
-				AND sa.sq_num=1;
+				AND sa.sq_num=1 order by sa.sa_num
 			</when>
 
 			<when test="sq_num == 2">
-				AND sa.sq_num=2;
+				AND sa.sq_num=2 order by sa.sa_num
 			</when>
 
 			<when test="sq_num == 3">
-				AND sa.sq_num=3;
+				AND sa.sq_num=3 order by sa.sa_num
 			</when>
 
 			<when test="sq_num == 4">
-				AND sa.sq_num=4;
+				AND sa.sq_num=4 order by sa.sa_num
 			</when>
 
 			<when test="sq_num == 5">
-				AND sa.sq_num=5;
+				AND sa.sq_num=5 order by sa.sa_num
 			</when>
 			<when test="sq_num == 6">
-				AND sa.sq_num=6;
+				AND sa.sq_num=6 order by sa.sa_num
 			</when>
 			<!-- <otherwise> AND sa.sq_num=6; </otherwise> -->
 		</choose>

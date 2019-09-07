@@ -96,6 +96,8 @@ $(document).ready(function(e){
 		});
 	});
 	
+	
+	
 });
 </script>
 <div class="breadcrumb-area satisfactionForm-bg">
@@ -178,11 +180,11 @@ $(document).ready(function(e){
 								</p>
 								<!-- 평가선택지 -->
 								<div>
-								<c:forEach items="${surveyAnswerList}" var="surveyAnswer">
+								<c:forEach items="${surveyAnswerList}" var="surveyAnswer" >
 								<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
 								
-								<input name="satisfaction${surveyAnswer.sq_num}" value="${surveyAnswer.sa_num}" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
-								
+								<input name="satisfaction${surveyAnswer.sq_num}" value="${surveyAnswer.sa_num}" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>${surveyAnswer.sa_item}&nbsp;&nbsp;&nbsp;
+
 								</c:if>
 								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
 								
