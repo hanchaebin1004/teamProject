@@ -16,12 +16,7 @@ $(document).ready(function(e){
 			$('#sb_title').focus();
 			idx = false;
 			return idx;
-		} else if($.trim($('#sb_passwd').val()) == ''||$.trim($('#sb_passwd').val()) ==' '){
-			alert("원글의 암호를 입력해주세요.");
-			$('#password').focus();
-			idx = false;
-			return idx;
-		} 
+		}
 
 	});
 	
@@ -120,7 +115,7 @@ $(document).ready(function(e){
 		
 										</c:forEach>
 								  		> 
-								  		<label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
+								  		<label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>${surveyAnswer.sa_item}&nbsp;&nbsp;&nbsp;
 									</c:if>
 								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
 								</c:if>

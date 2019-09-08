@@ -46,7 +46,7 @@
 	<select id="pNumCheck" parameterType="int" resultType="int">
 		select count(p_num)
 		from parcel
-		WHERE p_num = #{p_num} AND receive Like 'Y'
+		WHERE p_num = #{p_num} AND receive Like 'y'
 	</select>
 
 	<select id="pNumDupCheck" parameterType="int" resultType="int">
