@@ -68,4 +68,16 @@
 	<insert id="insertReceiver" parameterType="hashmap">
 		insert into recipient values((select max(r_num)+1 from recipient), (select p_num from DELIVERESTIMATION where ds_num = #{num}), #{receiver}, to_date(SYSDATE,'RR/MM/DD'), #{receiverLocation})
 	</insert>
+	
+	<select id="isPickup" parameterType="String" resultType="int">
+		select count(*) from pickup where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{num})
+	</select>
+	
+	<select id="getpick" parameterType="String" resultType="String">
+		select pu_area from pickup where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{num})
+	</select>
+	
+	<select id="getempNode" parameterType="String" resultType="String">
+		select p_location from parcel where p_num = (select p_num from DELIVERESTIMATION where ds_num = #{num})
+	</select>
 </mapper>

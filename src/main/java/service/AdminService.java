@@ -102,4 +102,34 @@ public class AdminService {
 			sqlSession.close();
 		}
 	}
+	
+	public int isPickup(String num) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".isPickup", num);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public String getpick(String num) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getpick",num);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
+	
+	public String getempNode(String num) {
+		SqlSession sqlSession = mybatisConnentor.sqlSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getempNode",num);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+	}
 }
