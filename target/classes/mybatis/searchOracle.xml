@@ -36,6 +36,11 @@
 		where w_num = #{w_num}
 	</select>
 	
+	<select id="reservedChk" parameterType="String" resultType="model.Pickup">
+		select * from pickup
+		where p_num = #{p_num}
+	</select>
+	
 	<insert id="pickupReserve" parameterType="model.Pickup">
 		insert into pickup values(
 		#{p_num},
