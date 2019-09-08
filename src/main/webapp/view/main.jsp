@@ -24,18 +24,19 @@
 <div class="cta-section home-2">
 	<div class="container">
 		<div class="cta-container">
-			<div class="row align-items-center">
-				<div class="col-lg-9">
-					<div class="form-element">
-						<input name="name" type="text" placeholder="택배번호를 입력해주세요">
-					</div>
-				</div>
-				<div class="col-lg-3 text-center text-lg-right">
-					<a href="#" onclick="alert('구현 중 입니다');" class="boxed-btn">
-						<span>택배조회</span>
-					</a>
-				</div>
-			</div>
+			<div class="col-lg-12">
+               <form method="post" action="search/search">
+                  <div class="row">
+                  <div class="col-lg-1">&nbsp;</div>
+                     <div class="col-lg-8">
+                        <div class="form-element"><input name="w_num" id="searchbox" type="text" placeholder="운송장 번호를 입력하세요." ></div>
+                     </div>
+                     <div class="col-lg-3">
+                        <div class="form-element"><input type="submit" value="조회"></div>
+                     </div>
+                  </div>
+               </form>
+            </div>
 		</div>
 	</div>
 	<div class="cta-overlay"></div>

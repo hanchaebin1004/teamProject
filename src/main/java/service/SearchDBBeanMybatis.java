@@ -62,6 +62,17 @@ public class SearchDBBeanMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	public Pickup reservedChk(String p_num) {
+		SqlSession sqlSession = mybatisConnector.sqlSession();		
+		try {
+			Pickup pickup = sqlSession.selectOne(namespace + ".reservedChk", p_num);
+			return pickup;
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public void pickupReserve(Pickup pickup) {
 		SqlSession sqlSession = mybatisConnector.sqlSession();	
 		try {

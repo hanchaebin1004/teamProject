@@ -4,11 +4,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
-var reserved = ${param.reserved};
+var reserved = '${param.reserved}';
 if(reserved == 1){
 	alert("예약 되었습니다.");
 }
+
+var noParcel = '${param.noParcel}';
+if(noParcel == 1){
+	alert("없는 택배입니다.");
+}
+
+
+function onModal(loc){
+	var modal = document.getElementById('id01');
+	if(modal.style.display == 'none'){
+		modal.style.display = 'block';
+		document.getElementById('pu_area').value = loc;
+	}else{
+		modal.style.display = 'none';
+	}
+}
 </script>
+<c:if test="${pickup == null }">
+<script>
+window.onload = function(){
+    var cards = document.getElementsByClassName("collapsed")
+    var chk = true;
+	for( var i = 0; i<cards.length; i++	){
+		if(cards[i].innerHTML == "${whereNow}"){
+			cards[i].setAttribute('aria-expanded', 'true');
+			document.getElementById(cards[i].getAttribute('aria-controls')).className += " show";
+			cards[i].className = "btn btn-link btn-block text-left";
+			chk = false;
+		}else{
+		cards[i].setAttribute('aria-expanded', 'false');
+		}
+		if(chk){
+		document.getElementById("pickup" + i).setAttribute("disabled", "disabled");
+		}
+	}
+  }
+</script>
+</c:if>
+<c:if test="${rootnode != null }">
 <script>	
 var endX, endY ;
 function getRoot(){
@@ -181,36 +219,8 @@ $(document).ready(function() {
 	getRoot();
   });  
 </script>
-<script>
-window.onload = function(){
-    var cards = document.getElementsByClassName("collapsed")
-    var chk = true;
-	for( var i = 0; i<cards.length; i++	){
-		if(cards[i].innerHTML == "${whereNow}"){
-			cards[i].setAttribute('aria-expanded', 'true');
-			document.getElementById(cards[i].getAttribute('aria-controls')).className += " show";
-			cards[i].className = "btn btn-link btn-block text-left";
-			chk = false;
-		}else{
-		cards[i].setAttribute('aria-expanded', 'false');
-		}
-		if(chk){
-		document.getElementById("pickup" + i).setAttribute("disabled", "disabled");
-		}
-	}
-  }
-
-function onModal(loc){
-	var modal = document.getElementById('id01');
-	if(modal.style.display == 'none'){
-		modal.style.display = 'block';
-		document.getElementById('pu_area').value = loc;
-	}else{
-		modal.style.display = 'none';
-	}
-}
-</script>
-<div class="breadcrumb-area services-breadcrumb-bg">
+</c:if>
+<div class="breadcrumb-area">
          <div class="container">
             <div class="row">
                <div class="col-lg-12">
@@ -271,16 +281,35 @@ function onModal(loc){
       <!-- search section start    -->
       <div class="faq-section">
          <div class="container">
-               <div class="row">
+               <div class="row" style="margin-bottom:100px;">
                   <div class="col-lg-6">
                   <!-- 지도 -->
                       <div id="map_div"></div>
                   </div>
                   <div class="col-xl-6">
                      <span class="title">배송현황</span>
-                     <h2 class="subtitle">${waybill.sender_add.substring(0, waybill.sender_add.indexOf("시")+1)} - ${waybill.receiver_add.substring(0, waybill.receiver_add.indexOf("시")+1)}</h2>
+                     <h2 class="subtitle">${waybill.sender_add.substring(6, waybill.sender_add.indexOf("시")+1)} - ${waybill.receiver_add.substring(6, waybill.receiver_add.indexOf("시")+1)}</h2>
           <!-- accordion start -->
                   <div class="accordion" id="accordionExample">
+                  <c:if test="${pickup != null}">
+                     <div class="card wow fadeInUp" data-wow-duration="1s">
+                        <div class="card-header" id="headingOne" style="margin-top:80px">
+                           <h2 class="mb-0">
+                              <button class="btn btn-link collapsed btn-block text-left" 
+                              type="button" data-toggle="collapse" data-target="#collapseOne" 
+                              aria-expanded="true" aria-controls="collapseOne">픽업 예약이 있습니다</button>
+                           </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                           <div class="card-body">
+                             픽업 장소&nbsp; :&nbsp; ${pickup.pu_area }<br>
+                             예약 시간&nbsp; :&nbsp; <fmt:formatDate value="${pickup.pu_date }" pattern="MM월dd일 HH시  이후" /><br>
+                             택배 품질&nbsp; :&nbsp; ${p_quality}<br>
+                           </div>
+                        </div>
+                     </div>
+                     </c:if>
+                     <c:if test="${pickup == null}">
                      <div class="card wow fadeInUp" data-wow-duration="1s">
                         <div class="card-header" id="headingOne">
                            <h2 class="mb-0">
@@ -291,7 +320,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate.substring(0,10)}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              택배 품질&nbsp; :&nbsp; ${qList.get(0).quality}<br>
                               <button class="btn btn-link btn-block" type="button" id="pickup0"
@@ -301,7 +330,8 @@ function onModal(loc){
                               </button>
                            </div>
                         </div>
-                     </div>
+                     </div>                     
+                     
                      <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                         <div class="card-header" id="headingTwo">
                            <h2 class="mb-0">
@@ -312,7 +342,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate.substring(0,10)}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              <c:if test="${qList.size() > 1 }" >
                              택배 품질&nbsp; :&nbsp; ${qList.get(1).quality}<br>
@@ -335,7 +365,7 @@ function onModal(loc){
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate.substring(0,10)}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div }<br>
                              <c:if test="${qList.size() > 2 }" >
                              택배 품질&nbsp; :&nbsp; ${qList.get(2).quality}<br>
@@ -358,18 +388,19 @@ function onModal(loc){
                         </div>
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                            <div class="card-body">
-                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate}<br>
+                             도착 예정일&nbsp; :&nbsp; ${waybill.w_duedate.substring(0,10)}<br>
                              상품 분류&nbsp; :&nbsp; ${waybill.w_div}<br>
                            </div>
                         </div>
                      </div>
                   </div>
+                  </c:if>
                   </div>
                </div>
             </div>
          </div>
          </c:if>
-         <div id="id01" class="w3-modal" style="z-index:2010;">
+         <div id="id01" class="w3-modal" style="z-index:2010; display: none;">
     <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:400px;">
 
       <div class="w3-center"><br>
@@ -387,6 +418,7 @@ function onModal(loc){
           	<option value="8">8시간 뒤</option>
           </select>
         <input type="hidden" name="p_num" value="${p_num}">
+        <input type="hidden" name="w_num" value="${waybill.w_num}">
           <button class="w3-button w3-block w3-section w3-padding w3-text-white" type="submit" style="background-color:#5bbccf">예약</button>
         </div>
       </form>
