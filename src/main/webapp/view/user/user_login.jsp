@@ -125,17 +125,6 @@ function fn_login() {
 								</button>
 							</div>
 						</div>
-						<div class="login_append">
-							<div class="inp_chk">
-								<!-- 체크시 checked 추가 -->
-								<input type="checkbox" id="keepLogin" class="inp_radio" name="keepLogin">
-								<label for="keepLogin" class="lab_g"> <span class="img_top ico_check"></span> <span class="txt_lab">아이디 기억하기</span>
-								</label>
-							</div>
-							<span class="txt_find"> <a href="/member/find/Join" class="link_find">회원가입</a> | <a href="/member/find/loginId" class="link_find">아이디찾기</a> | <a href="/member/find/password"
-									class="link_find">비밀번호 찾기</a>
-							</span>
-						</div>
 				</td>
 				</fieldset>
 			</form>

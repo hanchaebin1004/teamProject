@@ -2218,6 +2218,7 @@ footer ul.userful-links li a::before {
 .footer-contact .contact-info p {
     margin-left: 15px;
     margin-bottom: 0px;
+    font-size: 14px;
 }
 
 footer .bottom-footer {

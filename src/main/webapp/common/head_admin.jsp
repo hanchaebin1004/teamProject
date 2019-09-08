@@ -22,10 +22,9 @@
     <!-- partial:partials/_header.html -->
     <nav class="t-header">
       <div class="t-header-brand-wrapper">
-        <a href="index.html">
-          <img class="logo" src="<%=request.getContextPath() %>/assets_admin/images/logo.svg" alt="">
-          <img class="logo-mini" src="<%=request.getContextPath() %>/assets_admin/images/logo_mini.svg" alt="">
-        </a>
+        	<a href="<%= request.getContextPath()%>/main">
+				<img class="logo" src="<%=request.getContextPath()%>/assets_admin/images/mainLogo.png" alt=""> <img class="logo-mini" src="<%=request.getContextPath()%>/assets_admin/images/logo_mini.svg" alt="">
+			</a>
       </div>
       <div class="t-header-content-wrapper">
         <div class="t-header-content">

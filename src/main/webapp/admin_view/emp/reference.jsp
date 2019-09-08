@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,8 +22,8 @@
 	<!-- partial:../../partials/_header.html -->
 	<nav class="t-header">
 		<div class="t-header-brand-wrapper">
-			<a href="../../index.html">
-				<img class="logo" src="<%=request.getContextPath()%>/assets_admin/images/logo.svg" alt=""> <img class="logo-mini" src="<%=request.getContextPath()%>/assets_admin/images/logo_mini.svg" alt="">
+			<a href="<%= request.getContextPath()%>/main">
+				<img class="logo" src="<%=request.getContextPath()%>/assets_admin/images/mainLogo.png" alt=""> <img class="logo-mini" src="<%=request.getContextPath()%>/assets_admin/images/logo_mini.svg" alt="">
 			</a>
 		</div>
 		<div class="t-header-content-wrapper">
@@ -163,90 +163,7 @@
 	<!-- partial -->
 	<div class="page-body">
 		<!-- partial:../../partials/_sidebar.html -->
-		<div class="sidebar">
-			<div class="user-profile">
-				<div class="display-avatar animated-avatar">
-					<img class="profile-img img-lg rounded-circle" src="<%=request.getContextPath()%>/assets_admin/images/profile/male/image_1.png" alt="profile image">
-				</div>
-				<div class="info-wrapper">
-					<p class="user-name">Allen Clerk</p>
-					<h6 class="display-income">$3,400,00</h6>
-				</div>
-			</div>
-			<ul class="navigation-menu">
-				<li class="nav-category-divider">MAIN</li>
-				<li>
-					<a href="../../index.html">
-						<span class="link-title">Dashboard</span>
-						<i class="mdi mdi-gauge link-icon"></i>
-					</a>
-				</li>
-				<li>
-					<a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
-						<span class="link-title">Sample Pages</span>
-						<i class="mdi mdi-flask link-icon"></i>
-					</a>
-					<ul class="collapse navigation-submenu" id="sample-pages">
-						<li>
-							<a href="../../pages/sample-pages/login_1.html" target="_blank">Login</a>
-						</li>
-						<li>
-							<a href="../../pages/sample-pages/error_2.html" target="_blank">Error</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
-						<span class="link-title">UI Elements</span>
-						<i class="mdi mdi-bullseye link-icon"></i>
-					</a>
-					<ul class="collapse navigation-submenu" id="ui-elements">
-						<li>
-							<a href="../../pages/ui-components/buttons.html">Buttons</a>
-						</li>
-						<li>
-							<a href="../../pages/ui-components/tables.html">Tables</a>
-						</li>
-						<li>
-							<a href="../../pages/ui-components/typography.html">Typography</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="../../pages/forms/form-elements.html">
-						<span class="link-title">Forms</span>
-						<i class="mdi mdi-clipboard-outline link-icon"></i>
-					</a>
-				</li>
-				<li>
-					<a href="../../pages/charts/chartjs.html">
-						<span class="link-title">Charts</span>
-						<i class="mdi mdi-chart-donut link-icon"></i>
-					</a>
-				</li>
-				<li>
-					<a href="../../pages/icons/material-icons.html">
-						<span class="link-title">Icons</span>
-						<i class="mdi mdi-flower-tulip-outline link-icon"></i>
-					</a>
-				</li>
-				<li class="nav-category-divider">DOCS</li>
-				<li>
-					<a href="../../../docs/docs.html">
-						<span class="link-title">Documentation</span>
-						<i class="mdi mdi-asterisk link-icon"></i>
-					</a>
-				</li>
-			</ul>
-			<div class="sidebar-upgrade-banner">
-				<p class="text-gray">
-					Upgrade to
-					<b class="text-primary">PRO</b>
-					for more exciting features
-				</p>
-				<a class="btn upgrade-btn" target="_blank" href="http://www.uxcandy.co/product/label-pro-admin-template/">Upgrade to PRO</a>
-			</div>
-		</div>
+		<jsp:include page="../../common/nav_admin.jsp" />
 		<!-- partial -->
 		<div class="page-content-wrapper">
 			<div class="page-content-wrapper-inner">
@@ -273,7 +190,7 @@
 							<div class="grid-body">
 								<div class="item-wrapper">
 									<br>
-									<p><c:if test="${!empty member }">${member.e_id}</c:if>
+                                    <p style="text-align: center;"><c:if test="${!empty EMP }"><b> ${EMP.e_id}</b> </c:if>
 									사원님의 평가도를 한 눈에 파악할 수 있도록 표준모형에 의한 평점통계 정보를 제공해 드립니다.</p>
 									<br>
 								</div>
@@ -296,7 +213,7 @@
 																	<label for="inputType1">사원번호</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="number" class="form-control" id="inputType4" value="83393922">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_num}</c:if>
 																</div>
 															</div>
 															<div class="form-group row showcase_row_area">
@@ -304,25 +221,18 @@
 																	<label for="inputType1">근무지</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_add}</c:if>
 																</div>
 															</div>
 
-															<div class="form-group row showcase_row_area">
-																<div class="col-md-3 showcase_text_area">
-																	<label for="inputType1">이름</label>
-																</div>
-																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
-																</div>
-															</div>
+															
 
 															<div class="form-group row showcase_row_area">
 																<div class="col-md-3 showcase_text_area">
 																	<label for="inputType1">아이디</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_id}</c:if>
 																</div>
 															</div>
 															<div class="form-group row showcase_row_area">
@@ -330,25 +240,18 @@
 																	<label for="inputType13">비밀번호</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="password" class="form-control" id="inputType3" value="00000000">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_passwd}</c:if>
 																</div>
 															</div>
 
-															<div class="form-group row showcase_row_area">
-																<div class="col-md-3 showcase_text_area">
-																	<label for="inputType1">주소</label>
-																</div>
-																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
-																</div>
-															</div>
+															
 
 															<div class="form-group row showcase_row_area">
 																<div class="col-md-3 showcase_text_area">
 																	<label for="inputType1">직급</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+																<c:if test="${!empty EMP }"> ${EMP.position}</c:if>
 																</div>
 															</div>
 
@@ -357,7 +260,7 @@
 																	<label for="inputType1">전화번호</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_tel}</c:if>
 																</div>
 															</div>
 
@@ -366,7 +269,7 @@
 																	<label for="inputType1">생년월일</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.e_birth}</c:if>
 																</div>
 															</div>
 
@@ -375,17 +278,17 @@
 																	<label for="inputType1">평가평균</label>
 																</div>
 																<div class="col-md-9 showcase_content_area">
-																	<input type="text" class="form-control" id="inputType1" value="Sara Watson">
+                                                                    <c:if test="${!empty EMP }"> ${EMP.rankaverage}</c:if>
 																</div>
 															</div>
 														</div>
 														<div class="col-lg-4 col-md-6 equel-grid">
 															<div class="grid">
 																<div class="grid-body">
-																	<p class="card-title">Campaign</p>
+                                                                    <p class="card-title">등급</p>
 																	<div id="radial-chart"></div>
-																	<h4 class="text-center">$23,350.00</h4>
-																	<p class="text-center text-muted">Used balance this billing cycle</p>
+																	<h3 class="text-center"><b>${EMP.rankaverage}등급</b></h3>
+																	<p class="text-center text-muted"><b>Six 랭킹</b></p>
 																</div>
 															</div>
 														</div>
@@ -405,7 +308,19 @@
 	</div>
 	<!-- content viewport ends -->
 	<script>
-	var chaebin = 70;
+	var chaebin = 0;
+	if(${EMP.rankaverage}==1){
+		chaebin = 100;
+	}else if(${EMP.rankaverage}==2){
+		chaebin = 80;
+	}else if(${EMP.rankaverage}==3){
+		chaebin = 60;
+	}else if(${EMP.rankaverage}==4){
+		chaebin = 40;
+	}else if(${EMP.rankaverage}==5){
+		chaebin = 20;
+	}
+	
 	
 	</script>
 	<!-- partial -->

@@ -53,13 +53,15 @@ public class AdminController {
 	}
 
 	@RequestMapping("reference")
-	public ModelAndView reference() {
+	public ModelAndView reference(HttpSession session) {
 		mv.clear();
+		Emp emp =(Emp) session.getAttribute("emp");
+		mv.addObject("EMP",emp);
 		mv.setViewName("../admin_view/emp/reference");
 		return mv;
 	}
 
-	@RequestMapping("emp")
+    @RequestMapping("emp") 
 	public ModelAndView emp(HttpSession session) {
 		mv.clear();
 

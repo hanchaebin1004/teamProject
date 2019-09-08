@@ -26,8 +26,8 @@
             <div class="top-footer">
                <div class="row">
                   <div class="col-xl-4 col-lg-4">
-                     <div class="logo-wrapper"><img src="<%= request.getContextPath()%>/assets/img/mainLogo.png" alt=""></div>
-                     <p>단 한사람, 당신을 위하여<br>나의 택배,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fac08f">식스 택배.</span> <br>마음이 통하면, 세상은 더, 따뜻해 집니다. </p>
+                     <div class="logo-wrapper"><img src="<%= request.getContextPath()%>/assets/img/six_logo_white.png" alt=""></div>
+                     <p><b>단 한사람, 당신을 위하여<br>나의 택배,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fac08f">식스 택배.</span> <br>마음이 통하면, 세상은 더, 따뜻해 집니다. </b></p>
                   </div>
                   <div class="offset-xl-1 col-xl-2 col-lg-2">
                      <h4>Menu Links</h4>
