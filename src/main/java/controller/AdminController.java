@@ -39,7 +39,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("notice")
-	public ModelAndView notice() {
+	public ModelAndView noticeList() {
 		mv.clear();
 		mv.setViewName("../admin_view/noticeManagement/noticeAdmin");
 		return mv;

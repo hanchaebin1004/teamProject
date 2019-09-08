@@ -9,94 +9,21 @@ $(document).ready(function(e){
 	
 	var idx = false;
 	
-	
 	//작성보내기 전에 확인
-	$('#writeSurvey').click(function(){
-		if($.trim($('#p_num').val()) == ''||$.trim($('#p_num').val())==' '){
-			alert("운송장 번호를 입력해주세요.");
-			$('#p_num').focus();
-			idx = false;
-			return idx;
-		} else if($.trim($('#sb_title').val()) == ''||$.trim($('#sb_title').val()) ==' '){
+	$('#updateSurvey').click(function(){
+		if($.trim($('#sb_title').val()) == ''||$.trim($('#sb_title').val()) ==' '){
 			alert("제목을 입력해주세요.");
 			$('#sb_title').focus();
 			idx = false;
 			return idx;
 		} else if($.trim($('#sb_passwd').val()) == ''||$.trim($('#sb_passwd').val()) ==' '){
-			alert("사용하실 암호를 입력해주세요.");
+			alert("원글의 암호를 입력해주세요.");
 			$('#password').focus();
 			idx = false;
 			return idx;
 		} 
 
-		if(idx==false){
-			alert("운송장 번호를 체크해주세요.");
-			idx = false;
-			return idx;
-		} /* else{
-			$('#surveyForm').submit();
-		} */
 	});
-	
-	//유효성 검사
-	$('#check').click(function(){
-		$.ajax({
-			url: "${pageContext.request.contextPath}/satisfaction/pNumCheck",
-			type: "GET",
-			data:{
-				"p_num":$('#p_num').val()
-			},
-			success: function(data){
-				//작성 가능
-				if(data == 0 && ($.trim($('#p_num').val()) != ''||$.trim($('#p_num').val()) != ' ')){
-					idx=true;
-					$('#p_num').attr("readonly",true);
-					var html="<p style='color: green'><b>작성 가능합니다.</b></p>";
-					$('#pNumCheck').empty();
-					$('#pNumCheck').append(html);
-				}
-				//중복
-				else if(data == 1&& ($.trim($('#p_num').val()) != ''||$.trim($('#p_num').val()) != ' ')){
-					var html="<p style='color: red'><b>이미 작성하셨습니다.</b></p>";
-					$('#pNumCheck').empty();
-					$('#pNumCheck').append(html);
-				}
-				//운송장 없거나 수령 안했을경우
-				else{
-					var html="<p style='color: red'><b>유효하지 않은 운송장 번호입니다.</b></p>";
-					$('#pNumCheck').empty();
-					$('#pNumCheck').append(html);
-				}
-			},
-			error: function(){
-				alert("운송장 번호를 입력해주세요.");
-			}
-		});
-	});
-	
-	
-	//값 가져오기
-	$('#check').click(function(){
-		$.ajax({
-			url: "${pageContext.request.contextPath}/satisfaction/pNumCheck1",
-			type: "GET",
-			data:{
-				"p_num":$('#p_num').val()
-			},
-			dataType:"json",
-			success: function(data){
-				$('input[name=r_num]').attr('value',data.r_num);
-				$('input[name=e_num]').attr('value',data.e_num);
-				$('input[name=r_receiver]').attr('value',data.r_receiver);
-				
-			},
-			error: function(){
-				
-			}
-		});
-	});
-	
-	
 	
 });
 </script>
@@ -128,17 +55,17 @@ $(document).ready(function(e){
 				<div class="row">
 					<div class="col-lg-12">
 						<span class="title">만족도</span>
-						<h2 class="subtitle">평가하기</h2>
+						<h2 class="subtitle">수정하기</h2>
 					</div>
 				</div>
 				<!-- 만족도 작성 폼 -->
-				<form id="surveyForm" name="surveyForm" action="surveyPro">
+				<form id="surveyUpdateForm" name="surveyUpdateForm" action="<%=request.getContextPath()%>/satisfaction/updatePro">
 					<div class="row">
 						<div class="col-lg-5">
 							<div class="form-element">
-							
+							   <input name="sb_num" id="sb_num" type="hidden" value="${surveyBoard.sb_num}"/>
 							<!--  운송장번호  -->
-								<input type="text" name="p_num" id="p_num" placeholder="운송장 번호를 입력해주세요.">
+								<input type="text" name="p_num" id="p_num" value="${surveyBoard.p_num}" readonly="readonly">
 							</div>
 						</div>
 						<!-- 체크 버튼 -->
@@ -155,17 +82,16 @@ $(document).ready(function(e){
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="form-element">
-							<input name="r_num" id="r_num" type="hidden" value="${surveyBoardAboutList.r_num}"/>
+							<input name="r_num" id="r_num" type="hidden" value="${surveyBoard.r_num}"/>
 							<!--  직원 이름  -->
-								<input name="e_num" id="e_num" type="text" value="${surveyBoardAboutList.e_num}" placeholder="담당 직원 번호"
-									readonly="readonly" />
+								<input name="e_num" id="e_num" type="text" value="${surveyBoard.e_num}" readonly="readonly" />
 							</div>
 						</div>
 
 						<div class="col-lg-3">
 							<div class="form-element">
 							<!-- 평가자이름  -->
-								<input name="r_receiver" type="text" id="r_receiver" value="${surveyBoardAboutList.r_receiver}" placeholder="평가자이름" />
+								<input name="r_receiver" type="text" id="r_receiver" value="${surveyBoard.r_receiver}" readonly="readonly" />
 							</div>
 						</div>
 					</div>
@@ -180,14 +106,23 @@ $(document).ready(function(e){
 								</p>
 								<!-- 평가선택지 -->
 								<div>
-								<c:forEach items="${surveyAnswerList}" var="surveyAnswer" >
-								<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
-								
-								<input name="satisfaction${surveyAnswer.sq_num}" value="${surveyAnswer.sa_num}" id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}" type="radio"> <label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>${surveyAnswer.sa_item}&nbsp;&nbsp;&nbsp;
-
-								</c:if>
+								<c:forEach items="${surveyAnswerList}" var="surveyAnswer">
+									<c:if test="${surveyQuestion.sq_num==surveyAnswer.sq_num}">
+								  		<input name="satisfaction${surveyAnswer.sq_num}" 
+								  		value="${surveyAnswer.sa_num}" 
+								  		id="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"
+								  		type="radio"
+								  		
+								  		<c:forEach items="${contentResult}" var="contentResult">
+		
+											<c:if test="${surveyAnswer.sq_num==contentResult.sq_num && surveyAnswer.sa_num==contentResult.sa_num}">checked="checked"</c:if>
+											<c:if test="${surveyAnswer.sq_num==contentResult.sq_num && surveyAnswer.sa_num!=contentResult.sa_num}"></c:if>
+		
+										</c:forEach>
+								  		> 
+								  		<label for="${surveyQuestion.sq_num}point${surveyAnswer.sa_num}"></label>
+									</c:if>
 								<c:if test="${surveyQuestion.sq_num!=surveyAnswer.sq_num}">
-								
 								</c:if>
 								
 								</c:forEach>
@@ -202,7 +137,7 @@ $(document).ready(function(e){
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-element">
-								<input name="sb_title" type="text" id="sb_title" placeholder="제목">
+								<input name="sb_title" type="text" id="sb_title" value="${surveyBoard.sb_title}">
 							</div>
 						</div>
 					</div>
@@ -211,18 +146,13 @@ $(document).ready(function(e){
 					<div class="row">
 						<div class="col-lg-10">
 							<div class="form-element">
-								<input name="sb_content" type="text" placeholder="이용 후기를 간단히 남겨주세요">
+								<input name="sb_content" type="text" value="${surveyBoard.sb_content}">
 							</div>
 						</div>
 					</div>
 					<!-- 비밀번호 -->
-					<div class="row">
-						<div class="col-lg-3">
-							<div class="form-element">
-								<input name="sb_passwd" id="sb_passwd" type="password" placeholder="비밀번호">
-							</div>
-						</div>
-					</div>
+					
+								<input name="sb_passwd" id="sb_passwd" type="hidden" value="${surveyBoard.sb_passwd}" readonly="readonly">
 					<!-- 안내사항 -->
 					<div class="row">
 						<div class="col-lg-10">
@@ -237,8 +167,8 @@ $(document).ready(function(e){
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-element mb-0">
-								<button type="submit" class="boxed-btn" id="writeSurvey">
-									<span>Submit</span>
+								<button type="submit" class="boxed-btn" id="updateSurvey">
+									<span>수정</span>
 								</button>
 							</div>
 						</div>

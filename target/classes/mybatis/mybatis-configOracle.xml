@@ -15,6 +15,11 @@
 		<typeAlias type="model.Emp" alias="Emp" />
 		<typeAlias type="model.Deliverestimation" alias="Deliverestimation" />
 		<typeAlias type="model.Parcel" alias="Parcel" />
+		<typeAlias type="model.SurveyBoardAboutDataBean" alias="SurveyBringAbout" />
+		<typeAlias type="model.SurveyBoardWriteDataBean" alias="SurveyInsert" />
+		<typeAlias type="model.SurveyResultDataBean" alias="SurveyResultInsert" />
+		<typeAlias type="model.SurveyContentResultDataBean" alias="SurveyContent" />
+		<typeAlias type="model.NoticeDataBean" alias="Notice"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -35,5 +40,7 @@
 		<mapper resource="mybatis/searchOracle.xml" />
 		<mapper resource="mybatis/MemberOracle.xml" />
 		<mapper resource="mybatis/AdminOracle.xml" />
+		<mapper resource="mybatis/AdministerOracle.xml" />
+		<mapper resource="mybatis/NoticeBoardOracle.xml" />
 	</mappers>
 </configuration>

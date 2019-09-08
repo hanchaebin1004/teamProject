@@ -10,11 +10,11 @@
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="breadcrumb-txt">
-					<span>만족도</span>
-					<h1>이용 고객 후기</h1>
+					<span>공지사항</span>
+					<h1>공지사항 안내</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item">저희 식스택배를 이용하신 고객님들의 후기입니다.</li>
+							<li class="breadcrumb-item">식스택배 공지 안내입니다.</li>
 						</ol>
 					</nav>
 				</div>
@@ -32,8 +32,8 @@
 			<div class="col-xl-12 col-lg-12">
 				<div class="row">
 					<div class="col-lg-12">
-						<span class="title">만족도</span>
-						<h2 class="subtitle">이용 후기</h2>
+						<span class="title">공지</span>
+						<h2 class="subtitle">공지사항</h2>
 					</div>
 				</div>
 			</div>
@@ -56,18 +56,16 @@
 								<tr>
 									<th>no</th>
 									<th colspan="3">제목</th>
-									<th colspan="1">작성자</th>
 									<th colspan="4">작성일시</th>
 									<th>조회수</th>
 								</tr>
-								<c:forEach items="${surveyBoardList}" var="surveyBoard">
-									<tr onClick="location.href='content?sb_num=${surveyBoard.sb_num}&pageNum=${pageNum}'" style="cursor:pointer;">
+								<c:forEach items="${noticeList}" var="noticeList">
+									<tr onClick="location.href='noticeContent?nb_num=${noticeList.nb_num}&pageNum=${pageNum}'" style="cursor:pointer;">
 										<td><c:out value="${number}" /></td>
 										<c:set var="number" value="${number-1}" />
-										<td colspan="3">${surveyBoard.sb_title}</td>
-										<td colspan="1">${surveyBoard.r_receiver}</td>
-										<td colspan="4">${surveyBoard.sb_regdate}</td>
-										<td>${surveyBoard.sb_readcount}</td>
+										<td colspan="3">${noticeList.nb_title}</td>
+										<td colspan="4">${noticeList.nb_regdate}</td>
+										<td>${noticeList.nb_readcount}</td>
 									</tr>
 								</c:forEach>
 							</table>
