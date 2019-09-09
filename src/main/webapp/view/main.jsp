@@ -43,7 +43,7 @@
 </div>
 <!--   cta section end    -->
 <!--  service section start  -->
-<div class="service-section home-3">
+<!--  <div class="service-section home-3">
 	<div class="container">
 		<span class="title">Our Services</span>
 		<h2 class="subtitle">WHAT WE PROVIDE</h2>

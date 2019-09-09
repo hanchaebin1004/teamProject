@@ -111,21 +111,6 @@
 					</div>
 
 
-					<div class="col-lg-12">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="form-element mb-0">
-									<br> <a
-										href="<%=request.getContextPath()%>/satisfaction/survey">
-										<button type="button" class="boxed-btn" style="float: right;">
-											<span>평가 작성</span>
-
-										</button>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
